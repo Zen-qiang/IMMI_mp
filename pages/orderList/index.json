@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "订单总计",
+  "usingComponents": {
+    "prod-list-cell": "/components/prodListCell/prodListCell",
+    "zan-loadmore": "/common/lib/zanUI/loadmore/index",
+    "zan-search": "/common/lib/zanUI/search/index",
+    "select_mask": "/components/select_mask/select_mask",
+    "select_filter": "/components/select_filter/index"
+  }
+}

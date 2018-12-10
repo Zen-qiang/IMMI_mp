@@ -1,0 +1,7 @@
+<view class='contents'>
+  <view class='row1'>
+    <text class='txt left'>{{contactData.consignee}}</text>
+    <text class='txt right'>{{contactData.phone}}</text>
+  </view>
+  <view class='row2'>{{contactData.fullAddress}}</view>
+</view>

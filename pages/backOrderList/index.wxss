@@ -1,0 +1,5 @@
+/* pages/backOrderList/index.wxss */
+
+.row {
+  margin: 0 20rpx 20rpx;
+}

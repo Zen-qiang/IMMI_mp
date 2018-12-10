@@ -1,0 +1,22 @@
+<!--components/filterItem/index.wxml-->
+<view>
+  <zan-row wx:for="{{datas}}" wx:key="{{item.attrListId}}">
+  <view class="filter-title">{{item.attrListName}}</view>
+  <view 
+    class="filter-item" 
+    wx:for="{{item.attrs}}"
+     wx:for-item="attr"
+     wx:key="{{attr.attrId}}"
+     bindtap="handlePdtList"  
+     data-item="{{attr}}"
+     >
+     <view class="box">
+      <view class="three-filter-item__title {{ !!selectedFilter[attr.attrId] ? 'three-filter-item__title-selected' : '' }}">{{attr.attrName}}</view>
+     </view>
+  </view>
+  </zan-row>
+<view class="filter-button">
+  <view class="filter-button-btn" bindtap="confirmFilter">确认筛选</view>
+</view>
+</view>
+

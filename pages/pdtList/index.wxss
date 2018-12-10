@@ -1,0 +1,7 @@
+/* pages/pdtList/index.wxss 商品列表*/
+zan-loadmore {
+  margin: 10px;
+}
+.pdtList-page {
+  /* padding: 0 10px; */
+}

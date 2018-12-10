@@ -1,0 +1,12 @@
+{
+  "usingComponents": {
+    "zan-tab": "/common/lib/zanUI/tab/index",
+    "zan-search": "/common/lib/zanUI/search/index",
+    "carousel": "/components/carousel/carousel",
+    "one-cell-two-pdt": "/components/oneCellTwoPdt/index",
+    "one-cell-three-pdt": "/components/oneCellThreePdt/index",
+    "one-cell-four-icon": "/components/oneCellFourIcon/index",
+    "filter-item": "/components/filterItem/index",
+    "zan-loadmore": "/common/lib/zanUI/loadmore/index"
+  }
+}

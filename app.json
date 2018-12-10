@@ -1,0 +1,60 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/pdtInfo/index",
+    "pages/account/index",
+    "pages/webview/index",
+    "pages/searchPage/index",
+    "pages/pdtList/index",
+    "pages/orderList/index",
+    "pages/backOrderList/index",
+    "pages/returnOrderList/index",
+    "pages/cart/index",
+    "pages/contactsChoose/contactsChoose",
+    "pages/contactsUpdate/contactsUpdate",
+    "pages/contactsManager/contactsManager",
+    "pages/login/index",
+    "pages/orderDetailList/index",
+    "pages/originOrderList/index",
+    "pages/heroOrderList/index"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "IMMI",
+    "navigationBarTextStyle":"black",
+    "onReachBottomDistance": "50"
+  },
+  "tabBar": {
+    "color": "#ffffff",
+    "selectedColor": "#ffffff",
+    "borderStyle": "black",
+    "backgroundColor": "#000000",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "common/resource/home.png",
+        "selectedIconPath": "common/resource/home-selected.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/heroOrderList/index",
+        "iconPath": "common/resource/hero.png",
+        "selectedIconPath": "common/resource/hero-selected.png",
+        "text": "全国排行榜"
+      },
+      {
+        "pagePath": "pages/cart/index",
+        "iconPath": "common/resource/cart.png",
+        "selectedIconPath": "common/resource/cart-selected.png",
+        "text": "购物车"
+      },
+      {
+        "pagePath": "pages/account/index",
+        "iconPath": "common/resource/account.png",
+        "selectedIconPath": "common/resource/account-selected.png",
+        "text": "我的"
+      }
+    ]
+  }
+}

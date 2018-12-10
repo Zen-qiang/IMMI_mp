@@ -1,0 +1,2 @@
+<!--pages/webview/index.wxml 公共的webview页面-->
+<web-view src="{{url}}"></web-view>

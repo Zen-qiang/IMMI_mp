@@ -1,0 +1,116 @@
+/* pages/account/index.wxss */
+
+page {
+  min-height: 100%;
+}
+
+/* 遮罩层 */
+
+.contents {
+  width: 100%;
+  height: 100%;
+}
+
+.bgView {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 100;
+}
+
+.bgView image {
+  width: 100%;
+  height: 100%;
+}
+
+.maskView {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 200;
+  opacity: 0.2;
+  background-color: #333;
+}
+
+.accountPage {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 300;
+  padding: 0 20px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* 内容 */
+
+.profile-info {
+  margin-top: 30rpx;
+  padding: 30px 0;
+}
+
+.profile-name {
+  height: 60px;
+  line-height: 60px;
+  display: inline-flex;
+  vertical-align: top;
+  font-size: 20px;
+  color: #fff;
+  font-weight: bolder;
+}
+
+.profile-photo {
+  height: 60px;
+  line-height: 60px;
+  display: inline-flex;
+  vertical-align: top;
+  float: right;
+}
+
+.profile-photo > image {
+  width: 50px;
+  height: 50px;
+}
+
+.account-module {
+  width: 100%;
+  height: 120px;
+  background-color: #fff;
+  margin-bottom: 20px;
+}
+
+.account-balance {
+  padding: 0 10px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.account-balance__header {
+  height: 40px;
+  line-height: 40px;
+  color: #666;
+  border-bottom: 1px solid #e0e0e0;
+  font-size: 16px;
+}
+
+.account-balance__body {
+  height: 80px;
+  line-height: 80px;
+  color: #666;
+}
+
+.account-order {
+  width: 100%;
+  height: 120px;
+  background-color: #fff;
+}
+
+/*  */
+
+.tabview {
+  opacity: 0.8;
+}
+
+.line {
+  border-bottom: 1px solid #e9e9e9;
+}

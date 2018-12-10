@@ -1,0 +1,163 @@
+/* pages/cart/index.wxss */
+
+.contents {
+  font-size: 28rpx;
+}
+
+.contents {
+  padding-bottom: 100rpx;
+  box-sizing: border-box;
+}
+
+/*  */
+
+.submit {
+  font-size: 26rpx;
+  padding: 0 30rpx;
+}
+
+.row1 {
+  box-sizing: border-box;
+  padding: 10rpx 0;
+}
+
+.row2 {
+  padding: 10rpx 0;
+  border-bottom: 1px solid #e9e9e9;
+  box-sizing: border-box;
+}
+
+.row3 {
+  padding: 30rpx 0;
+  border-bottom: 1px solid #e9e9e9;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.row3 text {
+  width: 90%;
+  display: block;
+}
+
+.row3 .arrow {
+  width: 10%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.submit .bot {
+  width: 100%;
+  height: 100rpx;
+  line-height: 100rpx;
+  margin-top: 30rpx;
+}
+
+.submit .bot button {
+  width: 80%;
+  height: 80rpx;
+  line-height: 80rpx;
+  background-color: #333;
+  color: #fff;
+  font-size: 28rpx;
+  font-weight: normal;
+}
+
+/*  */
+
+.butt {
+  width: 100%;
+  height: 100rpx;
+  line-height: 100rpx;
+  position: fixed;
+  bottom: 0;
+  background-color: #fff;
+  border-top: 1px solid #e9e9e9;
+  color: #333;
+}
+
+.butt .block {
+  position: absolute;
+  top: 0;
+}
+
+.block1 {
+  left: 0;
+  width: 60rpx;
+  height: 100rpx;
+  /* background-color: #f6f6f6; */
+}
+
+.block2 {
+  right: 200rpx;
+  width: auto;
+  height: 100rpx;
+  text-align: right;
+  padding-right: 20rpx;
+}
+
+.block3 {
+  right: 0;
+  width: 200rpx;
+  height: 100rpx;
+  text-align: center;
+  line-height: 100rpx;
+  color: #fff;
+  background-color:  #E63449;
+}
+
+/*  */
+
+.block1 .check {
+  position: absolute;
+  width: 100%;
+  height: 60rpx;
+  text-align: center;
+  line-height: 60rpx;
+}
+
+.block1 .msg {
+  position: absolute;
+  top: 60rpx;
+  width: 100%;
+  height: 40rpx;
+  text-align: center;
+  line-height: 40rpx;
+  font-size: 18rpx;
+}
+
+.block2 .row1 {
+  width: auto;
+  height: 60rpx;
+  line-height: 60rpx;
+  font-size: 30rpx;
+  font-weight: 600;
+}
+
+.block2 .row1 .amount {
+  color: #E63449;
+}
+
+.block2 .row2 {
+  width: auto;
+  height: 40rpx;
+  line-height: 20rpx;
+  font-size: 20rpx;
+}
+
+/*  */
+
+.butt button {
+  width: 80%;
+  height: 80rpx;
+  line-height: 80rpx;
+  margin-top: 10rpx;
+  background-color: #333;
+  color: #fff;
+  font-size: 28rpx;
+  font-weight: normal;
+}

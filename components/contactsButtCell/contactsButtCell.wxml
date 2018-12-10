@@ -1,0 +1,14 @@
+<view class='contents'>
+  <view class='row'>
+
+    <view class='checkButt' bindtap='setDefaultAction'>
+      <!-- <zan-icon type="{{contactData.isDefault? 'checked':'check'}}"></zan-icon> -->
+      <!-- <text>设为默认地址</text> -->
+    </view>
+
+    <button class='butt' bindtap='delAction'>删除</button>
+    <button class='butt' bindtap='editAction'>编辑</button>
+
+  </view>
+
+</view>

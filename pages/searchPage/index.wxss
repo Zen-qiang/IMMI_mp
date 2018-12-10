@@ -1,0 +1,4 @@
+/* pages/searchPage/index.wxss */
+.searchPage {
+  padding: 0 10px;
+}

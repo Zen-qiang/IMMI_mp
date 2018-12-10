@@ -1,0 +1,32 @@
+.contents {
+  font-size: 28rpx;
+  color: #333;
+  background-color: #fff;
+}
+
+.row {
+  height: 80rpx;
+  padding: 0 30rpx;
+  box-sizing: border-box;
+}
+
+.checkButt {
+  float: left;
+  height: 80rpx;
+  line-height: 80rpx;
+}
+
+.checkButt text {
+  margin-left: 10rpx;
+}
+
+.butt {
+  float: right;
+  top: 15rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  font-size: 28rpx;
+  padding: 0 28rpx;
+  margin-left: 10rpx;
+  background-color: #fff;
+}

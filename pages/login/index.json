@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "zan-cell-group": "/common/lib/zanUI/cell-group/index",
+    "zan-field": "/common/lib/zanUI/field/index",
+    "zan-button": "/common/lib/zanUI/btn/index"
+  }
+}

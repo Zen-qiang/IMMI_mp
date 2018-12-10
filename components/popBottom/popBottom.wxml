@@ -1,0 +1,7 @@
+<!-- 透明遮盖层，用于退出弹出层 -->
+<view bindtap="hideModal" class="touming" wx:if="{{showModalStatus}}">
+</view>
+<!-- 弹出框 -->
+<view animation="{{animationData}}" class="buydes-dialog-container" wx:if="{{showModalStatus}}">
+  <slot></slot>
+</view>

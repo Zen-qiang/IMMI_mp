@@ -1,0 +1,27 @@
+<!--pages/orderDetailList/index.wxml-->
+<view class='contents'>
+
+  <view class='showMsg'>
+    <view class='row'>
+      <text>订单编号: {{orderConfig.orderNumber}}</text>
+    </view>
+    <view class='row'>
+      <text>总定量: {{orderConfig.totalQty}}</text>
+    </view>
+    <view class='row'>
+      <text>总金额: {{orderConfig.totalAmount}}</text>
+    </view>
+
+    <view class='row' wx:if="{{orderType != '04'}}">
+      <view>
+        <text style="margin-right: 20rpx;">收件人: {{orderConfig.address.consignee}}</text>
+        <text>手机号: {{orderConfig.address.phone}}</text>
+      </view>
+      <text>收货地址: {{orderConfig.address.fullAddress}}</text>
+    </view>
+
+  </view>
+  <block wx:for="{{ordersData}}" wx:for-index="idx" wx:for-item="order" wx:key="{{idx}}">
+    <prod-list-cell orderId="{{orderID}}" shopData="{{order}}" showType="{{showType}}"></prod-list-cell>
+  </block>
+</view>

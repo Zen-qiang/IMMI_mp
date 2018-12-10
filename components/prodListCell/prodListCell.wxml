@@ -1,0 +1,42 @@
+<view class="container">
+
+  <view class="touch-item {{isTouchMove ? 'touch-move-active' : ''}}" bindtouchstart="touchstart" bindtouchmove="touchmove">
+    <view class="content">
+
+      <view class='left check' wx:if="{{canCheck}}" bindtap='checkAction'>
+        <!-- <zan-icon type="{{shopData.isCheck? 'checked':'check'}}"></zan-icon> -->
+        <zan-icon type="{{checkObj[shopData.styleName]? 'checked':'check'}}"></zan-icon>
+      </view>
+
+      <view class="clickMask" bindtap='cellSelected' data-type="{{shopData}}">
+        <!--  -->
+        <view class='left img'>
+          <image mode="aspectFill" src='{{shopData.image}}'></image>
+        </view>
+        <!--  -->
+        <view class='left msg2'>
+          <text class='row title'>{{shopData.productName}}</text>
+          <text class='row detail'>{{shopData.styleName}}</text>
+        </view>
+        <!--  -->
+        <view class='right msg3'>
+          <text>定量:</text>
+          <text>{{shopData.sumQty}}</text>
+          <text style='margin-left:20rpx;'>总价:</text>
+          <text style='color:#E63449;font-weight:500;'>￥{{shopData.amount}}</text>
+        </view>
+        <!--  -->
+        <view class='right arrow'>
+          <!-- <zan-icon type="arrow"></zan-icon> -->
+          <image src="{{showDetail?'/common/resource/arrow_bottom.png':'/common/resource/arrow_right.png'}}" mode="aspectFit"></image>
+        </view>
+      </view>
+    </view>
+    <view class="del" catchtap="del" data-type="{{shopData}}">删除</view>
+  </view>
+
+  <view wx:if="{{showDetail}}">
+    <order-matrix orderId="{{shopData.orderId || orderId}}" productId="{{shopData.productId}}" from="{{showType.from}}" orderType="{{showType.orderType}}" isHero="{{showType.isHero||false}}" bind:reset="reset" bind:success="successOrder"  bind:showMask="showMask"></order-matrix>
+  </view>
+
+</view>

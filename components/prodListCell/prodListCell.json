@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "order-matrix": "/components/orderMatrix/index",
+    "zan-icon": "/common/lib/zanUI/icon/index"
+  }
+}

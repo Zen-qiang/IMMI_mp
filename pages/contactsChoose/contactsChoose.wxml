@@ -1,0 +1,13 @@
+<view class='contents'>
+
+  <block wx:for="{{contactsData}}" wx:for-index="idx" wx:for-item="contact" wx:key="{{idx}}">
+    <view class='list' bindtap='chooseContact' data-contact='{{contact}}'>
+      <contacts-cell contactData="{{contact}}"></contacts-cell>
+    </view>
+  </block>
+
+</view>
+
+<view class='butt'>
+  <button bindtap='addAddressAction'>添加新地址</button>
+</view>

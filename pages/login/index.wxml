@@ -1,0 +1,17 @@
+<!--pages/login/index.wxml-->
+<view class="login-page">
+
+  <view wx:if="{{!isLogin}}">
+
+    <zan-field title="{{ userName.title }}" placeholder="{{ userName.placeholder }}" type="input" value="{{ userName.value }}" bind:change="handleUserNameChange">
+    </zan-field>
+    
+    <zan-field title="{{ password.title }}" placeholder="{{ password.placeholder }}" value="{{ password.value }}" type="input" inputType="password" bind:change="handlePawwordChange">
+    </zan-field>
+  </view>
+
+  <view class="login-btn">
+    <zan-button size="" bindtap="handleBtn">{{isLogin ? "退出登录" : "登录"}}</zan-button>
+  </view>
+
+</view>

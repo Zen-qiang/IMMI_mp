@@ -1,0 +1,21 @@
+<view class='contents {{showSelectView1||showSelectView2 ? "fix":"" }}'>
+  <select_mask id="popup" showText="{{sortText}}" bind:selectActive="selectActive" bind:searchDone="searchDone">
+    <view class='sortView' wx:if="{{showSelectView1}}">
+      <view class='text' bindtap='sortAction' data-param="0">默认排序</view>
+      <view class='text' bindtap='sortAction' data-param="1">定量从高到低</view>
+      <view class='text' bindtap='sortAction' data-param="2">定量从低到高</view>
+      <view class='text' bindtap='sortAction' data-param="3">金额从高到低</view>
+      <view class='text' bindtap='sortAction' data-param="4">金额从低到高</view>
+    </view>
+    <view wx:if="{{showSelectView2}}">
+      <select_filter datas="{{attrsList}}" bind:cancel="cancel" bind:selectFilter="selectFilter" from="hero"></select_filter>
+    </view>
+  </select_mask>
+
+  <block wx:for="{{ordersData.list}}" wx:for-index="idx" wx:for-item="order" wx:key="{{idx}}">
+    <prod-list-cell shopData="{{order}}" showType="{{showType}}"></prod-list-cell>
+  </block>
+  <zan-loadmore type="loading" wx:if="{{!loadDone}}"></zan-loadmore>
+  <zan-loadmore type="text" text="{{title}}" wx:elif="{{title}}"></zan-loadmore>
+  <!-- <zan-loadmore type="text" wx:elif="{{newLoadMore.title}}" text="{{newLoadMore.title}}"></zan-loadmore> -->
+</view>

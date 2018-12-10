@@ -1,0 +1,15 @@
+<view class='contents'>
+
+  <view class='con maskView'>
+    <image src='{{orderData.image}}' mode="center"></image>
+  </view>
+
+  <view class='con bkg'>
+  </view>
+
+  <view class='con msgView'>
+    <text class='status'>{{orderData.orderStatus}}</text>
+    <text class='title'>{{orderData.orderNumber}}</text>
+  </view>
+
+</view>

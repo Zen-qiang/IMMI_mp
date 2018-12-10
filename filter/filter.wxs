@@ -1,0 +1,17 @@
+var filter = {
+
+  numberSlice: function (value) {
+
+    if (!value) return 0;
+    var str = value + '';
+    if (str.length > 4) {
+      return str.slice(0,4);
+    } else {
+      return value;
+    }
+  }
+}
+
+module.exports = {
+  numberSlice: filter.numberSlice
+}

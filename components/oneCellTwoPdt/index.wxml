@@ -1,0 +1,18 @@
+<!--components/oneCellTwoPdt/index.wxml 一行两个商品-->
+<zan-row>
+  <zan-col col="12" col-class="two-pdt-item" wx:for="{{items}}" wx:key="{{item.id}}">
+    <view class="box" bindtap="jumpUrl" data-item="{{item}}">
+      <view class="content">
+        <image src="{{item.image}}" mode="aspectFill" lazy-load="true"></image>
+      </view>
+      <view class="info">
+        <view class="prodCode">{{item.productName}}</view>
+        <view class="prodName">{{item[showName]}}</view>
+        <view class="prodPrice">
+          <!-- <text class="priceStandard">¥ {{item.priceStandard}}</text> -->
+          <text class="priceDiscount">¥ {{item.price}}</text>
+        </view>
+      </view>
+    </view>
+  </zan-col>
+</zan-row>

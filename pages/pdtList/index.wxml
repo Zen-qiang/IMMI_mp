@@ -1,0 +1,6 @@
+<!--pages/pdtList/index.wxml-->
+<view class="pdtList-page">
+    <one-cell-two-pdt items="{{list}}"></one-cell-two-pdt>
+    <zan-loadmore type="loading" wx:if="{{loadMore.isLoad}}"></zan-loadmore>
+    <zan-loadmore type="text" text="{{loadMore.title}}" wx:elif="{{loadMore.title}}"></zan-loadmore>
+</view>

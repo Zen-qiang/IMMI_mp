@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "选择联系人",
+  "usingComponents": {
+    "contacts-cell": "/components/contactsCell/contactsCell"
+  },
+  "enablePullDownRefresh": false
+}

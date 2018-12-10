@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "zan-icon": "/common/lib/zanUI/icon/index"
+  }
+}

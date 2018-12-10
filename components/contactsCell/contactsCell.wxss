@@ -1,0 +1,29 @@
+.contents {
+  font-size: 28rpx;
+  color: #333;
+  background-color: #fff;
+}
+
+.contents .row1 {
+  position: relative;
+  height: 68rpx;
+}
+
+.contents .row1 .txt {
+  position: absolute;
+  height: 68rpx;
+  line-height: 68rpx;
+}
+
+.contents .row1 .left {
+  left: 30rpx;
+}
+
+.contents .row1 .right {
+  right: 30rpx;
+}
+
+.contents .row2 {
+  padding: 0 30rpx 15rpx;
+  font-size: 24rpx;
+}

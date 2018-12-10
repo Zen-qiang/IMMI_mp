@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "zan-row": "/common/lib/zanUI/row/index",
+    "zan-col": "/common/lib/zanUI/col/index"
+  }
+}

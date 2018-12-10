@@ -1,0 +1,41 @@
+/* components/oneCellFourIcon/index.wxss */
+.four-icon-item {
+  padding-bottom: 33.333%;
+  position: relative;
+  margin-top: 10px;
+}
+.four-icon-item > .box {
+  position: absolute;
+  width: 100%;
+  height: 86%;
+  /* background-color: blue; */
+  box-sizing: border-box;
+  padding: 0 5px;
+}
+.four-icon-item > .box > .content {
+  position: relative;
+  width: 100%;
+  height: 80%;
+  /* background-color: yellow; */
+}
+.four-icon-item > .box > .content > image {
+  width: 100%;
+  height: 100%;
+}
+.four-icon-item > .box > .info {
+  position: relative;
+  width: 100%;
+  height: 20%;
+  /* background-color: red; */
+}
+
+.four-icon-item > .box > .info > .cateName{
+  margin-top: 2px;
+  text-align: center;
+  color: #333;
+  font-size: 12px;
+  white-space:nowrap; 
+  overflow:hidden; 
+  text-overflow: ellipsis;
+}
+

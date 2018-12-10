@@ -1,0 +1,13 @@
+<!--components/oneCellFourIcon/index.wxml 一行四个-->
+<zan-row>
+  <zan-col col="6" col-class="four-icon-item" wx:for="{{items}}" wx:key="{{item.id}}">
+    <view class="box" bindtap="jumpUrl" data-item="{{item}}">
+      <view class="content">
+        <image src="{{item.image}}" mode="aspectFill" lazy-load="true"></image>
+      </view>
+      <view class="info">
+        <view class="cateName">{{item.attrName}}</view>
+      </view>
+    </view>
+  </zan-col>
+</zan-row>

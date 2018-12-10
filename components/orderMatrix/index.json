@@ -1,0 +1,11 @@
+{
+  "component": true,
+  "usingComponents": {
+    "zan-tab": "../tab/index",
+    "zan-cell": "../cell/index",
+    "zan-button": "/common/lib/zanUI/btn/index",
+    "zan-stepper": "/common/lib/zanUI/stepper/index",
+    "zan-popup": "/common/lib/zanUI/popup/index",
+    "zan-radio": "/common/lib/zanUI/radio/index"
+  }
+}

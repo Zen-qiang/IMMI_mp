@@ -1,0 +1,30 @@
+<view class='contents'>
+
+  <view class='row'>
+    <input class='inp' placeholder='请输入收货人姓名' value='{{consignee}}' bindinput="inputChange" data-type='01'></input>
+  </view>
+
+  <view class='row'>
+    <input class='inp' placeholder='请输入手机号码' input-type='number' value='{{phone}}' bindinput="inputChange" data-type='02'></input>
+  </view>
+
+  <picker mode="region" bindchange="bindRegionChange" value="{{region}}">
+    <view class='row'>
+      <text class='picker'>{{region[0]}}{{region[1]}}{{region[2]}}</text>
+      <view class='arrow'>
+        <zan-icon type="arrow"></zan-icon>
+      </view>
+    </view>
+  </picker>
+
+  <view class='row'>
+    <textarea class='txa' placeholder='请输入详细地址(最多50字)' auto-height maxlength="50" value='{{detail}}' bindinput="inputChange" data-type='03'></textarea>
+  </view>
+
+</view>
+
+<view class='butt'>
+  <button bindtap='addAddressAction'>保存</button>
+</view>
+
+<!-- addressList 获取地址列表 -->
