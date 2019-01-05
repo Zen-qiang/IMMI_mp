@@ -7,6 +7,15 @@ Component({
   properties: {
     showText:{
       type: String,
+    },
+    showNum: {
+      type: String,
+    },
+    showTime: {
+      type: String,
+    },
+    showP: {
+      type: Boolean,
     }
   },
 
@@ -17,6 +26,10 @@ Component({
     showModalStatus: false,
     showModal1: false,
     showModal2: false,
+    // 定量
+    showModal3: false,
+    // 时间
+    showModal4: false,
     inputValue: "", // 输入框的值
     maskTop: '0px',
   },
@@ -36,17 +49,23 @@ Component({
           showModalStatus: false, //显示遮罩层
           showModal1: false,
           showModal2: false,
+          showModal3: false,
+          showModal4: false,
         })
       } else {
         this.setData({
           showModalStatus: true,
           showModal1: true,
           showModal2: false,
+          showModal3: false,
+          showModal4: false,
         });
       }
       this.triggerEvent('selectActive', {
         showModal1: this.data.showModal1,
-        showModal2: this.data.showModal2
+        showModal2: this.data.showModal2,
+        showModal3: this.data.showModal3,
+        showModal4: this.data.showModal4
       });
 
     },
@@ -57,17 +76,73 @@ Component({
           showModalStatus: false, //显示遮罩层
           showModal1: false,
           showModal2: false,
+          showModal3: false,
+          showModal4: false,
         })
       } else {
         this.setData({
           showModalStatus: true,
           showModal1: false,
           showModal2: true,
+          showModal3: false,
+          showModal4: false,
         });
       }
       this.triggerEvent('selectActive', {
         showModal1: this.data.showModal1,
-        showModal2: this.data.showModal2
+        showModal2: this.data.showModal2,
+        showModal3: this.data.showModal3,
+        showModal4: this.data.showModal4
+      });
+    },
+    butt3Click() {
+      if (this.data.showModal3) {
+        this.setData({
+          showModalStatus: false, //显示遮罩层
+          showModal1: false,
+          showModal2: false,
+          showModal3: false,
+          showModal4: false,
+        })
+      } else {
+        this.setData({
+          showModalStatus: true,
+          showModal1: false,
+          showModal2: false,
+          showModal3: true,
+          showModal4: false,
+        });
+      }
+      this.triggerEvent('selectActive', {
+        showModal1: this.data.showModal1,
+        showModal2: this.data.showModal2,
+        showModal3: this.data.showModal3,
+        showModal4: this.data.showModal4
+      });
+    },
+    butt4Click() {
+      if (this.data.showModal4) {
+        this.setData({
+          showModalStatus: false, //显示遮罩层
+          showModal1: false,
+          showModal2: false,
+          showModal3: false,
+          showModal4: false,
+        })
+      } else {
+        this.setData({
+          showModalStatus: true,
+          showModal1: false,
+          showModal2: false,
+          showModal3: false,
+          showModal4: true,
+        });
+      }
+      this.triggerEvent('selectActive', {
+        showModal1: this.data.showModal1,
+        showModal2: this.data.showModal2,
+        showModal3: this.data.showModal3,
+        showModal4: this.data.showModal4
       });
     },
 
@@ -110,10 +185,14 @@ Component({
         showModalStatus: false, //显示遮罩层
         showModal1: false,
         showModal2: false,
+        showModal3: false,
+        showModal4: false,
       })
       this.triggerEvent('selectActive', {
         showModal1: this.data.showModal1,
-        showModal2: this.data.showModal2
+        showModal2: this.data.showModal2,
+        showModal3: this.data.showModal3,
+        showModal4: this.data.showModal4,
       });
     },
 

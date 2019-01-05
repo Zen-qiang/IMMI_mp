@@ -10,7 +10,12 @@ Page({
         {
           id: 'new',
           title: '今日新品'
+          // title: '当季新品'
         },
+        // {
+        //   id: 'goGoods',
+        //   title: '过季商品'
+        // },
         {
           id: 'all',
           title: '全部'

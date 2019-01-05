@@ -7,8 +7,11 @@
     />
     <!-- 弹出框 -->
     <view class='cell buydes-dialog-container' animation="{{animationData}}">
-      <view class='row' bindtap='butt1Click'>{{showText}}</view>
-      <view class='row' bindtap='butt2Click'>筛选</view>
+    <!-- 新增 定量 和时间 根据 传递的 showP 来选着显示与否 -->
+      <view wx:if="{{showP}}" class="{{showP ? 'row1' : ''}}" bindtap='butt3Click'>{{showNum}}</view>
+      <view wx:if="{{showP}}" class="{{showP ? 'row1' : ''}}" bindtap='butt4Click'>{{showTime}}</view>
+      <view class="{{showP ? 'row1' : 'row'}}" bindtap='butt1Click'>{{showText}}</view>
+      <view class="{{showP ? 'row1' : 'row'}}" bindtap='butt2Click'>筛选</view>
     </view>
     <view id='anchors'></view>
 

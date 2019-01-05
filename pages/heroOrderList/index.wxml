@@ -1,5 +1,16 @@
-<view class='contents {{showSelectView1||showSelectView2 ? "fix":"" }}'>
-  <select_mask id="popup" showText="{{sortText}}" bind:selectActive="selectActive" bind:searchDone="searchDone">
+<view class='contents {{showSelectView1||showSelectView2 || showSelectView3 || showSelectView4 ? "fix":"" }}'>
+  <select_mask id="popup" showP="{{showP}}" showNum="{{showNum}}" showTime="{{showTime}}" showText="{{sortText}}" bind:selectActive="selectActive" bind:searchDone="searchDone">
+  <!-- 全国定量 -->
+    <view class='sortView' wx:if="{{showSelectView3}}">
+      <view class='text' bindtap='sortAction1' data-param="0">全国定量</view>
+      <view class='text' bindtap='sortAction1' data-param="1">我的定量</view>
+    </view>
+    <!-- 时间 -->
+    <view class='sortView' wx:if="{{showSelectView4}}">
+      <view class='text' bindtap='sortAction2' data-param="0">本周</view>
+      <view class='text' bindtap='sortAction2' data-param="1">本月</view>
+      <view class='text' bindtap='sortAction2' data-param="2">本季度</view>
+    </view>
     <view class='sortView' wx:if="{{showSelectView1}}">
       <view class='text' bindtap='sortAction' data-param="0">默认排序</view>
       <view class='text' bindtap='sortAction' data-param="1">定量从高到低</view>

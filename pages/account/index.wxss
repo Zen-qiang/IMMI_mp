@@ -114,3 +114,35 @@ page {
 .line {
   border-bottom: 1px solid #e9e9e9;
 }
+
+.text-align {
+  /* text-align: center; */
+}
+.box-out {
+  width: 100%;
+  padding-left: 70rpx;
+  box-sizing: border-box;
+  /* display: flex;
+  justify-content: space-around */
+}
+.num {
+  /* display: flex;
+  flex-direction: column;
+  justify-content: space-between; */
+  margin-bottom: 15rpx;
+}
+.one {
+}
+.pri {
+  /* text-decoration: 20px; */
+  /* display: flex;
+  flex-direction: column;
+  justify-content: space-between; */
+}
+/* 倒圆角 */
+.br {
+  border-radius: 15rpx 15rpx 0 0
+}
+.fbr {
+  border-radius: 0 0 15rpx 15rpx;
+}

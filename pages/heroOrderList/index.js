@@ -10,6 +10,7 @@ Page({
   data: {
     inputValue: '',
     ordersData: {},
+    showP: true,
     showType: {
       from: 'cart',
       orderType: 'backOrder',
@@ -17,13 +18,22 @@ Page({
     },
     loadDone: false,
     title: '',
+    showNum: '全国定量',
+    showTime:'本周',
     showSelectView1: false,
     showSelectView2: false,
+    // 定量
+    showSelectView3: false,
+    // 时间
+    showSelectView4: false,
     attrsList: [], // 筛选数据
     attrIdList: [], // 选择的筛选数据
     sortText: '默认排序', // 排序结果 ，保存用于接口请求
     orderBy: "", // QTY（定量） | AMT（金额） ，保存用于接口请求
     sort: "", // DESC（倒叙） | ASC（正序） ，保存用于接口请求
+    orderByModel: 'ALL', // 排序方式   MY个人   ALL全场
+    timeQuantum: 'this_week' //this_week  this_month  this_season
+
   },
 
   /**
@@ -52,7 +62,9 @@ Page({
   selectActive: function(e) {
     this.setData({
       showSelectView1: e.detail.showModal1,
-      showSelectView2: e.detail.showModal2
+      showSelectView2: e.detail.showModal2,
+      showSelectView3: e.detail.showModal3,
+      showSelectView4: e.detail.showModal4
     });
     this.selectComponent("#popup").setMaskTop();
   },
@@ -88,6 +100,63 @@ Page({
       sortText: _sortText,
       orderBy: _orderBy,
       sort: _sort,
+      ordersData: {},
+    });
+    this.selectComponent("#popup").hideModal();
+    this.prepareData();
+  },
+
+  // 点击定量列表
+  sortAction1: function (e) {
+    console.log(e.currentTarget.dataset.param);
+    let _showNum = "";
+    let _orderBy = "";
+    let _sort = "";
+    let _orderByModel="";
+    let _timeQuantum= "";
+    if (e.currentTarget.dataset.param == 0) {
+      _showNum = "全国定量";
+      _orderByModel = 'ALL'
+    } else if (e.currentTarget.dataset.param == 1) {
+      _sortText = "我的定量";
+      _orderByModel = 'MY'
+    } 
+    this.setData({
+      showNum: _showNum,
+      orderBy: _orderBy,
+      sort: _sort,
+      orderByModel: _orderByModel,
+      timeQuantum: _timeQuantum,
+      ordersData: {},
+    });
+    this.selectComponent("#popup").hideModal();
+    this.prepareData();
+  },
+
+  // 点击时间列表
+  sortAction2: function (e) {
+    console.log(e.currentTarget.dataset.param);
+    let _showTime = "";
+    let _orderBy = "";
+    let _sort = "";
+    let _orderByModel = "";
+    let _timeQuantum = "";
+    if (e.currentTarget.dataset.param == 0) {
+      _showTime = "本周";
+      _timeQuantum = 'this_week'
+    } else if (e.currentTarget.dataset.param == 1) {
+      _showTime = "本月";
+      _timeQuantum = "this_month";
+    } else if (e.currentTarget.dataset.param == 2) {
+      _showTime = "本季度";
+      _timeQuantum = "this_season";
+    }
+    this.setData({
+      showTime: _showTime,
+      orderBy: _orderBy,
+      sort: _sort,
+      orderByModel: _orderByModel,
+      timeQuantum: _timeQuantum,
       ordersData: {},
     });
     this.selectComponent("#popup").hideModal();
@@ -144,6 +213,8 @@ Page({
         orderBy: this.data.orderBy,
         sort: this.data.sort,
         attrIdList: this.data.attrIdList,
+        orderByModel: this.data.orderByModel,
+        timeQuantum: this.data.timeQuantum,
         size: 8,
         page: page,
       }
