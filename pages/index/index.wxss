@@ -1,37 +1,3 @@
-<<<<<<< HEAD
-.container {
-  background-color: #f2f2f2;
-}
-.container1 {
-  background-color: #ffffff!important;
-}
-/**index.wxss**/
-zan-loadmore {
-  margin: 10px;
-}
-#tab-container {
-  position: fixed;
-  margin-top: 0;
-  
-  z-index: 99;
-  width: 100%;
-}
-#index-tab {
-  width: 100%;
-}
-#index-container {
-  margin-top: 55px;
-  width: 100%;
-  box-sizing: border-box;
-  /* padding: 0 10px; */
-}
-.zan-cell {
-  padding: 6px 15px!important;
-}
-.space{
-  height: 20rpx;
-}
-=======
 .container {
   background-color: #f2f2f2;
   min-height: 100%;
@@ -113,4 +79,3 @@ zan-loadmore {
   margin-bottom: 10rpx;
   padding: 0 10rpx;
 }
->>>>>>> master

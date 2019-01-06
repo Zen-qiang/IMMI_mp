@@ -1,33 +1,3 @@
-<<<<<<< HEAD
-<view class='content'>
-
-  <view class='seat' style='height:{{maskTop}}'>
-  </view>
-  <view class='cont'>
-    <zan-search placeholder="搜索..." keyword="{{ inputValue }}" searchStyle="height: 70rpx;border-radius: 50rpx;background: {{ searchbg || '#F2F2F2' }};" inputStyle="height: 30rpx; background: {{ searchbg || '#F2F2F2' }};" bindchange="searchChange" bindsearch="searchDone"
-    />
-    <!-- 弹出框 -->
-    <view class='cell buydes-dialog-container' animation="{{animationData}}">
-    <!-- 新增 定量 和时间 根据 传递的 showP 来选着显示与否 -->
-      <view wx:if="{{showP}}" class="{{showP ? 'row1' : ''}}" bindtap='butt3Click'>{{showNum}}</view>
-      <view wx:if="{{showP}}" class="{{showP ? 'row1' : ''}}" bindtap='butt4Click'>{{showTime}}</view>
-      <view class="{{showP ? 'row1' : 'row'}}" bindtap='butt1Click'>{{showText}}</view>
-      <view class="{{showP ? 'row1' : 'row'}}" bindtap='butt2Click'>筛选</view>
-    </view>
-    <view id='anchors'></view>
-
-    <view class='scrollView'>
-      <slot></slot>
-    </view>
-    
-  </view>
-
-  <!-- 透明遮盖层，用于退出弹出层 -->
-  <view bindtap="hideModal" class="touming" wx:if="{{showModalStatus}}" catchtouchmove="preventTouchMove">
-  </view>
-
-</view>
-=======
 <view class='content'>
 
     <view class='seat' style='height:{{maskTop}}'>
@@ -63,4 +33,3 @@
     </view>
 
 </view>
->>>>>>> master

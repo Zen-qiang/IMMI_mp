@@ -1,9 +1,10 @@
 <!--pages/account/index.wxml-->
+<import src="../../common/lib/wxParse/wxParse.wxml" />
 
 <view class='contents'>
   <!-- 遮罩层 -->
   <view class='bgView'>
-    <image src='/common/resource/backgroundImage.jpg' mode="aspectFill"></image>
+    <image src='{{userbg}}' mode="aspectFill"></image>
   </view>
   <view class='maskView'></view>
   <!-- 内容 -->
@@ -15,8 +16,11 @@
           <image src="../../common/resource/defaultPhoto.png"></image>
         </view>
       </view>
+      <view style='color:#fff;font-size:25rpx'>
+        <template is="wxParse" data="{{wxParseData:webContent.nodes}}" />
+      </view>
     </view>
-    <!-- 余额 -->
+
     <!-- <zan-cell-group border>
       <zan-cell title="我的订单" isLink="true" bindtap="enterOtherPage" data-page="orderList"></zan-cell>
       <zan-cell title="补货单" isLink="true" bindtap="enterOtherPage" data-page="returnOrderList"></zan-cell>
@@ -25,60 +29,15 @@
     </zan-cell-group> -->
 
     <view class='tabview'>
-      <zan-cell title="订单总计" cell-class="text-align br" isLink="true" bindtap="enterOtherPage" data-page="orderList">
-        <view class="box-out">
-          <view class="num">
-            <text class="one">数量</text>
-            <text>{{allOrder.qty}}件</text>
-          </view>
-          <view class="pri">
-            <text class="one">金额</text>
-            <text>￥{{allOrder.amt}}元</text>
-          </view>
-        </view>
-
-      </zan-cell>
+      <zan-cell title="订单总计" isLink="true" bindtap="enterOtherPage" data-page="orderList"></zan-cell>
       <view class='line'></view>
-      <zan-cell title="补货订单" cell-class="text-align" isLink="true" bindtap="enterOtherPage" data-page="returnOrderList">
-                <view class="box-out">
-          <view class="num">
-            <text class="one">数量</text>
-            <text>{{backOrder.qty}}件</text>
-          </view>
-          <view class="pri">
-            <text class="one">金额</text>
-            <text>￥{{backOrder.amt}}元</text>
-          </view>
-        </view>
-      </zan-cell>
+      <zan-cell title="补货订单" isLink="true" bindtap="enterOtherPage" data-page="returnOrderList"></zan-cell>
       <view class='line'></view>
-      <zan-cell title="退货订单" cell-class="text-align" isLink="true" bindtap="enterOtherPage" data-page="backOrderList">
-                <view class="box-out">
-          <view class="num">
-            <text class="one">数量</text>
-            <text>{{returnOrder.qty}}件</text>
-          </view>
-          <view class="pri">
-            <text class="one">金额</text>
-            <text>￥{{returnOrder.amt}}元</text>
-          </view>
-        </view>
-      </zan-cell>
+      <zan-cell title="退货订单" isLink="true" bindtap="enterOtherPage" data-page="backOrderList"></zan-cell>
       <view class='line'></view>
-      <zan-cell title="原始订单" cell-class="text-align" isLink="true" bindtap="enterOtherPage" data-page="originOrderList">
-                <view class="box-out">
-          <view class="num">
-            <text class="one">数量</text>
-            <text>{{normalOrder.qty}}件</text>
-          </view>
-          <view class="pri">
-            <text class="one">金额</text>
-            <text>￥{{normalOrder.amt}}元</text>
-          </view>
-        </view>
-      </zan-cell>
+      <zan-cell title="原始订单" isLink="true" bindtap="enterOtherPage" data-page="originOrderList"></zan-cell>
       <view class='line'></view>
-      <zan-cell title="我的地址" cell-class="fbr" isLink="true" bindtap="enterOtherPage" data-page="contactsManager"></zan-cell>
+      <zan-cell title="我的地址" isLink="true" bindtap="enterOtherPage" data-page="contactsManager"></zan-cell>
     </view>
     <!-- <order-matrix from="{{from}}" orderType="{{orderType}}" bindsuccess="successOrder"></order-matrix> -->
   </view>
