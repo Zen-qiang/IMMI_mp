@@ -43,6 +43,9 @@
   font-size: 26rpx;
   text-align: center;
 }
+/* content .cell .row1.wd {
+  width: 22%;
+} */
 
 .rowFlex {
   height: 80rpx;
@@ -60,7 +63,7 @@
   margin:auto 0;
 }
 .content .cell .row1 text {
-  width: 280rpx;
+  width: 300rpx;
 }
 .content .cell .row1 image {
   width: 60rpx;
