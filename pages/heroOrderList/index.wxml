@@ -7,9 +7,10 @@
     </view>
     <!-- 时间 -->
     <view class='sortView' wx:if="{{showSelectView4}}">
-      <view class='text' bindtap='sortAction2' data-param="0">本周</view>
-      <view class='text' bindtap='sortAction2' data-param="1">本月</view>
-      <view class='text' bindtap='sortAction2' data-param="2">本季度</view>
+      <view class='text' bindtap='sortAction2' data-param="0">不限</view>
+      <view class="text" bindtap='sortAction2' data-param="1">本周</view>
+      <view class='text' bindtap='sortAction2' data-param="2">本月</view>
+      <view class='text' bindtap='sortAction2' data-param="3">本季度</view>
     </view>
     <view class='sortView' wx:if="{{showSelectView1}}">
       <view class='text' bindtap='sortAction' data-param="0">默认排序</view>

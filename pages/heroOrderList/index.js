@@ -19,7 +19,7 @@ Page({
     loadDone: false,
     title: '',
     showNum: '全国定量',
-    showTime: '本周',
+    showTime: '不限',
     showSelectView1: false,
     showSelectView2: false,
     // 定量
@@ -131,13 +131,16 @@ Page({
     console.log(e.currentTarget.dataset.param);
     let _showTime = "";
     let _timeQuantum = "";
-    if (e.currentTarget.dataset.param == 0) {
+    if(e.currentTarget.dataset.param == 0) {
+      _showTime = "不限",
+      _timeQuantum = ''
+    }else if (e.currentTarget.dataset.param == 1) {
       _showTime = "本周";
       _timeQuantum = 'this_week'
-    } else if (e.currentTarget.dataset.param == 1) {
+    } else if (e.currentTarget.dataset.param == 2) {
       _showTime = "本月";
       _timeQuantum = "this_month";
-    } else if (e.currentTarget.dataset.param == 2) {
+    } else if (e.currentTarget.dataset.param == 3) {
       _showTime = "本季度";
       _timeQuantum = "this_season";
     }
