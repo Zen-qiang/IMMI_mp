@@ -44,6 +44,17 @@ Page({
         });
       }
     }
+    // 标题
+    if (this.data.type == '1') {
+      wx.setNavigationBarTitle({
+        title: '当季商品',
+      })
+    } 
+    if (this.data.type == '2') {
+      wx.setNavigationBarTitle({
+        title: '过季商品',
+      })
+    }
     this.prepareData();
   },
 
@@ -57,12 +68,14 @@ Page({
     }
   },
 
-  // 新品推荐
+  // 新品推荐 当季商品
   getType1Data(loadmore) {
     var data = {
-      url: config.indexNewPdtQuery,
+      // url: config.indexNewPdtQuery,
+      url: config.timeGoods,
       params: {
-        recommend: true,
+        // recommend: true,
+        type: 'in_season',
         page: this.data.page,
         size: this.data.size
       }
@@ -101,16 +114,18 @@ Page({
     });
   },
 
-  // Top 20
+  // Top 20 过季商品
   getType2Data(loadmore) {
     let attrIdList = JSON.stringify(this.data.attrIdList);
     var data = {
-      url: config.searchB2bProductTopList,
+      // url: config.searchB2bProductTopList,
+      url: config.timeGoods,
       params: {
+        type: 'out_dated',
         page: 1,
         size: 20,
-        orderBy: 'QTY',
-        sort: "DESC",
+        // orderBy: 'QTY',
+        // sort: "DESC",
       }
     }
     app.nGet(data).then(data => {
@@ -121,8 +136,8 @@ Page({
           });
         } else {
           this.setData({
-            page: 1,
-            size: 20,
+            // page: 1,
+            // size: 20,
             pages: 1,
             total: 20,
             list: data.data.list,

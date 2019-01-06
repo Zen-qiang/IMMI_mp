@@ -29,15 +29,59 @@
     </zan-cell-group> -->
 
     <view class='tabview'>
-      <zan-cell title="订单总计" isLink="true" bindtap="enterOtherPage" data-page="orderList"></zan-cell>
+      <zan-cell title="订单总计" cell-class="text-align br" isLink="true" bindtap="enterOtherPage" data-page="orderList">
+        <view class="box-out">
+          <view class="num">
+            <text class="one">数量：</text>
+            <text decode="{{true}}">{{allOrder.qty}}&nbsp;件</text>
+          </view>
+          <view class="pri">
+            <text class="one">金额：</text>
+            <text decode="{{true}}">{{allOrder.amt}}&nbsp;元</text>
+          </view>
+        </view>
+      </zan-cell>
       <view class='line'></view>
-      <zan-cell title="补货订单" isLink="true" bindtap="enterOtherPage" data-page="returnOrderList"></zan-cell>
+      <zan-cell title="补货订单" cell-class="text-align" isLink="true" bindtap="enterOtherPage" data-page="returnOrderList">
+        <view class="box-out">
+          <view class="num">
+            <text class="one">数量：</text>
+            <text decode="{{true}}">{{backOrder.qty}}&nbsp;件</text>
+          </view>
+          <view class="pri">
+            <text class="one">金额：</text>
+            <text decode="{{true}}">{{backOrder.amt}}&nbsp;元</text>
+          </view>
+        </view>
+      </zan-cell>
       <view class='line'></view>
-      <zan-cell title="退货订单" isLink="true" bindtap="enterOtherPage" data-page="backOrderList"></zan-cell>
+      <zan-cell title="退货订单" cell-class="text-align" isLink="true" bindtap="enterOtherPage" data-page="backOrderList">
+        <view class="box-out">
+          <view class="num">
+            <text class="one">数量：</text>
+            <text decode="{{true}}">{{returnOrder.qty}}&nbsp;件</text>
+          </view>
+          <view class="pri">
+            <text class="one">金额：</text>
+            <text decode="{{true}}">{{returnOrder.amt}}&nbsp;元</text>
+          </view>
+        </view>
+      </zan-cell>
       <view class='line'></view>
-      <zan-cell title="原始订单" isLink="true" bindtap="enterOtherPage" data-page="originOrderList"></zan-cell>
+      <zan-cell title="原始订单" cell-class="text-align" isLink="true" bindtap="enterOtherPage" data-page="originOrderList">
+        <view class="box-out">
+          <view class="num">
+            <text class="one">数量：</text>
+            <text decode="{{true}}">{{normalOrder.qty}}&nbsp;件</text>
+          </view>
+          <view class="pri">
+            <text class="one">金额：</text>
+            <text decode="{{true}}">{{normalOrder.amt}}&nbsp;元</text>
+          </view>
+        </view>
+      </zan-cell>
       <view class='line'></view>
-      <zan-cell title="我的地址" isLink="true" bindtap="enterOtherPage" data-page="contactsManager"></zan-cell>
+      <zan-cell title="我的地址" cell-class="fbr" isLink="true" bindtap="enterOtherPage" data-page="contactsManager"></zan-cell>
     </view>
     <!-- <order-matrix from="{{from}}" orderType="{{orderType}}" bindsuccess="successOrder"></order-matrix> -->
   </view>

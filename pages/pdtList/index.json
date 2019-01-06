@@ -1,5 +1,4 @@
 {
-  "navigationBarTitleText": "商品列表",
   "usingComponents": {
     "zan-loadmore": "/common/lib/zanUI/loadmore/index",
     "one-cell-two-pdt": "/components/oneCellTwoPdt/index"

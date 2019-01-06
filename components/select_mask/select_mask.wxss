@@ -35,6 +35,14 @@
   font-size: 26rpx;
   text-align: center;
 }
+.content .cell .row1 {
+  width: 25%;
+  height: 80rpx;
+  line-height: 80rpx;
+  display: inline-block;
+  font-size: 26rpx;
+  text-align: center;
+}
 
 .rowFlex {
   height: 80rpx;
@@ -47,6 +55,14 @@
   width: 200rpx;
 }
 .content .cell .row image {
+  width: 60rpx;
+  height: 60rpx;
+  margin:auto 0;
+}
+.content .cell .row1 text {
+  width: 260rpx;
+}
+.content .cell .row1 image {
   width: 60rpx;
   height: 60rpx;
   margin:auto 0;

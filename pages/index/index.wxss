@@ -47,7 +47,7 @@ zan-loadmore {
   width: 49%;
   height: 100%;
   float: left;
-  background-color: yellow;
+  /* background-color: yellow; */
   box-sizing: border-box;
 }
 
@@ -55,7 +55,7 @@ zan-loadmore {
   width: 49%;
   height: 100%;
   float: right;
-  background-color: yellowgreen;
+  /* background-color: yellowgreen; */
   box-sizing: border-box;
 }
 

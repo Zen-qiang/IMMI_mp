@@ -48,6 +48,8 @@
 
 const host = "https://immi.dingliantech.com";
 // const host = "http://192.168.3.16:8080/trendfinder";
+// const host = "http://172.16.0.176:8082";
+
 
 // 首页接口汇总
 let api = {
@@ -97,6 +99,10 @@ let api = {
   getAccountInfo: `${host}/b2b/user/getAccountInfo`,
   // 首页展示图片
   getLayout: `${host}/b2b/getLayout`,
+  // 首页 当季/过季商品
+  timeGoods: `${host}/b2b/product/queryIsInseasonProduct`,
+  // 我的页面 订单的金额 和 数量
+  getOrderPriNum: `${host}/b2b/order/queryMyOrderCount`,
 };
 
 var config = {
