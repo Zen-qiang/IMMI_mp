@@ -11,18 +11,20 @@
       <select_filter datas="{{attrsList}}" bind:cancel="cancel" bind:selectFilter="selectFilter" from="order"></select_filter>
     </view>
   </select_mask>
-  <view class='showMsg'>
-    <view class='row'>
-      <text>总定量: {{ordersData.summary.totalQty}}</text>
-    </view>
-    <view class='row'>
-      <text>总金额: {{ordersData.summary.totalAmt}}</text>
-    </view>
-  </view>
+
   <block wx:for="{{ordersData.list}}" wx:for-index="idx" wx:for-item="order" wx:key="{{idx}}">
     <prod-list-cell shopData="{{order}}" showType="{{showType}}" bind:showMask="showMask"></prod-list-cell>
   </block>
   <zan-loadmore type="loading" wx:if="{{!loadDone}}"></zan-loadmore>
   <zan-loadmore type="text" text="{{title}}" wx:elif="{{title}}"></zan-loadmore>
+  <view class="space"></view>
+  <view class='showMsg'>
+    <view class='row'>
+      <text>总定量: {{ordersData.summary.totalQty}}</text>
+    </view>
+    <view class='row'>
+      <text>总金额: ￥ {{ordersData.summary.totalAmt}}</text>
+    </view>
+  </view>
   <!-- <zan-loadmore type="text" wx:elif="{{newLoadMore.title}}" text="{{newLoadMore.title}}"></zan-loadmore> -->
 </view>

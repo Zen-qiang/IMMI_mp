@@ -10,12 +10,12 @@
 }
 
 .sortView {
-  font-size: 22rpx;
+  font-size: 26rpx;
 }
 
 .sortView .text {
-  height: 60rpx;
-  line-height: 60rpx;
+  height: 80rpx;
+  line-height: 80rpx;
   margin: 0 40rpx;
   border-bottom: 1px solid #f0f0f0;
 }

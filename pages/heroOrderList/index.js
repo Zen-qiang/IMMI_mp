@@ -140,10 +140,10 @@ Page({
     var paramData = {
       url: config.searchB2bProductTopList,
       params: {
-        search: this.data.inputValue,
-        orderBy: this.data.orderBy,
-        sort: this.data.sort,
-        attrIdList: this.data.attrIdList,
+        search: this.data.inputValue||'',
+        orderBy: this.data.orderBy||'',
+        sort: this.data.sort||'',
+        attrIdList: this.data.attrIdList||'',
         size: 8,
         page: page,
       }

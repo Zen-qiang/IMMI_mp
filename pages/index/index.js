@@ -6,10 +6,9 @@ import config from '../../config.js';
 Page({
   data: {
     tab: {
-      list: [
-        {
+      list: [{
           id: 'new',
-          title: '今日新品'
+          title: '首页'
         },
         {
           id: 'all',
@@ -28,9 +27,10 @@ Page({
       size: 6,
       pages: 0,
       total: 0,
-      list:[]
-    }, 
-    newLoadMore: {// 今日新品 加载信息
+      list: []
+    },
+    accountInfo: "",
+    newLoadMore: { // 今日新品 加载信息
       title: "",
       isLoad: false
     },
@@ -43,22 +43,36 @@ Page({
       total: 0,
       list: []
     },
-    allLoadMore: {//全部 加载信息
+    allLoadMore: { //全部 加载信息
       title: "",
       isLoad: false
     },
-    attrsList: [] // 筛选 属性list
+    attrsList: [], // 筛选 属性list
+    home_new: "",
+    home_top: "",
   },
 
-  onLoad: function () {
+  onLoad: function() {
     this.getCarouselList();
-    this.getPdtList({ recommend: true});
+    // this.getPdtList({
+    //   recommend: true
+    // });
   },
+
   onHide: function() {
     wx.removeStorage({
       key: 'selectedFilterItem'
     })
   },
+
+  onShow: function() {
+    this.setData({
+      selectedId: 'new'
+    });
+    this.getAccountInfo();
+    this.getLayout();
+  },
+
   /**
    * tab切换
    */
@@ -80,8 +94,7 @@ Page({
   getCarouselList() {
     var data = {
       url: config.indexCarouselQuery,
-      params: {
-      }
+      params: {}
     }
     app.nGet(data).then(data => {
       if (data.data && data.data.list) {
@@ -93,6 +106,40 @@ Page({
       // console.error(res);
     });
   },
+
+  getAccountInfo() {
+    var data = {
+      url: config.getAccountInfo,
+      params: {}
+    }
+    app.nGet(data).then(data => {
+      this.setData({
+        accountInfo: data.data
+      });
+    }, res => {});
+  },
+
+  getLayout() {
+    var data = {
+      url: config.getLayout,
+      params: {}
+    }
+    app.nGet(data).then(data => {
+      console.log(data);
+      this.setData({
+        home_new: data.data.new,
+        home_top: data.data.top
+      });
+    }, res => {});
+  },
+
+  homeShowModel(e) {
+    wx.navigateTo({
+      url: `/pages/pdtList/index?type=${e.currentTarget.dataset.type}`,
+    });
+
+  },
+
   /**
    * 获取最新商品列表
    * loadmore 是否上拉加载请求
@@ -120,46 +167,38 @@ Page({
             });
           }
         } else {
-          if (selectedId === 'new') { 
+          if (selectedId === 'new') {
             let list = [...this.data.recommendInfo.list, ...data.data.list];
-            this.setData(
-              {
-                ["newLoadMore.isLoad"]: false,
-                ["recommendInfo.page"]: data.data.page,
-                ["recommendInfo.size"]: data.data.size,
-                ["recommendInfo.total"]: data.data.total,
-                ["recommendInfo.pages"]: data.data.pages,
-                ["recommendInfo.list"]: list,
-              }
-            );
+            this.setData({
+              ["newLoadMore.isLoad"]: false,
+              ["recommendInfo.page"]: data.data.page,
+              ["recommendInfo.size"]: data.data.size,
+              ["recommendInfo.total"]: data.data.total,
+              ["recommendInfo.pages"]: data.data.pages,
+              ["recommendInfo.list"]: list,
+            });
           } else if (selectedId === 'all') {
             let list = [...this.data.allInfo.list, ...data.data.list];
-            this.setData(
-              {
-                ["allLoadMore.isLoad"]: false,
-                ["allInfo.page"]: data.data.page,
-                ["allInfo.size"]: data.data.size,
-                ["allInfo.total"]: data.data.total,
-                ["allInfo.pages"]: data.data.pages,
-                ["allInfo.list"]: list,
-              }
-            );
+            this.setData({
+              ["allLoadMore.isLoad"]: false,
+              ["allInfo.page"]: data.data.page,
+              ["allInfo.size"]: data.data.size,
+              ["allInfo.total"]: data.data.total,
+              ["allInfo.pages"]: data.data.pages,
+              ["allInfo.list"]: list,
+            });
           }
         }
       }
     }, res => {
-      if (selectedId === 'new') { 
-        this.setData(
-          {
-            ["newLoadMore.isLoad"]: false
-          }
-        );
-      } else if (selectedId === 'all') { 
-        this.setData(
-          {
-            ["allLoadMore.isLoad"]: false
-          }
-        );
+      if (selectedId === 'new') {
+        this.setData({
+          ["newLoadMore.isLoad"]: false
+        });
+      } else if (selectedId === 'all') {
+        this.setData({
+          ["allLoadMore.isLoad"]: false
+        });
       }
       // console.error(res);
     });
@@ -170,15 +209,14 @@ Page({
   getCategory() {
     var data = {
       url: config.indexCategoryQuery,
-      params: {
-      }
+      params: {}
     }
     app.nGet(data).then(data => {
       if (data.data) {
         this.setData({
           categoryList: data.data,
         });
-        
+
       }
     }, res => {
       // console.error(res);
@@ -190,8 +228,7 @@ Page({
   getFilterList() {
     var data = {
       url: config.indexFilterQuery,
-      params: {
-      }
+      params: {}
     }
     app.nGet(data).then(data => {
       if (data.data) {
@@ -222,9 +259,9 @@ Page({
     })
   },
   /**
-  * 页面相关事件处理函数--监听用户下拉动作
-  */
-  onPullDownRefresh: function () {
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function() {
     wx.showNavigationBarLoading();
     wx.hideNavigationBarLoading();
   },
@@ -232,7 +269,7 @@ Page({
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
     let selectedId = this.data.selectedId;
     if (selectedId === 'new') {
       if (Number(this.data.recommendInfo.page) < Number(this.data.recommendInfo.pages)) {
@@ -240,7 +277,9 @@ Page({
           ["newLoadMore.isLoad"]: true,
           ["recommendInfo.page"]: Number(this.data.recommendInfo.page) + 1,
         });
-        this.getPdtList({ recommend: true}, 'loadmore');
+        this.getPdtList({
+          recommend: true
+        }, 'loadmore');
       } else {
         this.setData({
           ["newLoadMore.title"]: '没有更多数据啦'

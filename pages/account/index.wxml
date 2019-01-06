@@ -1,9 +1,10 @@
 <!--pages/account/index.wxml-->
+<import src="../../common/lib/wxParse/wxParse.wxml" />
 
 <view class='contents'>
   <!-- 遮罩层 -->
   <view class='bgView'>
-    <image src='/common/resource/backgroundImage.jpg' mode="aspectFill"></image>
+    <image src='{{userbg}}' mode="aspectFill"></image>
   </view>
   <view class='maskView'></view>
   <!-- 内容 -->
@@ -15,8 +16,11 @@
           <image src="../../common/resource/defaultPhoto.png"></image>
         </view>
       </view>
+      <view style='color:#fff;font-size:25rpx'>
+        <template is="wxParse" data="{{wxParseData:webContent.nodes}}" />
+      </view>
     </view>
-    <!-- 余额 -->
+
     <!-- <zan-cell-group border>
       <zan-cell title="我的订单" isLink="true" bindtap="enterOtherPage" data-page="orderList"></zan-cell>
       <zan-cell title="补货单" isLink="true" bindtap="enterOtherPage" data-page="returnOrderList"></zan-cell>

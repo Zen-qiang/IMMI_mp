@@ -93,6 +93,10 @@ let api = {
   rOrderGet: `${host}/b2b/order/orderInfo`,
   // 排行榜
   searchB2bProductTopList: `${host}/b2b/product/searchB2bProductTopList`,
+  // 用户信息
+  getAccountInfo: `${host}/b2b/user/getAccountInfo`,
+  // 首页展示图片
+  getLayout: `${host}/b2b/getLayout`,
 };
 
 var config = {

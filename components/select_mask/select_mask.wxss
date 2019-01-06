@@ -18,21 +18,41 @@
   background-color: #fff;
 }
 
+.searchView {
+  padding: 0 10rpx;
+}
+
 .cont .scrollView {
-  max-height: 500rpx;
+  /*max-height: 700rpx;*/
   overflow-y: scroll;
 }
 
 .content .cell .row {
   width: 50%;
-  height: 60rpx;
-  line-height: 60rpx;
+  height: 80rpx;
+  line-height: 80rpx;
   display: inline-block;
-  font-size: 22rpx;
+  font-size: 26rpx;
   text-align: center;
 }
 
-/* -----------------遮罩层----------------- */
+.rowFlex {
+  height: 80rpx;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+
+.content .cell .row text {
+  width: 200rpx;
+}
+.content .cell .row image {
+  width: 60rpx;
+  height: 60rpx;
+  margin:auto 0;
+}
+
+  /* -----------------遮罩层----------------- */
 
 /* 透明遮罩层 */
 

@@ -5,7 +5,8 @@
   <view class="{{from === 'pdtInfo' ? 'order-matrix-height-body' : 'order-matrix-min-height-body'}}">
     <zan-cell title="{{item.sizeName}}" from="{{from}}" wx:for="{{matrix[selectedId]}}" wx:for-index="idx" wx:key="{{item.aliasId}}">
       <text style="float: right;margin-right: 10px; font-size: 12px; width: 70px;text-align: left;" wx:if="{{from === 'order'}}">已订：{{filter.numberSlice(item.maxQty)}}</text>
-      <zan-stepper slot="footer" stepper="{{item.qty}}" min="{{from === 'rOrderInfo' ? item.qty : 0}}" max="{{ from === 'rOrderInfo' ? item.qty: orderType === 'returnOrder'? (item.maxQty ? item.maxQty : item.qty): 10000000}}" size="small" data-idx="{{idx}}"
+      <text style="float: right;margin-right: 10px; font-size: 12px; width: 70px;text-align: left;" wx:if="{{from === 'pdtInfo' || (from === 'cart' && orderType === 'backOrder')}}">库存：{{item.store}}</text>
+      <zan-stepper slot="footer" stepper="{{item.qty}}" min="{{from === 'rOrderInfo' ? item.qty : 0}}" max="{{ from === 'rOrderInfo' ? item.qty: orderType === 'returnOrder'? (item.maxQty ? item.maxQty : item.qty): item.store}}" size="small" data-idx="{{idx}}"
         bind:change="handleZanStepperChange"></zan-stepper>
     </zan-cell>
   </view>
