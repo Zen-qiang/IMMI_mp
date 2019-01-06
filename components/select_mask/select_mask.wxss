@@ -60,7 +60,7 @@
   margin:auto 0;
 }
 .content .cell .row1 text {
-  width: 260rpx;
+  width: 280rpx;
 }
 .content .cell .row1 image {
   width: 60rpx;
