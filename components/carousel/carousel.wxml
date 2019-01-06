@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!--components/carousel.wxml-->
 <swiper class="carousel-swiper" indicator-dots="{{indicatorDots}}"
   autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="{{circular}}">
@@ -7,3 +8,14 @@
     </swiper-item>
   </block>
 </swiper>
+=======
+<!--components/carousel.wxml-->
+<swiper class="carousel-swiper" indicator-dots="{{indicatorDots}}"
+  autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="{{circular}}">
+  <block wx:for="{{items}}" wx:key="{{item.id}}">
+    <swiper-item bindtap="jumpUrl" data-item="{{item}}">
+      <image mode='aspectFill' src="{{item.image}}" class="carousel-image slide-image"/>
+    </swiper-item>
+  </block>
+</swiper>
+>>>>>>> master

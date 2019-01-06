@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!--pages/account/index.wxml-->
 
 <view class='contents'>
@@ -82,4 +83,49 @@
     </view>
     <!-- <order-matrix from="{{from}}" orderType="{{orderType}}" bindsuccess="successOrder"></order-matrix> -->
   </view>
+=======
+<!--pages/account/index.wxml-->
+<import src="../../common/lib/wxParse/wxParse.wxml" />
+
+<view class='contents'>
+  <!-- 遮罩层 -->
+  <view class='bgView'>
+    <image src='{{userbg}}' mode="aspectFill"></image>
+  </view>
+  <view class='maskView'></view>
+  <!-- 内容 -->
+  <view class="accountPage">
+    <view class="profile-info" bindtap="checkLogin">
+      <view>
+        <view class="profile-name">{{userName ? userName : '请登录'}}</view>
+        <view class="profile-photo">
+          <image src="../../common/resource/defaultPhoto.png"></image>
+        </view>
+      </view>
+      <view style='color:#fff;font-size:25rpx'>
+        <template is="wxParse" data="{{wxParseData:webContent.nodes}}" />
+      </view>
+    </view>
+
+    <!-- <zan-cell-group border>
+      <zan-cell title="我的订单" isLink="true" bindtap="enterOtherPage" data-page="orderList"></zan-cell>
+      <zan-cell title="补货单" isLink="true" bindtap="enterOtherPage" data-page="returnOrderList"></zan-cell>
+      <zan-cell title="退货单" isLink="true" bindtap="enterOtherPage" data-page="backOrderList"></zan-cell>
+      <zan-cell title="我的地址" isLink="true" bindtap="enterOtherPage" data-page="contactsManager"></zan-cell>
+    </zan-cell-group> -->
+
+    <view class='tabview'>
+      <zan-cell title="订单总计" isLink="true" bindtap="enterOtherPage" data-page="orderList"></zan-cell>
+      <view class='line'></view>
+      <zan-cell title="补货订单" isLink="true" bindtap="enterOtherPage" data-page="returnOrderList"></zan-cell>
+      <view class='line'></view>
+      <zan-cell title="退货订单" isLink="true" bindtap="enterOtherPage" data-page="backOrderList"></zan-cell>
+      <view class='line'></view>
+      <zan-cell title="原始订单" isLink="true" bindtap="enterOtherPage" data-page="originOrderList"></zan-cell>
+      <view class='line'></view>
+      <zan-cell title="我的地址" isLink="true" bindtap="enterOtherPage" data-page="contactsManager"></zan-cell>
+    </view>
+    <!-- <order-matrix from="{{from}}" orderType="{{orderType}}" bindsuccess="successOrder"></order-matrix> -->
+  </view>
+>>>>>>> master
 </view>

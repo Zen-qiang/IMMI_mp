@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <view class='content'>
 
   <view class='seat' style='height:{{maskTop}}'>
@@ -26,3 +27,40 @@
   </view>
 
 </view>
+=======
+<view class='content'>
+
+    <view class='seat' style='height:{{maskTop}}'>
+    </view>
+    <view class='cont'>
+        <view class="searchView">
+            <zan-search placeholder="搜索..." keyword="{{ inputValue }}"
+                        searchStyle="height: 70rpx;border-radius: 50rpx;background: {{ searchbg || '#F2F2F2' }};"
+                        inputStyle="height: 30rpx; background: {{ searchbg || '#F2F2F2' }};" bindchange="searchChange"
+                        bindsearch="searchDone"/>
+        </view>
+
+        <!-- 弹出框 -->
+        <view class='cell buydes-dialog-container' animation="{{animationData}}">
+            <view class='row' bindtap='butt1Click'>
+                <view class="rowFlex">
+                    <text class="rowcon">{{showText}}</text>
+                    <image aspectFill class="rowcon" src="{{showText=='默认排序'?'/common/resource/filter.png':'/common/resource/filter-selected.png'}}"></image>
+                </view>
+            </view>
+            <view class='row' bindtap='butt2Click'>筛选</view>
+        </view>
+        <view id='anchors'></view>
+
+        <scroll-view scroll-y class='scrollView'>
+            <slot></slot>
+        </scroll-view>
+
+    </view>
+
+    <!-- 透明遮盖层，用于退出弹出层 -->
+    <view bindtap="hideModal" class="touming" wx:if="{{showModalStatus}}" catchtouchmove="preventTouchMove">
+    </view>
+
+</view>
+>>>>>>> master

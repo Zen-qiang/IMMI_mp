@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* components/filterItem/index.wxss */
 .filter-title {
   padding-left: 5px;
@@ -78,3 +79,80 @@
   border-radius: 5px;
   font-size: 14px;
 }
+=======
+/* components/filterItem/index.wxss */
+.filter-title {
+    padding-left: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.filter-item {
+    display: inline-block;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+.filter-item > .box > .three-filter-item__title {
+    padding: 0 8px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.three-filter-item {
+    display: inline-block;
+    /* position: relative; */
+    margin-top: 10px;
+    height: 30px;
+}
+
+.three-filter-item > .box {
+    position: absolute;
+    width: 100%;
+    /* background-color: blue; */
+    box-sizing: border-box;
+    padding: 0 5px;
+}
+
+.three-filter-item__title {
+    position: relative;
+    width: 100%;
+    background: #f1f1f1;
+    text-align: center;
+    font-size: 14px;
+    height: 30px;
+    line-height: 30px;
+    color: #999999;
+    box-sizing: border-box;
+    overflow: hidden;
+    border: 1px solid #f1f1f1;
+}
+
+.three-filter-item__title-selected {
+    border: 1px solid #f44;
+    background: #fff;
+    color: #f44;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.filter-button {
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.filter-button-btn {
+    width: 45%;
+    height: 40px;
+    border: 1px solid #e0e0e0;
+    line-height: 40px;
+    color: #999999;
+    border-radius: 5px;
+    font-size: 14px;
+}
+>>>>>>> master

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* pages/orderList/index.wxss */
 
 .contents {
@@ -19,3 +20,26 @@
   margin: 0 40rpx;
   border-bottom: 1px solid #f0f0f0;
 }
+=======
+/* pages/orderList/index.wxss */
+
+.contents {
+  width: 100%;
+}
+
+.fix {
+  position: fixed;
+  top: 0;
+}
+
+.sortView {
+  font-size: 26rpx;
+}
+
+.sortView .text {
+  height: 80rpx;
+  line-height: 80rpx;
+  margin: 0 40rpx;
+  border-bottom: 1px solid #f0f0f0;
+}
+>>>>>>> master
