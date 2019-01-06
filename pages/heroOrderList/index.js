@@ -31,8 +31,8 @@ Page({
     sortText: '默认排序', // 排序结果 ，保存用于接口请求
     orderBy: "", // QTY（定量） | AMT（金额） ，保存用于接口请求
     sort: "", // DESC（倒叙） | ASC（正序） ，保存用于接口请求
-    orderByModel: 'ALL', // 排序方式   MY个人   ALL全场
-    timeQuantum: 'this_week' //this_week  this_month this_season
+    orderByModel: '', // 排序方式   MY个人   ALL全场
+    timeQuantum: '' //this_week  this_month this_season
   },
 
   /**
@@ -76,8 +76,6 @@ Page({
     let _sortText = "";
     let _orderBy = "";
     let _sort = "";
-    let _orderByModel = "";
-    let _timeQuantum = "";
     if (e.currentTarget.dataset.param == 0) {
       _sortText = "默认排序";
     } else if (e.currentTarget.dataset.param == 1) {
@@ -101,8 +99,6 @@ Page({
       sortText: _sortText,
       orderBy: _orderBy,
       sort: _sort,
-      orderByModel: _orderByModel,
-      timeQuantum: _timeQuantum,
       ordersData: {},
     });
     this.selectComponent("#popup").hideModal();
@@ -113,10 +109,7 @@ Page({
   sortAction1: function (e) {
     console.log(e.currentTarget.dataset.param);
     let _showNum = "";
-    let _orderBy = "";
-    let _sort = "";
     let _orderByModel = "";
-    let _timeQuantum = "";
     if (e.currentTarget.dataset.param == 0) {
       _showNum = "全国定量";
       _orderByModel = 'ALL'
@@ -126,11 +119,7 @@ Page({
     }
     this.setData({
       showNum: _showNum,
-      orderBy: _orderBy,
-      sort: _sort,
       orderByModel: _orderByModel,
-      timeQuantum: _timeQuantum,
-      ordersData: {},
     });
     this.selectComponent("#popup").hideModal();
     this.prepareData();
@@ -140,9 +129,6 @@ Page({
   sortAction2: function (e) {
     console.log(e.currentTarget.dataset.param);
     let _showTime = "";
-    let _orderBy = "";
-    let _sort = "";
-    let _orderByModel = "";
     let _timeQuantum = "";
     if (e.currentTarget.dataset.param == 0) {
       _showTime = "本周";
@@ -156,11 +142,7 @@ Page({
     }
     this.setData({
       showTime: _showTime,
-      orderBy: _orderBy,
-      sort: _sort,
-      orderByModel: _orderByModel,
       timeQuantum: _timeQuantum,
-      ordersData: {},
     });
     this.selectComponent("#popup").hideModal();
     this.prepareData();
@@ -198,7 +180,6 @@ Page({
 
   /** 加载数据 */
   prepareData() {
-
     // 分页加载
     var page = 1;
     var sData = this.data.ordersData;
