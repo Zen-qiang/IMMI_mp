@@ -36,12 +36,15 @@
   text-align: center;
 }
 .content .cell .row1 {
-  width: 25%;
+  width: 23%;
   height: 80rpx;
   line-height: 80rpx;
   display: inline-block;
   font-size: 26rpx;
   text-align: center;
+}
+.content .cell .wx {
+  width: 31%;
 }
 /* content .cell .row1.wd {
   width: 22%;
