@@ -120,6 +120,7 @@ Page({
     this.setData({
       showNum: _showNum,
       orderByModel: _orderByModel,
+      ordersData: {}
     });
     this.selectComponent("#popup").hideModal();
     this.prepareData();
@@ -143,6 +144,7 @@ Page({
     this.setData({
       showTime: _showTime,
       timeQuantum: _timeQuantum,
+      ordersData: {}
     });
     this.selectComponent("#popup").hideModal();
     this.prepareData();
