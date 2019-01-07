@@ -24,6 +24,9 @@ Component({
       type: Object,
       observer: function(newVal, oldVal) {}
     },
+    show: {
+      type: Boolean
+    },
 
     showType: {
       type: Object,

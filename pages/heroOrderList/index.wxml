@@ -25,7 +25,7 @@
   </select_mask>
 
   <block wx:for="{{ordersData.list}}" wx:for-index="idx" wx:for-item="order" wx:key="{{idx}}">
-    <prod-list-cell shopData="{{order}}" showType="{{showType}}"></prod-list-cell>
+    <prod-list-cell shopData="{{order}}" showType="{{showType}}" show="{{true}}"></prod-list-cell>
   </block>
   <zan-loadmore type="loading" wx:if="{{!loadDone}}"></zan-loadmore>
   <zan-loadmore type="text" text="{{title}}" wx:elif="{{title}}"></zan-loadmore>
