@@ -1,4 +1,6 @@
 <!--index.wxml-->
+<import src="../../common/lib/wxParse/wxParse.wxml" />
+
 <view class="container {{ selectedId === 'filter' ? 'container1' : '' }}">
   <view id="tab-container">
     <zan-tab id="index-tab" list="{{ tab.list }}" selected-id="{{ selectedId }}" bindtabchange="handleTabChange" />
@@ -15,11 +17,12 @@
           <image mode='aspectFill' src='{{home_top}}'></image>
         </view>
       </view>
-
-      <zan-loadmore type="text" text="{{accountInfo}}"></zan-loadmore>
+      <!-- <zan-loadmore type="text" text="{{accountInfo}}"></zan-loadmore> -->
+       <view style='color:#000;font-size:25rpx;text-align:center;'>
+        <template is="wxParse" data="{{wxParseData:webContent.nodes}}" />
+      </view>
 
       <one-cell-two-pdt items="{{recommendInfo.list}}"></one-cell-two-pdt>
-
       <!-- <zan-loadmore type="loading" wx:if="{{newLoadMore.isLoad}}"></zan-loadmore> -->
       <!-- <zan-loadmore type="text" text="{{newLoadMore.title}}"></zan-loadmore> -->
     </view>

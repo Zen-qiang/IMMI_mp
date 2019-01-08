@@ -2,6 +2,8 @@
 //获取应用实例
 const app = getApp();
 import config from '../../config.js';
+var WxParse = require('../../common/lib/wxParse/wxParse.js');
+
 
 Page({
   data: {
@@ -108,6 +110,7 @@ Page({
   },
 
   getAccountInfo() {
+    let that = this;
     var data = {
       url: config.getAccountInfo,
       params: {}
@@ -116,6 +119,9 @@ Page({
       this.setData({
         accountInfo: data.data
       });
+      let webContent = data.data ? data.data : '';
+      WxParse.wxParse('webContent', 'html', webContent, that, 0);
+      // console.log(data.data,22)
     }, res => {});
   },
 
