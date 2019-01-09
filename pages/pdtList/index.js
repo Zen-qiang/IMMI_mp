@@ -122,26 +122,51 @@ Page({
       url: config.timeGoods,
       params: {
         type: 'out_dated',
-        page: 1,
-        size: 20,
+        page: this.data.page,
+        size: this.data.size,
         // orderBy: 'QTY',
         // sort: "DESC",
       }
     }
     app.nGet(data).then(data => {
+      // if (data.data && data.data.list) {
+      //   if (data.data.list && data.data.list.length === 0) {
+      //     this.setData({
+      //       ["loadMore.title"]: '暂无数据'
+      //     });
+      //   }
+      //   this.setData({
+      //     page: data.data.page,
+      //     size: data.data.size,
+      //     pages: data.data.pages,
+      //     total: data.data.total,
+      //     list: data.data.list,
+      //   });
+      // } else {
+      // }
       if (data.data && data.data.list) {
-        if (data.data.list && data.data.list.length === 0) {
+        if (!loadmore) {
+          if (data.data.list && data.data.list.length === 0) {
+            this.setData({
+              ["loadMore.title"]: '暂无数据'
+            });
+          }
           this.setData({
-            ["loadMore.title"]: '暂无数据'
+            page: data.data.page,
+            size: data.data.size,
+            pages: data.data.pages,
+            total: data.data.total,
+            list: data.data.list,
           });
         } else {
+          let list = [...this.data.list, ...data.data.list];
           this.setData({
-            // page: 1,
-            // size: 20,
-            pages: 1,
-            total: 20,
-            list: data.data.list,
             ["loadMore.isLoad"]: false,
+            page: data.data.page,
+            size: data.data.size,
+            pages: data.data.pages,
+            total: data.data.total,
+            list: list,
           });
         }
       }
@@ -218,6 +243,7 @@ Page({
       this.setData({
         ["loadMore.title"]: '没有更多数据啦'
       });
+      console.log(this.data.pages)
     }
   }
 })
