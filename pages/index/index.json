@@ -7,6 +7,7 @@
     "one-cell-three-pdt": "/components/oneCellThreePdt/index",
     "one-cell-four-icon": "/components/oneCellFourIcon/index",
     "filter-item": "/components/filterItem/index",
-    "zan-loadmore": "/common/lib/zanUI/loadmore/index"
+    "zan-loadmore": "/common/lib/zanUI/loadmore/index",
+    "my-tabs": "/components/my-tabs/index"
   }
 }

@@ -8,8 +8,6 @@ App({
 
   onShow: function(opts) {
     let username = this.getValue('username');
-    console.log('username');
-    console.log(!username);
     if (!username) {
       wx.navigateTo({
         url: '/pages/login/index'
@@ -22,8 +20,9 @@ App({
   },
 
   globalData: {
-    hasLogin: false,
-    openid: null
+    openid: null,
+    car_defaultOrderTypeIndex: null,  // 购物车页面默认orderType tab下标
+    car_defaultSeasonIndex: null  // 购物车页面默认season tab下标
   },
 
   // lazy loading openid
@@ -60,24 +59,15 @@ App({
   },
 
   // ======网络请求======
-
-  /** get 请求
-    var data = {
-      url: config.loginP,
-      params: {
-      }
-    }
-    app.nGet(data).then(data => {}, res => {});
-   */
-  nGet: function(data) {
-    var _that = this;
+  fetch: function (data, type = 'GET') {
+    const _that = this;
     let sessionKey = this.getValue('sessionKey') || '';
     let cityId = this.getValue('cityCode') || '310000';
     let promise = new Promise(function(resolve, reject) {
       wx.request({
         url: data.url,
         data: data.params,
-        method: "GET",
+        method: type,
         header: {
           'content-type': 'application/x-www-form-urlencoded;charset=utf-8',
           'session-Token': sessionKey,
@@ -91,7 +81,7 @@ App({
           } else if (res.data && res.data.code === 8006 || res.data && res.data.code === 8005) {
             _that.clearValue();
             wx.reLaunch({
-              url: '/pages/login/index?page=first'
+              url: '/pages/login/index'
             });
           } else {
             reject(res.data);
@@ -104,49 +94,14 @@ App({
     });
     return promise;
   },
-
-  /** post 请求
-    var data = {
-      url: config.loginP,
-      params: {
-      }
-    }
-    app.nPost(data).then(data => {}, res => {});
-   */
-  nPost: function(data) {
-    var _that = this;
-    let sessionKey = this.getValue('sessionKey') || '';
-    let cityId = this.getValue('cityCode') || '310000';
-    let promise = new Promise(function(resolve, reject) {
-      wx.request({
-        url: data.url,
-        data: data.params,
-        method: "POST",
-        header: {
-          'content-type': 'application/x-www-form-urlencoded;charset=utf-8',
-          'session-Token': sessionKey,
-          'city': cityId,
-        },
-        success: function(res) {},
-        fail: function(res) {},
-        complete: function(res) {
-          if (res.data && res.data.code === 666) {
-            resolve(res.data);
-          } else if (res.data && res.data.code === 8006 || res.data && res.data.code === 8005) {
-            _that.clearValue();
-            wx.reLaunch({
-              url: '/pages/login/index?page=first'
-            });
-          } else {
-            reject(res.data);
-            if (res.data && res.data.message) {
-              _that.showMsg(res.data.message);
-            }
-          }
-        }
-      });
-    });
-    return promise;
+  nGet: function (data) {
+    return this.fetch(data)
+  },
+  nPost: function (data) {
+    return this.fetch(data, 'POST')
+  },
+  nPut: function (data) {
+    return this.fetch(data, 'PUT')
   },
   // ======本地存储======
 
@@ -187,5 +142,11 @@ App({
       duration: rduration
     })
   },
-
+  /**
+   * 判断用户是否登录
+  */
+  isLogin: function () {
+    var sessionKey = this.getValue('sessionKey');
+    return sessionKey ? true : false;
+  },
 })

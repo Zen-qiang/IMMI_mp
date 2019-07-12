@@ -1,0 +1,50 @@
+Page {
+  background: #f9f9f9;
+  padding: 88rpx 0 100rpx;
+}
+.title, .ctr {
+  position: fixed;
+  left: 0;
+  width: 100%;
+  height: 88rpx;
+  z-index: 1;
+  background: #fff;
+}
+.title {
+  top: 0;
+  text-align: center;
+  line-height: 88rpx;
+  font-size: 24rpx;
+  font-weight: bold;
+}
+.info {
+  padding: 60rpx 30rpx 0;
+}
+.item {
+  margin-bottom: 30rpx;
+}
+.item-title {
+  font-size:22rpx;
+  color:#aaa;
+}
+.item-content {
+  font-size:28rpx;
+}
+.ctr {
+  bottom: 0;
+}
+.ctr > view {
+  display: inline-block;
+  width: 50%;
+}
+.ctr .my-button {
+  width: 100%;
+  border: none;
+}
+.ctr > view:first-of-type .my-button {
+  color: #e04b59;
+}
+.ctr > view:last-of-type .my-button {
+  color: #fff;
+  background: #e04b59;
+}

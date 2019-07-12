@@ -1,15 +1,11 @@
-<view class='contents'>
+<view class="contents">
 
-  <view class='con maskView'>
-    <image src='{{orderData.image}}' mode="center"></image>
+  <view class="maskView">
+    <image src="{{orderData.image}}" mode="aspectFill"></image>
   </view>
-
-  <view class='con bkg'>
-  </view>
-
-  <view class='con msgView'>
-    <text class='status'>{{orderData.orderStatus}}</text>
-    <text class='title'>{{orderData.orderNumber}}</text>
+  <view class="msgView">
+    <text class="title">{{orderData.orderNumber}}</text>
+    <text class="status">{{orderData.orderStatus}}</text>
   </view>
 
 </view>

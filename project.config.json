@@ -8,10 +8,11 @@
 		"es6": true,
 		"postcss": true,
 		"minified": true,
-		"newFeature": true
+		"newFeature": true,
+		"nodeModules": false
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.2.1",
+	"libVersion": "2.6.6",
 	"appid": "wxfc56b5567ce7bb96",
 	"projectname": "im",
 	"isGameTourist": false,
@@ -33,7 +34,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 8,
+			"current": 2,
 			"list": [
 				{
 					"id": -1,
@@ -48,7 +49,7 @@
 					"query": "productId=1"
 				},
 				{
-					"id": -1,
+					"id": 2,
 					"name": "购物车",
 					"pathName": "pages/cart/index",
 					"query": ""
@@ -56,19 +57,19 @@
 				{
 					"id": 3,
 					"name": "收货地址-管理",
-					"pathName": "pages/contactsManager/contactsManager",
+					"pathName": "pages/contactsManager/index",
 					"query": ""
 				},
 				{
 					"id": 4,
 					"name": "收货地址-新增",
-					"pathName": "pages/contactsUpdate/contactsUpdate",
+					"pathName": "pages/contactsUpdate/index",
 					"query": ""
 				},
 				{
 					"id": -1,
 					"name": "收货地址-选择",
-					"pathName": "pages/contactsChoose/contactsChoose",
+					"pathName": "pages/contactsChoose/index",
 					"query": ""
 				},
 				{
@@ -88,6 +89,18 @@
 					"name": "登录",
 					"pathName": "pages/login/index",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "首页",
+					"pathName": "pages/index/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "退货订单",
+					"pathName": "pages/orderDetailList/index",
+					"query": "orderType=03&orderID=1547"
 				}
 			]
 		}

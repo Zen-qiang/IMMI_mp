@@ -24,12 +24,14 @@ Page({
     sortText: '默认排序', // 排序结果 ，保存用于接口请求
     orderBy: "", // QTY（定量） | AMT（金额） ，保存用于接口请求
     sort: "", // DESC（倒叙） | ASC（正序） ，保存用于接口请求
+    season: null
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    this.setData({season: options.season})
     this.prepareData(); // 加载页面数据
     this.getFilterList();
   },
@@ -159,6 +161,7 @@ Page({
         attrIdList: this.data.attrIdList,
         size: 8,
         page: page,
+        season: this.data.season
       }
     };
 

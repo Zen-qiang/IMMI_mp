@@ -1,7 +1,7 @@
 <!--pages/pdtInfo/index.wxml-->
 <view class="pdtInfo-page">
   <!-- 图片列表 -->
-  <swiper class="carousel-swiper" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="{{circular}}">
+  <swiper class="carousel-swiper" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="{{circular}}" next-margin="{{ pdtInfo.images.length > 1 ? '180rpx' : 0 }}">
     <block wx:for="{{pdtInfo.images}}" wx:key="{{item}}">
       <swiper-item>
         <image src="{{item}}" class="carousel-image slide-image" />
@@ -20,7 +20,7 @@
     </view>
   </view>
 </view>
-<view class="pdtInfo-btn" bindtap='showPopUp'>尺寸下单</view>
+<view class="pdtInfo-btn" bindtap='showPopUp'><van-button round>尺寸下单</van-button></view>
 
 <pop-bottom id="popup" bind:cancel="dismissPop">
   <order-matrix productId="{{productId||''}}" from="pdtInfo" orderType="backOrder" bind:reset="reset" bind:success="successOrder"></order-matrix>

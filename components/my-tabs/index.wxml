@@ -1,0 +1,5 @@
+<view class="my-tabs custom-class">
+  <block wx:for="{{tabList}}" wx:for-index="idx" wx:key="{{idx}}">
+    <view class="my-tabs-item tab-class {{index === idx ? 'active tab-active-class' : ''}}" data-index="{{idx}}" bind:tap="onTap"><text>{{item.label}}</text></view>
+  </block>
+</view>

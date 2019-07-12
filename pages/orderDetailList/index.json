@@ -1,5 +1,7 @@
 {
   "usingComponents": {
-    "prod-list-cell": "/components/prodListCell/prodListCell"
+    "prod-list-cell": "/components/prodListCell/prodListCell",
+    "van-cell": "/common/lib/vantUi/cell/index",
+    "van-icon": "/common/lib/vantUi/icon/index"
   }
 }

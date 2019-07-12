@@ -26,6 +26,7 @@ Component({
    */
   methods: {
     jumpUrl(e) {
+      // console.log(e)
       let item = e.currentTarget.dataset.item;
       if (item && item.target && item.type === 'href') {
         wx.navigateTo({

@@ -1,5 +1,19 @@
 /* pages/orderDetailList/index.wxss */
-
+Page {
+  padding-top: 100rpx;
+  background: #f9f9f9;
+}
+.editAddress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 88rpx;
+  z-index: 1;
+}
+.order-conent {
+  background: #fff;
+}
 .showMsg {
   font-size: 24rpx;
   background-color: #f6f6f6;

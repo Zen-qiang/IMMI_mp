@@ -1,0 +1,16 @@
+<view class="tabs van-hairline--top-bottom">
+  <my-tabs
+    tab-list="{{seasonTabs}}"
+    default-index="{{defaultSeasonIndex}}"
+    bind:change="seasonTabsChange"
+  ></my-tabs>
+</view>
+<view class='contents'>
+  <block wx:for="{{ordersData}}" wx:for-index="idx" wx:for-item="order" wx:key="{{idx}}">
+    <view class='row' bindtap='orderClickAction' data-data='{{order}}'>
+      <order-cell orderData="{{order}}"></order-cell>
+    </view>
+  </block>
+  <zan-loadmore type="loading" wx:if="{{!loadDone}}"></zan-loadmore>
+  <zan-loadmore type="text" text="" wx:if="{{loadDone}}"></zan-loadmore>
+</view>

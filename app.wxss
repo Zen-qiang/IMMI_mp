@@ -1,6 +1,7 @@
 /**app.wxss**/
 @import './common/lib/zanUI/index.wxss';
 @import './common/lib/weui.wxss';
+@import "./common/lib/vantUi/common/index.wxss";
 
 page {
   height: 100%;
@@ -14,4 +15,10 @@ page {
   justify-content: space-between;
   box-sizing: border-box;
   font-size: 28rpx;
+}
+
+/* zanUi */
+.zan-loadmore__text {
+  color:#999;
+  font-weight:100;
 }

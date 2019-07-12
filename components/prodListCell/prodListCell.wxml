@@ -24,8 +24,8 @@
           <text wx:if="{{show}}">{{shopData.qty}}</text>
           <text wx:if="{{!show}}">{{shopData.sumQty}}</text>
           <text style='margin-left:20rpx;'>总价:</text>
-          <text wx:if="{{show}}" style='color:#E63449;font-weight500;'>￥{{shopData.pricelist}}</text>
-          <text wx:if="{{!show}}" style='color:#E63449;font-weight:500;'>￥{{shopData.amount}}</text>
+          <text wx:if="{{show}}" style='color:#e04b59;'>￥{{shopData.pricelist}}</text>
+          <text wx:if="{{!show}}" style='color:#e04b59;'>￥{{shopData.amount}}</text>
         </view>
         <!--  -->
         <view class='right arrow'>

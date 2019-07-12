@@ -1,17 +1,48 @@
 /* pages/login/index.wxss */
 
 .login-page {
-  padding-top: 10%;
   box-sizing: border-box;
   min-height: 100%;
+  padding: 0 40rpx;
 }
 
-.login-btn {
+.cover {
+  text-align: center;
+}
+.cover image {
+  vertical-align: middle;
+}
+.cover .logo {
+  margin-bottom: 30rpx;
+}
+.cover .logo image {
+  width: 200rpx;
+  height: 100rpx;
+}
+.cover .bg {
+  margin-bottom: 50rpx;
+  background: #fff no-repeat center;
+  background-image: linear-gradient(to right, #f6efb4, #f6efb4);
+  background-size: 100% 360rpx;
+}
+.cover .bg image {
+  width: 100%;
+  height: 580rpx;
+}
+
+.field-content > view, .rset-psw > view {
+  overflow: hidden;
+  padding-bottom: 1px;
+}
+.btn {
   width: 100%;
   height: 50px;
   line-height: 50px;
   text-align: center;
   margin: 30rpx auto;
-  padding: 0 20rpx;
   box-sizing: border-box;
+}
+.btn button {
+  background: #000;
+  color: #fff;
 }

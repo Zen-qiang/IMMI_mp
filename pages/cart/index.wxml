@@ -1,14 +1,38 @@
-<view class='contents'>
-  <view class='tab'>
-    <zan-tab list="{{ tab.list }}" selected-id="{{ tab.selectedId }}" bind:tabchange="tabchange" />
+<view class="tabs van-hairline--top-bottom">
+  <my-tabs
+    tab-list="{{orderTypeTabs}}" 
+    default-index="{{defaultOrderTypeIndex}}"
+    bind:change="orderTypeTabsChange"
+  ></my-tabs>
+  <my-tabs
+    tab-list="{{seasonTabs}}"
+    default-index="{{defaultSeasonIndex}}"
+    bind:change="seasonTabsChange"
+    custom-class="season-tabs"
+    tab-class="season-tab"
+    tab-active-class="season-tab-active"
+  ></my-tabs>
   </view>
-
-  <block wx:for="{{productsList}}" wx:for-index="idx" wx:for-item="product" wx:key="{{idx}}">
-    <prod-list-cell canDel="true" checkObj="{{checkStyleObj}}" index="{{idx}}" shopData="{{product}}" showType="{{showType}}" canCheck="true" bind:change="changeAction" bind:check="checkAction" bind:del="deleteAction"></prod-list-cell>
+<view class="dataList">
+  <block wx:for="{{orderObj}}" wx:for-index="key" wx:for-item="value" wx:key="{{key}}">
+    <view wx:if="{{key === orderType}}">
+      <block wx:for="{{value.resultList}}" wx:for-index="idx" wx:for-item="product" wx:key="{{idx}}">
+        <prod-list-cell
+          canDel="true"
+          checkObj="{{checkStyleObj}}"
+          index="{{idx}}"
+          shopData="{{product}}"
+          showType="{{showType}}"
+          canCheck="true"
+          bind:change="changeAction"
+          bind:check="checkAction"
+          bind:del="deletePdt"
+        ></prod-list-cell>
+      </block>
+      <zan-loadmore type="loading" wx:if="{{!value.loadDone}}"></zan-loadmore>
+      <zan-loadmore type="text" text="" wx:if="{{value.loadDone}}"></zan-loadmore>
+    </view>
   </block>
-
-  <zan-loadmore type="loading" wx:if="{{!loadDone}}"></zan-loadmore>
-  <zan-loadmore type="nodata" text="" wx:if="{{loadDone}}"></zan-loadmore>
 </view>
 
 <view class='butt'>

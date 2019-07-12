@@ -1,17 +1,30 @@
 <!--pages/login/index.wxml-->
 <view class="login-page">
-
+  <!-- 登陆 -->
   <view wx:if="{{!isLogin}}">
-
-    <zan-field title="{{ userName.title }}" placeholder="{{ userName.placeholder }}" type="input" value="{{ userName.value }}" bind:change="handleUserNameChange">
-    </zan-field>
-    
-    <zan-field title="{{ password.title }}" placeholder="{{ password.placeholder }}" value="{{ password.value }}" type="input" inputType="password" bind:change="handlePawwordChange">
-    </zan-field>
+    <view class="cover">
+      <view class="logo">
+        <image src="../../common/resource/logo.jpg" mode="aspectFit"></image>
+      </view>
+      <view class="bg">
+        <image src="../../common/resource/Snipaste1.jpg" mode="aspectFit"></image>
+      </view>
+    </view>
+    <view class="field-content">
+      <view><zan-field placeholder="{{ userName.placeholder }}" type="input" value="{{ userName.value }}" bind:change="handleChange" data-type="userName"></zan-field></view>
+      <view><zan-field placeholder="{{ password.placeholder }}" type="input" value="{{ password.value }}" inputType="password" bind:change="handleChange" data-type="password"></zan-field></view>
+    </view>
   </view>
-
-  <view class="login-btn">
-    <zan-button size="" bindtap="handleBtn">{{isLogin ? "退出登录" : "登录"}}</zan-button>
+  <!-- 修改密码 -->
+  <view wx:else class="rset-psw">
+    <view><zan-field placeholder="{{ oldPassword.placeholder }}" type="input" value="{{ oldPassword.value }}" inputType="password" bind:change="handleChange" data-type="oldPassword"></zan-field></view>
+    <view><zan-field placeholder="{{ newPassword.placeholder }}" type="input" value="{{ newPassword.value }}" inputType="password" bind:change="handleChange" data-type="newPassword"></zan-field></view>
+    <view><zan-field placeholder="{{ confirmNewPassword.placeholder }}" type="input" value="{{ confirmNewPassword.value }}" inputType="password" bind:change="handleChange" data-type="confirmNewPassword" error="{{newPassword.value !== confirmNewPassword.value}}"></zan-field></view>
+    <view class="btn"><zan-button bind:tap="changePassword" disabled="{{!oldPassword.value || !newPassword.value || !confirmNewPassword.value || newPassword.value !== confirmNewPassword.value}}">确认修改</zan-button></view>
+  </view>
+  <!-- 登陆按钮 -->
+  <view class="btn">
+    <zan-button bind:tap="handleBtn">{{isLogin ? "退出登录" : "登录"}}</zan-button>
   </view>
 
 </view>

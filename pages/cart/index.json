@@ -1,10 +1,10 @@
 {
   "navigationBarTitleText": "购物车",
   "usingComponents": {
-    "zan-tab": "/common/lib/zanUI/tab/index",
     "zan-icon": "/common/lib/zanUI/icon/index",
     "prod-list-cell": "/components/prodListCell/prodListCell",
     "pop-bottom": "/components/popBottom/popBottom",
-    "zan-loadmore": "/common/lib/zanUI/loadmore/index"
+    "zan-loadmore": "/common/lib/zanUI/loadmore/index",
+    "my-tabs": "/components/my-tabs/index"
   }
 }

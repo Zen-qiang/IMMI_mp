@@ -1,0 +1,17 @@
+.my-tabs {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  height: 100rpx;
+}
+.my-tabs-item {
+  flex: 1;
+  color: #000;
+  font-size: 32rpx;
+  line-height: 100rpx;
+  text-align: center;
+}
+.active {
+  background: #000;
+  color: #fff;
+}

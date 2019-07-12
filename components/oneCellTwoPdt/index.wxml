@@ -1,5 +1,5 @@
 <!--components/oneCellTwoPdt/index.wxml 一行两个商品-->
-<zan-row>
+<zan-row row-class="my-row-class">
   <zan-col col="12" col-class="two-pdt-item" wx:for="{{items}}" wx:key="{{item.id}}">
     <view class="box" bindtap="jumpUrl" data-item="{{item}}">
       <view class="content">

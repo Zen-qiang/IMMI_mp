@@ -2,6 +2,6 @@
 <view bindtap="hideModal" class="touming" wx:if="{{showModalStatus}}">
 </view>
 <!-- 弹出框 -->
-<view animation="{{animationData}}" class="buydes-dialog-container" wx:if="{{showModalStatus}}">
+<view animation="{{animationData}}" class="buydes-dialog-container" hidden="{{!showModalStatus}}">
   <slot></slot>
 </view>

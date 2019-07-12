@@ -16,18 +16,42 @@ Page({
     normalOrder: '',//原始订单
     backOrder: '',// 补货订单
     returnOrder: '',// 退货订单
-  },
-
-  checkLogin() {
-    wx.navigateTo({
-      url: '/pages/login/index',
-    });
+    tabList: [],
+    activeIndex: 0, // tab当前选中下标
+    orderInfo: [], // 所有订单类型
+    season: null  // 季度
   },
 
   onLoad: function() {
     this.getLayout();
+    const tabList = app.getValue('orderListHeader')
+    /* 根据表头格式化数据 */
+    for (let index = 0; index < tabList.length; index++) {
+      const element = tabList[index]
+      const {value: orderType} = element
+      this.data.orderInfo.push({orderType, info: {}})
+    }
+    this.setData({tabList, orderInfo: this.data.orderInfo, season: this.data.orderInfo[0].orderType})
   },
-
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    let userName = app.getValue('username');
+    if (userName && userName.length > 0) {
+      this.setData({
+        userName: userName
+      });
+      this.prepareData();
+    }
+    // 获取金额 和 数量
+    this.getPriceNum()
+  },
+  checkLogin() {
+    wx.navigateTo({
+      url: '/pages/login/index',
+    })
+  },
   prepareData() {
     let that = this;
     var data = {
@@ -55,97 +79,64 @@ Page({
       });
     }, res => { });
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function() {
-    let userName = app.getValue('username');
-    if (userName && userName.length > 0) {
-      this.setData({
-        userName: userName
-      });
-      this.prepareData();
-    console.log(22)
-    }
-    // 获取金额 和 数量
-    this.getPriceNum()
-  },
-  /**
-   * 进入我的订单、退货单、补货单、地址
-   * 判断是否登录 未登录先去登录页面
-   * 
-   */
-  enterOtherPage(e) {
-    let username = this.data.userName;
-    if (!username) {
+  /* 路由跳转 */
+  jump (e) {
+    if (!app.isLogin()) {
       wx.navigateTo({
         url: '/pages/login/index',
-      });
+      })
+      return
+    }
+    const pageName = e.currentTarget.dataset.pageName
+    if (pageName === 'contactsManager') { // 跳转到收货地址页面
+      wx.navigateTo({
+        url: `/pages/${pageName}/index?type=0`,
+      })
     } else {
-      let page = e.currentTarget.dataset.page;
-      if (page === 'contactsManager') {
-        wx.navigateTo({
-          url: `/pages/${page}/${page}`,
-        })
-      } else {
-        // console.log(page);
-        wx.navigateTo({
-          url: `/pages/${page}/index`,
-        })
-      }
+      const orderType = e.currentTarget.dataset.orderType
+      wx.navigateTo({
+        url: `/pages/${pageName}/index?season=${this.data.season}&orderType=${orderType}`,
+      })
     }
   },
   // 订单的 定量 和 金额
-  getPriceNum() {
+  getPriceNum(index = 0) {
     var data = {
       url: config.getOrderPriNum,
-      params: {}
+      params: {
+        orderType: this.data.orderInfo[index].orderType
+      }
     }
-    app.nGet(data).then(ret => {
-      if (ret) {
-        // 格式化 数据
-        // 总计
-        ret.data.AllOrder.qty = ret.data.AllOrder.qty.toLocaleString()
-        ret.data.AllOrder.amt = ret.data.AllOrder.amt.toFixed(2)
-        ret.data.AllOrder.amt = ret.data.AllOrder.amt.toLocaleString()
-        // 补货
-        ret.data.backOrder.qty = ret.data.backOrder.qty.toLocaleString()
-        ret.data.backOrder.amt = ret.data.backOrder.amt.toFixed(2)
-        ret.data.backOrder.amt = ret.data.backOrder.amt.toLocaleString()
-        // 退货
-        if (ret.data.returnOrder.qty < 0) {
-          ret.data.returnOrder.qty = ret.data.returnOrder.qty + '',
-          ret.data.returnOrder.qty = ret.data.returnOrder.qty.substring(1)
-          ret.data.returnOrder.qty = ret.data.returnOrder.qty.toLocaleString()
-        }
-        else {
-          ret.data.returnOrder.qty = ret.data.returnOrder.qty.toLocaleString()
-        }
-        if (ret.data.returnOrder.amt < 0) {
-          ret.data.returnOrder.amt = ret.data.returnOrder.amt + '',
-          ret.data.returnOrder.amt = ret.data.returnOrder.amt.substring(1)
-          ret.data.returnOrder.amt = +ret.data.returnOrder.amt
-          ret.data.returnOrder.amt = ret.data.returnOrder.amt.toFixed(2)
-          ret.data.returnOrder.amt = ret.data.returnOrder.amt.toLocaleString()
-        }else {
-          ret.data.returnOrder.amt = ret.data.returnOrder.amt.toFixed(2)
-          ret.data.returnOrder.amt = ret.data.returnOrder.amt.toLocaleString()
-        }
-
-        // 原始
-        ret.data.normalOrder.qty = ret.data.normalOrder.qty.toLocaleString()
-        ret.data.normalOrder.amt = ret.data.normalOrder.amt.toFixed(2)
-        ret.data.normalOrder.amt = ret.data.normalOrder.amt.toLocaleString()
-        this.setData({
-          allOrder: ret.data.AllOrder,
-          backOrder: ret.data.backOrder,
-          returnOrder: ret.data.returnOrder,
-          normalOrder: ret.data.normalOrder
-        })
+    app.nGet(data).then(res => {
+      if (res) {
+        const key = `orderInfo[${index}].info`
+        const { AllOrder, backOrder, returnOrder, normalOrder} = res.data
+        this.setData({ [key]: { AllOrder, backOrder, returnOrder, normalOrder}})
       }
     }, res => {
       // console.error(res);
     });
+  },
+  changeTab (e) {
+    // console.log(e.detail)
+    const { index: idx, value: season } = e.detail
+    this.setData({ activeIndex: idx, season })
+    if (this.data.orderInfo[idx].info && Object.keys(this.data.orderInfo[idx].info).length) return
+    this.getPriceNum(idx)
+  },
+  /* 跳转到购物车页面 */
+  switchCarTab(e) {
+    // console.log(e)
+    const orderTypeIndex = e.currentTarget.dataset.orderTypeIndex
+    app.globalData.car_defaultOrderTypeIndex = orderTypeIndex // orderType tab下标
+    app.globalData.car_defaultSeasonIndex = this.data.season  // 季度 tab下标
+    wx.switchTab({
+      url: '/pages/cart/index',
+      success: function (e) {
+        var page = getCurrentPages().pop()
+        if (page == undefined || page == null) return
+        page.onLoad() // 跳转成功触发购物车的onLond生命周期
+      }
+    }) 
   }
 })

@@ -1,5 +1,5 @@
 <!--components/oneCellThreePdt/index.wxml-->
-<zan-row>
+<zan-row row-class="my-row-class">
   <zan-col col="8" col-class="three-pdt-item" wx:for="{{items}}" wx:key="{{item.id}}">
     <view class="box" bindtap="jumpUrl" data-item="{{item}}">
       <view class="content">

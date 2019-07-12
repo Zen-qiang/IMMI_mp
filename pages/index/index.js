@@ -7,21 +7,6 @@ var WxParse = require('../../common/lib/wxParse/wxParse.js');
 
 Page({
   data: {
-    tab: {
-      list: [{
-          id: 'new',
-          title: '首页'
-        },
-        {
-          id: 'all',
-          title: '全部'
-        },
-        {
-          id: 'filter',
-          title: '筛选'
-        }
-      ]
-    },
     selectedId: 'new',
     carouselList: [], // 幻灯片列表
     recommendInfo: { // 今日新品 推荐商品列表信息
@@ -52,10 +37,21 @@ Page({
     attrsList: [], // 筛选 属性list
     home_new: "",
     home_top: "",
+    active: 0,
+    tabList: [
+      { label: '首页', value: 0, scrollTop: 0 },
+      { label: '全部', value: 1, scrollTop: 0 },
+      { label: '筛选', value: 2, scrollTop: 0 }
+    ]
   },
 
   onLoad: function() {
     this.getCarouselList();
+    this.getCategory();
+    this.getPdtList({})
+    this.getFilterList()
+    this.getAccountInfo();
+    this.getLayout();
     // this.getPdtList({
     //   recommend: true
     // });
@@ -68,25 +64,46 @@ Page({
   },
 
   onShow: function() {
-    this.setData({
-      selectedId: 'new'
-    });
-    this.getAccountInfo();
-    this.getLayout();
+    // this.setData({
+    //   active: 0
+    // });
+    // this.getAccountInfo();
+    // this.getLayout();
   },
-
+  tabChange (e) {
+    const query = wx.createSelectorQuery(),
+      index = this.data.active  // 获取切换前的tab下标
+    query.selectViewport().scrollOffset(res => {
+      // console.log(res)
+      const key = `tabList[${index}].scrollTop`
+      this.setData({[key]: res.scrollTop})  // 保存切换前页面滚动高度
+    }).exec()
+    let active = e.detail.index
+    this.setData({active});
+    wx.pageScrollTo({ // 跳转到之前保留的滚动位置
+      scrollTop: this.data.tabList[active].scrollTop,
+      duration: 0
+    })
+    if (active === 1 && this.data.allInfo.list.length === 0) {
+      this.getCategory();
+      this.getPdtList({});
+    } else if (active === 2 && this.data.attrsList.length === 0) {
+      this.getFilterList();
+    }
+  },
   /**
    * tab切换
    */
   handleTabChange(e) {
-    let selectedId = e.detail;
+    // console.log(e)
+    let active = e.detail.index
     this.setData({
-      selectedId: selectedId
+      active: active
     });
-    if (selectedId === 'all' && this.data.allInfo.list.length === 0) {
+    if (active === 1 && this.data.allInfo.list.length === 0) {
       this.getCategory();
       this.getPdtList({});
-    } else if (selectedId === 'filter' && this.data.attrsList.length === 0) {
+    } else if (active === 2 && this.data.attrsList.length === 0) {      
       this.getFilterList();
     }
   },
@@ -108,7 +125,7 @@ Page({
       // console.error(res);
     });
   },
-
+/* 获取用户信息 */
   getAccountInfo() {
     let that = this;
     var data = {
@@ -116,6 +133,7 @@ Page({
       params: {}
     }
     app.nGet(data).then(data => {
+      // console.log(data)
       this.setData({
         accountInfo: data.data
       });
@@ -131,7 +149,7 @@ Page({
       params: {}
     }
     app.nGet(data).then(data => {
-      console.log(data);
+      // console.log(data);
       this.setData({
         home_new: data.data.new,
         home_top: data.data.top
@@ -151,29 +169,36 @@ Page({
    * loadmore 是否上拉加载请求
    */
   getPdtList(params, loadmore) {
-    let selectedId = this.data.selectedId;
+    // let selectedId = this.data.selectedId;
+    let active = this.data.active
     var data = {
       url: config.indexNewPdtQuery,
       params: {
         ...params,
-        page: selectedId === 'new' ? this.data.recommendInfo.page : this.data.allInfo.page,
-        size: selectedId === 'new' ? this.data.recommendInfo.size : this.data.allInfo.size
+        page: active === 0 ? this.data.recommendInfo.page : this.data.allInfo.page,
+        size: active === 0 ? this.data.recommendInfo.size : this.data.allInfo.size
+        // page: selectedId === 'new' ? this.data.recommendInfo.page : this.data.allInfo.page,
+        // size: selectedId === 'new' ? this.data.recommendInfo.size : this.data.allInfo.size
       }
     }
     app.nGet(data).then(data => {
+      // console.log(data)
       if (data.data && data.data.list) {
         if (!loadmore) {
-          if (selectedId === 'new') {
+          // if (selectedId === 'new') {
+          if (active === 0) {            
             this.setData({
               recommendInfo: data.data,
             });
-          } else if (selectedId === 'all') {
+          // } else if (selectedId === 'all') {
+          } else if (active === 1) {            
             this.setData({
               allInfo: data.data,
             });
           }
         } else {
-          if (selectedId === 'new') {
+          // if (selectedId === 'new') {
+          if (active === 0) {
             let list = [...this.data.recommendInfo.list, ...data.data.list];
             this.setData({
               ["newLoadMore.isLoad"]: false,
@@ -183,7 +208,8 @@ Page({
               ["recommendInfo.pages"]: data.data.pages,
               ["recommendInfo.list"]: list,
             });
-          } else if (selectedId === 'all') {
+          // } else if (selectedId === 'all') {
+          } else if (active === 1) {            
             let list = [...this.data.allInfo.list, ...data.data.list];
             this.setData({
               ["allLoadMore.isLoad"]: false,
@@ -197,11 +223,13 @@ Page({
         }
       }
     }, res => {
-      if (selectedId === 'new') {
+      // if (selectedId === 'new') {
+      if (active === 0) {
         this.setData({
           ["newLoadMore.isLoad"]: false
         });
-      } else if (selectedId === 'all') {
+      // } else if (selectedId === 'all') {
+      } else if (active === 1) {        
         this.setData({
           ["allLoadMore.isLoad"]: false
         });
@@ -218,6 +246,7 @@ Page({
       params: {}
     }
     app.nGet(data).then(data => {
+      // console.log(data)
       if (data.data) {
         this.setData({
           categoryList: data.data,
@@ -276,8 +305,10 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function() {
-    let selectedId = this.data.selectedId;
-    if (selectedId === 'new') {
+    // let selectedId = this.data.selectedId;
+    let active = this.data.active
+    // if (selectedId === 'new') {
+    if (active === 0) {      
       if (Number(this.data.recommendInfo.page) < Number(this.data.recommendInfo.pages)) {
         this.setData({
           ["newLoadMore.isLoad"]: true,
@@ -291,7 +322,8 @@ Page({
           ["newLoadMore.title"]: '没有更多数据啦'
         });
       }
-    } else if (selectedId === 'all') {
+    // } else if (selectedId === 'all') {
+    } else if (active === 1) {      
       if (Number(this.data.allInfo.page) < Number(this.data.allInfo.pages)) {
         this.setData({
           ["allLoadMore.isLoad"]: true,

@@ -3,6 +3,9 @@
   "usingComponents": {
     "zan-cell-group": "/common/lib/zanUI/cell-group/index",
     "zan-cell": "/common/lib/zanUI/cell/index",
-    "order-matrix": "/components/orderMatrix/index"
+    "order-matrix": "/components/orderMatrix/index",
+    "my-tabs": "/components/my-tabs/index",
+    "van-cell": "/common/lib/vantUi/cell/index",
+    "van-button": "/common/lib/vantUi/button/index"
   }
 }

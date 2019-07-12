@@ -1,5 +1,20 @@
 <!--pages/orderDetailList/index.wxml-->
-<view class='contents'>
+<view class="editAddress van-hairline--top-bottom">
+  <van-cell
+    border="{{false}}"
+    clickable
+    title="编辑物流编号"
+    url="/pages/logistics/index"
+  >
+    <van-icon slot="right-icon" name="edit" class="custom-icon" />
+  </van-cell>
+</view>
+<view class="order-conent">
+  <block wx:for="{{ordersData}}" wx:for-index="idx" wx:for-item="order" wx:key="{{idx}}">
+    <prod-list-cell orderId="{{orderID}}" shopData="{{order}}" showType="{{showType}}"></prod-list-cell>
+  </block>
+</view>
+<!-- <view class='contents'>
 
   <view class='showMsg'>
     <view class='row'>
@@ -24,4 +39,4 @@
   <block wx:for="{{ordersData}}" wx:for-index="idx" wx:for-item="order" wx:key="{{idx}}">
     <prod-list-cell orderId="{{orderID}}" shopData="{{order}}" showType="{{showType}}"></prod-list-cell>
   </block>
-</view>
+</view> -->

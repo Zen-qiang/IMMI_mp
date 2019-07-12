@@ -1,45 +1,37 @@
 <!--index.wxml-->
 <import src="../../common/lib/wxParse/wxParse.wxml" />
+<view class="index-tab van-hairline--top-bottom">
+  <my-tabs tab-list="{{tabList}}" bind:change="tabChange"></my-tabs>
+</view>
+<view class="index-content">
+  <view wx:if="{{active === 0}}">
+    <carousel items="{{carouselList}}" style="width: 100%;"></carousel>
+    <view class='middle_view'>
+      <view class='mleft' bindtap='homeShowModel' data-type='1'>
+        <image mode='aspectFill' src='{{home_new}}'></image>
+      </view>
+      <view class='mright' bindtap='homeShowModel' data-type='2'>
+        <image mode='aspectFill' src='{{home_top}}'></image>
+      </view>
+    </view>
+    <!-- <zan-loadmore type="text" text="{{accountInfo}}"></zan-loadmore> -->
+      <view style='color:#000;font-size:25rpx;text-align:center;'>
+      <template is="wxParse" data="{{wxParseData:webContent.nodes}}" />
+    </view>
 
-<view class="container {{ selectedId === 'filter' ? 'container1' : '' }}">
-  <view id="tab-container">
-    <zan-tab id="index-tab" list="{{ tab.list }}" selected-id="{{ selectedId }}" bindtabchange="handleTabChange" />
+    <one-cell-two-pdt items="{{recommendInfo.list}}"></one-cell-two-pdt>
+    <!-- <zan-loadmore type="loading" wx:if="{{newLoadMore.isLoad}}"></zan-loadmore> -->
+    <!-- <zan-loadmore type="text" text="{{newLoadMore.title}}"></zan-loadmore> -->
   </view>
-  <view id="index-container">
-    <!-- 今日新品 -->
-    <view wx:if="{{selectedId === 'new'}}" style='background:#fff'>
-      <carousel items="{{carouselList}}" style="width: 100%;"></carousel>
-      <view class='middle_view'>
-        <view class='mleft' bindtap='homeShowModel' data-type='1'>
-          <image mode='aspectFill' src='{{home_new}}'></image>
-        </view>
-        <view class='mright' bindtap='homeShowModel' data-type='2'>
-          <image mode='aspectFill' src='{{home_top}}'></image>
-        </view>
-      </view>
-      <!-- <zan-loadmore type="text" text="{{accountInfo}}"></zan-loadmore> -->
-       <view style='color:#000;font-size:25rpx;text-align:center;'>
-        <template is="wxParse" data="{{wxParseData:webContent.nodes}}" />
-      </view>
-
-      <one-cell-two-pdt items="{{recommendInfo.list}}"></one-cell-two-pdt>
-      <!-- <zan-loadmore type="loading" wx:if="{{newLoadMore.isLoad}}"></zan-loadmore> -->
-      <!-- <zan-loadmore type="text" text="{{newLoadMore.title}}"></zan-loadmore> -->
+  <view wx:if="{{active === 1}}">
+    <view class='space'>
+    <zan-search placeholder="搜索..." keyword="{{ inputValue }}" placeholder="搜索您想要的商品" searchStyle="height: 70rpx; margin-top:10rpx; border-radius: 50rpx;background: {{ searchbg || '#F2F2F2' }};" inputStyle="height: 30rpx; background: {{ searchbg || '#F2F2F2' }}; color:#000;"
+      bindchange="searchChange" bindsearch="searchDone" />
     </view>
-    <!-- 全部 -->
-    <view wx:elif="{{selectedId === 'all'}}">
-      <view class='space'>
-        <zan-search placeholder="搜索..." keyword="{{ inputValue }}" placeholder="搜索您想要的商品" searchStyle="height: 70rpx; margin-top:10rpx; border-radius: 50rpx;background: {{ searchbg || '#F2F2F2' }};" inputStyle="height: 30rpx; background: {{ searchbg || '#F2F2F2' }}; color:#000;"
-          bindchange="searchChange" bindsearch="searchDone" />
-      </view>
-      <one-cell-four-icon items="{{categoryList}}"></one-cell-four-icon>
-      <one-cell-three-pdt items="{{allInfo.list}}"></one-cell-three-pdt>
-      <zan-loadmore type="loading" wx:if="{{allLoadMore.isLoad}}"></zan-loadmore>
-      <zan-loadmore type="text" text="{{allLoadMore.title}}" wx:elif="{{allLoadMore.title}}"></zan-loadmore>
-    </view>
-    <!-- 筛选 -->
-    <view wx:elif="{{selectedId === 'filter'}}">
-      <filter-item datas="{{attrsList}}"></filter-item>
-    </view>
+    <one-cell-four-icon items="{{categoryList}}"></one-cell-four-icon>
+    <one-cell-three-pdt items="{{allInfo.list}}"></one-cell-three-pdt>
+    <zan-loadmore type="loading" wx:if="{{allLoadMore.isLoad}}"></zan-loadmore>
+    <zan-loadmore type="text" text="{{allLoadMore.title}}" wx:elif="{{allLoadMore.title}}"></zan-loadmore>
   </view>
+  <view wx:if="{{active === 2}}"><filter-item datas="{{attrsList}}"></filter-item></view>
 </view>

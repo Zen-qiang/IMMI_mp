@@ -46,15 +46,20 @@
 //   rOrderGet: `${host}/DeQfXCMe20abf31cfcc88344ad196f0b31e775e8d44ca09?uri=rOrderInfo`,
 // };
 
-const host = "https://immi.dingliantech.com";
+// const host = "https://immi.dingliantech.com";
 // const host = "http://192.168.3.16:8080/trendfinder";
 // const host = "http://172.16.0.176:8082";
-
+// const host = "http://192.168.8.8:55661/immi";
+const host = 'http://invitation.dingliantech.com/immi';
+// const host = "http://192.168.3.7:8080";
+// const host = "http://bobo.easy.echosite.cn/immi_war"
 
 // 首页接口汇总
 let api = {
   // 登录
   login: `${host}/b2b/login`,
+  // 修改密码
+  changePassword: `${host}/b2b/user/changePassword`,
   // 退出登录
   logout: `${host}/b2b/logout`,
   // 首页幻灯片

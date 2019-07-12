@@ -6,6 +6,8 @@
     "zan-button": "/common/lib/zanUI/btn/index",
     "zan-stepper": "/common/lib/zanUI/stepper/index",
     "zan-popup": "/common/lib/zanUI/popup/index",
-    "zan-radio": "/common/lib/zanUI/radio/index"
+    "zan-radio": "/common/lib/zanUI/radio/index",
+    "van-tabs": "/common/lib/vantUi/tabs/index",
+    "van-tab": "/common/lib/vantUi/tab/index"
   }
 }

@@ -1,0 +1,63 @@
+<view class="title van-hairline--top-bottom"><text>编辑物流单号</text></view>
+<view class="info">
+  <view class="item">
+    <view class="item-title">
+      <text>订单编号：</text>
+    </view>
+    <view class="item-content">
+      <text>{{orderNumber}}</text>
+    </view>
+  </view>
+  <view class="item">
+    <view class="item-title">
+      <text>总定量：</text>
+    </view>
+    <view class="item-content">
+      <text>{{totalQty}}</text>
+    </view>
+  </view>
+  <view class="item">
+    <view class="item-title">
+      <text>总金额：</text>
+    </view>
+    <view class="item-content">
+      <text>{{totalAmount}}</text>
+    </view>
+  </view>
+  <view class="item">
+    <view class="item-title">
+      <text>收件人：</text>
+    </view>
+    <view class="item-content">
+      <text>{{address.consignee}}</text>
+    </view>
+  </view>
+  <view class="item">
+    <view class="item-title">
+      <text>手机号：</text>
+    </view>
+    <view class="item-content">
+      <text>{{address.phone}}</text>
+    </view>
+  </view>
+  <view class="item">
+    <view class="item-title">
+      <text>收货地址：</text>
+    </view>
+    <view class="item-content">
+      <text>{{address.fullAddress}}</text>
+    </view>
+  </view>
+  <view class="item">
+    <view class="item-title">
+      <text>物流单号：</text>
+    </view>
+    <view class="item-content van-hairline--surround">
+      <van-field border="{{false}}" focus clearable bind:input="inputNumber"></van-field>
+    </view>
+  </view>
+</view>
+<view class="ctr van-hairline--top">
+  <view><van-button square custom-class="my-button">保存</van-button></view>
+  <view><van-button square custom-class="my-button">提交</van-button></view>
+</view>

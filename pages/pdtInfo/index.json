@@ -2,6 +2,7 @@
   "navigationBarTitleText": "尺寸下单",
   "usingComponents": {
     "order-matrix": "/components/orderMatrix/index",
-    "pop-bottom": "/components/popBottom/popBottom"
+    "pop-bottom": "/components/popBottom/popBottom",
+    "van-button": "/common/lib/vantUi/button/index"
   }
 }

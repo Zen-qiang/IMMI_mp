@@ -5,6 +5,7 @@ zan-loadmore {
 }
 .pdtList-page {
   /* padding: 0 10px; */
-  background-color: #f2f2f2;
+  /* background-color: #f2f2f2; */
+  background: #fff;
   padding-top: 10rpx;
 }

@@ -1,22 +1,21 @@
 {
   "pages":[
     "pages/index/index",
+    "pages/login/index",
     "pages/pdtInfo/index",
     "pages/account/index",
     "pages/webview/index",
     "pages/searchPage/index",
     "pages/pdtList/index",
     "pages/orderList/index",
-    "pages/backOrderList/index",
-    "pages/returnOrderList/index",
+    "pages/order/index",
     "pages/cart/index",
-    "pages/contactsChoose/contactsChoose",
-    "pages/contactsUpdate/contactsUpdate",
-    "pages/contactsManager/contactsManager",
-    "pages/login/index",
+    "pages/contactsChoose/index",
+    "pages/contactsUpdate/index",
+    "pages/contactsManager/index",
     "pages/orderDetailList/index",
-    "pages/originOrderList/index",
-    "pages/heroOrderList/index"
+    "pages/heroOrderList/index",
+    "pages/logistics/index"
   ],
   "window":{
     "backgroundTextStyle":"light",

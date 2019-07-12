@@ -1,147 +1,135 @@
 /* pages/account/index.wxss */
 
 page {
-  min-height: 100%;
+  min-height: 100vh;
+  background: #ecebeb;
 }
-
-/* 遮罩层 */
-
-.contents {
-  width: 100%;
-  height: 100%;
-}
-
-.bgView {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  z-index: 100;
-}
-
-.bgView image {
-  width: 100%;
-  height: 100%;
-}
-
-.maskView {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  z-index: 200;
-  opacity: 0.2;
-  background-color: #333;
-}
-
-.accountPage {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  z-index: 300;
-  padding: 0 20px;
-  box-sizing: border-box;
+/* 头部背景 */
+.bg-content {
+  padding: 15px 15px 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
   overflow: hidden;
 }
-
-/* 内容 */
-
-.profile-info {
-  margin-top: 30rpx;
-  padding: 30px 0;
+.bg-content::before, .bg-content::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 110%;
+  height: 110%;
+  margin: -5%;
+  filter: blur(4px);
+  z-index: 0;
 }
-
-.profile-name {
-  height: 60px;
-  line-height: 60px;
-  display: inline-flex;
-  vertical-align: top;
-  font-size: 20px;
+.bg-content::before {
+  background: inherit;
+}
+.bg-content::after {
+  background: rgba(255, 255, 255, 0.4);
+}
+.bg-content .content {
+  border-radius: 10px 10px 0 0;
+  background: inherit;
+  text-align: center;
+  position: relative;
+  z-index: 1;
   color: #fff;
-  font-weight: bolder;
+  height: 360rpx;
 }
-
-.profile-photo {
-  height: 60px;
-  line-height: 60px;
-  display: inline-flex;
-  vertical-align: top;
-  float: right;
+.bg-content .content::after {
+  content: '';
+  display: inline-block;
+  width: 0;
+  height: 100%;
+  vertical-align: middle;
 }
-
-.profile-photo > image {
-  width: 50px;
-  height: 50px;
+.bg-content .content .title {
+  display: inline-block;
+  vertical-align: middle;
 }
-
-.account-module {
-  width: 100%;
-  height: 120px;
-  background-color: #fff;
-  margin-bottom: 20px;
+.bg-content .content .title text {
+  font-size: 38rpx;
 }
-
-.account-balance {
-  padding: 0 10px;
-  box-sizing: border-box;
+.bg-content .content .title view {
+  font-size: 28rpx;
+  font-weight: 200;
+}
+.bg-content .content .logout {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 10px;
+  font-size: 28rpx;
+  font-weight: 200;
+}
+.order-content {
+  background: #fff;
+}
+/* van-cell样式 */
+.my-order-cell {
+  align-items: center;
+}
+.my-order-cell .my-order-cell__title, .my-order-cell .my-order-cell__value {
+  -webkit-flex: none;
+  flex: none;
+}
+.my-order-cell .my-order-cell__value {
+  -webkit-flex: 1;
+  flex: 1;
   text-align: center;
 }
-
-.account-balance__header {
-  height: 40px;
-  line-height: 40px;
-  color: #666;
-  border-bottom: 1px solid #e0e0e0;
+.cell-value {
+  display: flex;
+  flex-flow: row nowrap;
+  text-align: left;
+}
+.cell-value > view {
+  flex: 1;
+  padding-left: 60rpx;
+  font-size: 26rpx;
+}
+.cell-value > view .format-value {
+  display: block;
+  color: #333;
+  line-height: 32rpx;
+}
+/* 退货按钮 */
+.action {
+  display: flex;
+  height: 100rpx;
+}
+.action > view {
+  flex: 1;
+}
+.action > view button, .action > view button::after {
+  border: none;
+  border-radius: 0;
+}
+.action > view button {
   font-size: 16px;
-}
-
-.account-balance__body {
-  height: 80px;
-  line-height: 80px;
-  color: #666;
-}
-
-.account-order {
+  height: 100%;
   width: 100%;
-  height: 120px;
-  background-color: #fff;
+  line-height: 100rpx;
 }
-
-/*  */
-
-.tabview {
-  opacity: 0.8;
+.action .normalBtn {
+  background: #fff;
+  color: #de404c;
 }
-
-.line {
-  border-bottom: 1px solid #e9e9e9;
+.action .defectiveBtn {
+  background: #de404c;
+  color: #fff;
 }
-.text-align {
-  /* text-align: center; */
+/* 我的地址 */
+.address-content {
+  margin: 30rpx 0;
 }
-.box-out {
-  width: 100%;
-  padding-left: 70rpx;
-  box-sizing: border-box;
-  /* display: flex;
-  justify-content: space-around */
+.address-content .my-address-cell {
+  height: 100rpx;
+  align-items: center;
 }
-.num {
-  /* display: flex;
-  flex-direction: column;
-  justify-content: space-between; */
-  margin-bottom: 15rpx;
-}
-.one {
-}
-.pri {
-  /* text-decoration: 20px; */
-  /* display: flex;
-  flex-direction: column;
-  justify-content: space-between; */
-}
-/* 倒圆角 */
-.br {
-  border-radius: 15rpx 15rpx 0 0
-}
-.fbr {
-  border-radius: 0 0 15rpx 15rpx;
+.address-content .my-address-cell__title {
+  font-size: 16px;
 }

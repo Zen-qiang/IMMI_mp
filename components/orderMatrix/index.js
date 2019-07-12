@@ -139,6 +139,11 @@ Component({
         selectedId: selectedId
       });
     },
+    tabChange (e) {
+      // console.log(e)
+      const selectedId = e.detail.index
+      this.setData({selectedId})
+    },
     handleZanStepperChange({
       detail: stepper,
       target: {

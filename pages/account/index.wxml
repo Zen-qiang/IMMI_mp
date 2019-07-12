@@ -1,88 +1,75 @@
 <!--pages/account/index.wxml-->
 <import src="../../common/lib/wxParse/wxParse.wxml" />
-
-<view class='contents'>
-  <!-- 遮罩层 -->
-  <view class='bgView'>
-    <image src='{{userbg}}' mode="aspectFill"></image>
-  </view>
-  <view class='maskView'></view>
-  <!-- 内容 -->
-  <view class="accountPage">
-    <view class="profile-info" bindtap="checkLogin">
-      <view>
-        <view class="profile-name">{{userName ? userName : '请登录'}}</view>
-        <view class="profile-photo">
-          <image src="../../common/resource/defaultPhoto.png"></image>
-        </view>
-      </view>
-      <view style='color:#fff;font-size:25rpx'>
-        <template is="wxParse" data="{{wxParseData:webContent.nodes}}" />
-      </view>
+<view class="bg-content" style="background-image: url({{userbg}})">
+  <view class="content">
+    <view class="title">
+      <text>{{userName}}</text>
+      <template is="wxParse" data="{{wxParseData:webContent.nodes}}" />
     </view>
-
-    <!-- <zan-cell-group border>
-      <zan-cell title="我的订单" isLink="true" bindtap="enterOtherPage" data-page="orderList"></zan-cell>
-      <zan-cell title="补货单" isLink="true" bindtap="enterOtherPage" data-page="returnOrderList"></zan-cell>
-      <zan-cell title="退货单" isLink="true" bindtap="enterOtherPage" data-page="backOrderList"></zan-cell>
-      <zan-cell title="我的地址" isLink="true" bindtap="enterOtherPage" data-page="contactsManager"></zan-cell>
-    </zan-cell-group> -->
-
-    <view class='tabview'>
-      <zan-cell title="订单总计" cell-class="text-align br" isLink="true" bindtap="enterOtherPage" data-page="orderList">
-        <view class="box-out">
-          <view class="num">
-            <text class="one">数量：</text>
-            <text decode="{{true}}">{{allOrder.qty}}&nbsp;件</text>
-          </view>
-          <view class="pri">
-            <text class="one">金额：</text>
-            <text decode="{{true}}">{{allOrder.amt}}&nbsp;元</text>
-          </view>
-        </view>
-      </zan-cell>
-      <view class='line'></view>
-      <zan-cell title="补货订单" cell-class="text-align" isLink="true" bindtap="enterOtherPage" data-page="returnOrderList">
-        <view class="box-out">
-          <view class="num">
-            <text class="one">数量：</text>
-            <text decode="{{true}}">{{backOrder.qty}}&nbsp;件</text>
-          </view>
-          <view class="pri">
-            <text class="one">金额：</text>
-            <text decode="{{true}}">{{backOrder.amt}}&nbsp;元</text>
-          </view>
-        </view>
-      </zan-cell>
-      <view class='line'></view>
-      <zan-cell title="退货订单" cell-class="text-align" isLink="true" bindtap="enterOtherPage" data-page="backOrderList">
-        <view class="box-out">
-          <view class="num">
-            <text class="one">数量：</text>
-            <text decode="{{true}}">{{returnOrder.qty}}&nbsp;件</text>
-          </view>
-          <view class="pri">
-            <text class="one">金额：</text>
-            <text decode="{{true}}">{{returnOrder.amt}}&nbsp;元</text>
-          </view>
-        </view>
-      </zan-cell>
-      <view class='line'></view>
-      <zan-cell title="原始订单" cell-class="text-align" isLink="true" bindtap="enterOtherPage" data-page="originOrderList">
-        <view class="box-out">
-          <view class="num">
-            <text class="one">数量：</text>
-            <text decode="{{true}}">{{normalOrder.qty}}&nbsp;件</text>
-          </view>
-          <view class="pri">
-            <text class="one">金额：</text>
-            <text decode="{{true}}">{{normalOrder.amt}}&nbsp;元</text>
-          </view>
-        </view>
-      </zan-cell>
-      <view class='line'></view>
-      <zan-cell title="我的地址" cell-class="fbr" isLink="true" bindtap="enterOtherPage" data-page="contactsManager"></zan-cell>
+    <view class="logout" bindtap="checkLogin">
+      <view>{{userName ? '退出' : '请登录'}}</view>
     </view>
-    <!-- <order-matrix from="{{from}}" orderType="{{orderType}}" bindsuccess="successOrder"></order-matrix> -->
   </view>
+</view>
+<view class="order-content">
+  <my-tabs tab-list="{{tabList}}" bind:change="changeTab"></my-tabs>
+  <view class="van-hairline--top">
+    <block wx:for="{{orderInfo}}" wx:if="{{activeIndex === index}}" wx:key="index">
+      <van-cell title="订单总计" is-link custom-class="my-order-cell" value-class="my-order-cell__value" title-class="my-order-cell__title" data-page-name="orderList" bind:click="jump">
+        <view class="cell-value">
+          <view>
+            <text>数量</text>
+            <text class="format-value">{{item.info.AllOrder.qty}}件</text>
+          </view>
+          <view>
+            <text>金额</text>
+            <text class="format-value">{{item.info.AllOrder.qty}}元</text>
+          </view>
+        </view>
+      </van-cell>
+      <van-cell title="补货订单" is-link custom-class="my-order-cell" value-class="my-order-cell__value" title-class="my-order-cell__title" data-page-name="order" data-order-type="backOrder" bind:click="jump">
+        <view class="cell-value">
+          <view>
+            <text>数量</text>
+            <text class="format-value">{{item.info.backOrder.qty}}件</text>
+          </view>
+          <view>
+            <text>金额</text>
+            <text class="format-value">{{item.info.backOrder.qty}}元</text>
+          </view>
+        </view>
+      </van-cell>
+      <van-cell title="退货订单" is-link custom-class="my-order-cell" value-class="my-order-cell__value" title-class="my-order-cell__title" data-page-name="order" data-order-type="returnOrder" bind:click="jump">
+        <view class="cell-value">
+          <view>
+            <text>数量</text>
+            <text class="format-value">{{item.info.returnOrder.qty}}件</text>
+          </view>
+          <view>
+            <text>金额</text>
+            <text class="format-value">{{item.info.returnOrder.qty}}元</text>
+          </view>
+        </view>
+      </van-cell>
+      <van-cell title="原始订单" is-link custom-class="my-order-cell" value-class="my-order-cell__value" title-class="my-order-cell__title" data-page-name="order" data-order-type="normal" bind:click="jump">
+        <view class="cell-value">
+          <view>
+            <text>数量</text>
+            <text class="format-value">{{item.info.normalOrder.qty}}件</text>
+          </view>
+          <view>
+            <text>金额</text>
+            <text class="format-value">{{item.info.normalOrder.qty}}元</text>
+          </view>
+        </view>
+      </van-cell>
+    </block>
+  </view>
+  <view class="action van-hairline--top">
+    <view><van-button custom-class="normalBtn" bind:click="switchCarTab" data-order-type-index="{{1}}">正常退货</van-button></view>
+    <view><van-button custom-class="defectiveBtn" bind:click="switchCarTab" data-order-type-index="{{2}}">残次退货</van-button></view>
+  </view>
+</view>
+<view class="address-content">
+  <van-cell title="我的地址" is-link custom-class="my-address-cell" title-class="my-address-cell__title" data-page-name="contactsManager" bind:click="jump"></van-cell>
 </view>

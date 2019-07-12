@@ -1,9 +1,12 @@
 /* components/oneCellTwoPdt/index.wxss */
-
+.my-row-class {
+  margin-right: -8px;
+}
 .two-pdt-item {
   padding-bottom: 100%;
   position: relative;
   /* margin-top: 5px; */
+  margin-bottom: 10px;
 }
 
 .two-pdt-item > .box {
@@ -12,7 +15,8 @@
   height: 100%;
   /* background-color: blue; */
   box-sizing: border-box;
-  padding: 0 5px;
+  /* padding: 0 5px; */
+  padding-right: 8px;
 }
 
 .two-pdt-item > .box > .content {
@@ -21,7 +25,7 @@
   height: 80%;
   /* border: 1px solid #e0e0e0; */
   box-sizing: border-box;
-  padding: 5px;
+  /* padding: 5px; */
   background-color: #fff;
 }
 
@@ -70,7 +74,7 @@
 }
 
 .two-pdt-item > .box > .info > .prodPrice > .priceDiscount {
-  color: #f44;
+  /* color: #f44; */
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

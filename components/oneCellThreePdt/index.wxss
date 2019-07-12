@@ -1,9 +1,12 @@
 /* components/oneCellThreePdt/index.wxss */
-
+.my-row-class {
+  margin-right: -4px;
+}
 .three-pdt-item {
   padding-bottom: 60%;
   position: relative;
   /* margin-top: 5px; */
+  margin-bottom: 10px;
 }
 
 .three-pdt-item > .box {
@@ -12,7 +15,8 @@
   height: 100%;
   /* background-color: blue; */
   box-sizing: border-box;
-  padding: 0 5px;
+  /* padding: 0 5px; */
+  padding-right: 4px;
 }
 
 .three-pdt-item > .box > .content {
@@ -21,7 +25,7 @@
   height: 70%;
   /* background-color: yellow; */
   box-sizing: border-box;
-  padding: 5px;
+  /* padding: 5px; */
   background-color: #fff;
 }
 
@@ -70,7 +74,7 @@
 }
 
 .three-pdt-item > .box > .info > .prodPrice > .priceDiscount {
-  color: #f44;
+  /* color: #f44; */
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
