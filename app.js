@@ -7,12 +7,12 @@ App({
   },
 
   onShow: function(opts) {
-    let username = this.getValue('username');
-    if (!username) {
-      wx.navigateTo({
-        url: '/pages/login/index'
-      });
-    }
+    // let username = this.getValue('username');
+    // if (!username) {
+    //   wx.navigateTo({
+    //     url: '/pages/login/index'
+    //   });
+    // }
   },
 
   onHide: function() {
@@ -80,7 +80,7 @@ App({
             resolve(res.data);
           } else if (res.data && res.data.code === 8006 || res.data && res.data.code === 8005) {
             _that.clearValue();
-            wx.reLaunch({
+            wx.navigateTo({
               url: '/pages/login/index'
             });
           } else {

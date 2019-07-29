@@ -46,12 +46,12 @@ Page({
   },
 
   onLoad: function() {
-    this.getCarouselList();
-    this.getCategory();
-    this.getPdtList({})
-    this.getFilterList()
-    this.getAccountInfo();
-    this.getLayout();
+    // this.getCarouselList();
+    // this.getCategory();
+    // this.getPdtList({})
+    // this.getFilterList()
+    // this.getAccountInfo();
+    // this.getLayout();
     // this.getPdtList({
     //   recommend: true
     // });
@@ -67,8 +67,11 @@ Page({
     // this.setData({
     //   active: 0
     // });
-    // this.getAccountInfo();
-    // this.getLayout();
+    this.getCarouselList();
+    this.getCategory();
+    this.getPdtList({})
+    this.getAccountInfo();
+    this.getLayout();
   },
   tabChange (e) {
     const query = wx.createSelectorQuery(),

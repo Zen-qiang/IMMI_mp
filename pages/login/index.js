@@ -122,14 +122,15 @@ Page({
           app.saveValue('productMode', res.data.productMode);
           app.saveValue('orderListHeader', res.data.orderListHeader)
           // if (this.data.isFirst) {
-            wx.reLaunch({
-              url: '/pages/index/index',
-            })
+            // wx.switchTab({
+            //   url: '/pages/index/index',
+            // })
           // }
         }
-        // wx.navigateBack();
+        wx.navigateBack();
       }, res => {
         // console.error(res);
+        app.showMsg("登录失败")
       });
     } else {
       app.showMsg("请输入用户名或密码！");
@@ -147,7 +148,7 @@ Page({
         app.showMsg("退出成功");
         app.clearValue();
         // wx.navigateBack();
-        wx.reLaunch({
+        wx.redirectTo({
           url: '/pages/login/index',
         })
       }, res => {
