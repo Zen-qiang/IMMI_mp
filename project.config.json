@@ -4,7 +4,7 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
@@ -12,7 +12,7 @@
 		"nodeModules": false
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.6.6",
+	"libVersion": "2.7.7",
 	"appid": "wxfc56b5567ce7bb96",
 	"projectname": "IMMI",
 	"isGameTourist": false,
@@ -34,7 +34,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 2,
+			"current": 9,
 			"list": [
 				{
 					"id": -1,
@@ -91,10 +91,11 @@
 					"query": ""
 				},
 				{
-					"id": -1,
+					"id": 9,
 					"name": "首页",
 					"pathName": "pages/index/index",
-					"query": ""
+					"query": "",
+					"scene": "1047"
 				},
 				{
 					"id": -1,

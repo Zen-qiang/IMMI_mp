@@ -46,11 +46,11 @@
 //   rOrderGet: `${host}/DeQfXCMe20abf31cfcc88344ad196f0b31e775e8d44ca09?uri=rOrderInfo`,
 // };
 
-// const host = "https://immi.dingliantech.com";
+const host = "https://immi.dingliantech.com";
 // const host = "http://192.168.3.16:8080/trendfinder";
 // const host = "http://172.16.0.176:8082";
 // const host = "http://192.168.8.8:55661/immi";
-const host = 'https://invitation.dingliantech.com/immi';
+// const host = 'https://invitation.dingliantech.com/immi';
 // const host = "http://192.168.3.7:8080";
 // const host = "http://bobo.easy.echosite.cn/immi_war"
 
