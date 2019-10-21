@@ -42,8 +42,7 @@ Page({
     //     isFirst: options.page
     //   });
     // }
-    let sessionKey = app.getValue('sessionKey');
-    if (sessionKey) {
+    if (app.isLogin()) {
       this.setData({
         isLogin: true
       });
@@ -55,6 +54,9 @@ Page({
         title: '登录页',
       })
     }
+  },
+  onUnload () {
+    app.globalData.at_login_page = false
   },
   handleBtn() {
     if (this.data.isLogin) {

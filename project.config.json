@@ -12,10 +12,12 @@
 		"nodeModules": false
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.7.7",
+	"libVersion": "2.8.1",
 	"appid": "wxfc56b5567ce7bb96",
 	"projectname": "IMMI",
 	"isGameTourist": false,
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
 	"condition": {
 		"search": {
 			"current": -1,
@@ -43,10 +45,11 @@
 					"query": ""
 				},
 				{
-					"id": -1,
+					"id": 1,
 					"name": "商品详情",
 					"pathName": "pages/pdtInfo/index",
-					"query": "productId=1"
+					"query": "productId=1",
+					"scene": 1047
 				},
 				{
 					"id": 2,
@@ -95,7 +98,7 @@
 					"name": "首页",
 					"pathName": "pages/index/index",
 					"query": "",
-					"scene": "1047"
+					"scene": 1047
 				},
 				{
 					"id": -1,

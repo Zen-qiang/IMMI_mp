@@ -1,5 +1,5 @@
 {
-  "pages":[
+  "pages": [
     "pages/index/index",
     "pages/login/index",
     "pages/pdtInfo/index",
@@ -17,12 +17,12 @@
     "pages/heroOrderList/index",
     "pages/logistics/index"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "IMMI",
-    "navigationBarTextStyle":"black",
-    "onReachBottomDistance": "50"
+    "navigationBarTextStyle": "black",
+    "onReachBottomDistance": 50
   },
   "tabBar": {
     "color": "#ffffff",
@@ -55,5 +55,6 @@
         "text": "我的"
       }
     ]
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }

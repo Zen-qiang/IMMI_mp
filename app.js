@@ -22,7 +22,8 @@ App({
   globalData: {
     openid: null,
     car_defaultOrderTypeIndex: null,  // 购物车页面默认orderType tab下标
-    car_defaultSeasonIndex: null  // 购物车页面默认season tab下标
+    car_defaultSeasonIndex: null,  // 购物车页面默认season tab下标
+    at_login_page: false  // 避免login页面重复跳转
   },
 
   // lazy loading openid
@@ -78,8 +79,12 @@ App({
         complete: function(res) {
           if (res.data && res.data.code === 666) {
             resolve(res.data);
-          } else if (res.data && res.data.code === 8006 || res.data && res.data.code === 8005) {
+          } else if (res.data && res.data.code === 8006 || res.data && res.data.code === 8005) {  // 8006 用户未登录  8005 无效的SESSION-TOKEN
             _that.clearValue();
+            const pages = getCurrentPages(),
+              currentPage = pages[pages.length - 1]
+            if (_that.globalData.at_login_page || currentPage && currentPage.route.split(/\//, 2).pop() === 'login') return
+            _that.globalData.at_login_page = true
             wx.navigateTo({
               url: '/pages/login/index'
             });
