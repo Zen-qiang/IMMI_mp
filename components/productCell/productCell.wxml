@@ -1,0 +1,16 @@
+<wxs src="./stateClass.wxs" module="state"></wxs>
+<view class="productCell" hover-class="hover" bind:tap="onTap">
+  <view class="content">
+    <view>
+      <text>{{prodata.userName}}</text>
+      <text>{{prodata.orderNo}}</text>
+    </view>
+    <view class="weui-btn weui-btn_mini weui-btn_default">
+      <text>订量：{{prodata.orderQty}}</text>
+      <text>价格：{{prodata.orderPricelist}}</text>
+    </view>
+  </view>
+  <view class="state">
+    <text style="color: {{state.color(prodata.status)}}">{{prodata.orderStatus}}</text>
+  </view>
+</view>

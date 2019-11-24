@@ -1,9 +1,8 @@
 const openIdUrl = require('./config').openIdUrl
-
 App({
 
   onLaunch: function(opts) {
-   
+    // this.getValue('role') === 'AU' ? tabs.splice(2, 1) : tabs.splice(3, 1)
   },
 
   onShow: function(opts) {
@@ -77,7 +76,7 @@ App({
         success: function(res) {},
         fail: function(res) {},
         complete: function(res) {
-          if (res.data && res.data.code === 666) {
+          if (res.data && res.data.code === 666 || res.data.code === 0) {
             resolve(res.data);
           } else if (res.data && res.data.code === 8006 || res.data && res.data.code === 8005) {  // 8006 用户未登录  8005 无效的SESSION-TOKEN
             _that.clearValue();

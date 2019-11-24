@@ -1,11 +1,8 @@
 /**app.wxss**/
 @import './common/lib/zanUI/index.wxss';
-@import './common/lib/weui.wxss';
-@import "./common/lib/vantUi/common/index.wxss";
+@import './miniprogram_npm/vant-weapp/common/index.wxss';
+@import './miniprogram_npm/weui-miniprogram/weui-wxss/dist/style/weui.wxss';
 
-page {
-  height: 100%;
-}
 .container {
   width: 100%;
   height: 100%;

@@ -38,7 +38,16 @@
   </view>
 
   <view wx:if="{{showDetail}}">
-    <order-matrix orderId="{{shopData.orderId || orderId}}" productId="{{shopData.productId}}" from="{{showType.from}}" orderType="{{showType.orderType}}" isHero="{{showType.isHero||false}}" bind:reset="reset" bind:success="successOrder"  bind:showMask="showMask"></order-matrix>
+    <order-matrix
+      orderId="{{shopData.orderId || orderId}}"
+      productId="{{shopData.productId}}"
+      from="{{showType.from}}"
+      orderType="{{showType.orderType}}"
+      isHero="{{showType.isHero||false}}"
+      bind:reset="reset"
+      bind:success="successOrder"
+      bind:showMask="showMask"
+    ></order-matrix>
   </view>
 
 </view>

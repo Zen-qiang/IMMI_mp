@@ -6,6 +6,11 @@
 <view class="index-content">
   <view wx:if="{{active === 0}}">
     <carousel items="{{carouselList}}" style="width: 100%;"></carousel>
+    <view class="top_view" bindtap="homeShowModel" data-type="3">
+      <text class="arrow gt" decode>&gt;&gt;&gt;</text>
+      <text class="text">预定商品</text>
+      <text class="arrow lt" decode>&lt;&lt;&lt;</text>
+    </view>
     <view class='middle_view'>
       <view class='mleft' bindtap='homeShowModel' data-type='1'>
         <image mode='aspectFill' src='{{home_new}}'></image>

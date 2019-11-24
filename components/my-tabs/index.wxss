@@ -3,6 +3,7 @@
   flex-flow: row nowrap;
   align-items: center;
   height: 100rpx;
+  background: #fff;
 }
 .my-tabs-item {
   flex: 1;

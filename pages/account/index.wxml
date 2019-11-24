@@ -70,6 +70,9 @@
     <view><van-button custom-class="defectiveBtn" bind:click="switchCarTab" data-order-type-index="{{2}}">残次退货</van-button></view>
   </view>
 </view>
-<view class="address-content">
-  <van-cell title="我的地址" is-link custom-class="my-address-cell" title-class="my-address-cell__title" data-page-name="contactsManager" bind:click="jump"></van-cell>
+<view class="bottom-content">
+  <van-cell title="我的地址" is-link custom-class="bottom-cell" title-class="bottom-cell__title" data-page-name="contactsManager" bind:click="jump"></van-cell>
+</view>
+<view class="bottom-content" wx:if="{{role === 'AU'}}">
+  <van-cell title="预定商品" is-link custom-class="bottom-cell" title-class="bottom-cell__title" bind:click="jumpPreorder"></van-cell>
 </view>

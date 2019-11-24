@@ -1,0 +1,18 @@
+/* pages/orderList/index.wxss */
+Page {
+  box-sizing: border-box;
+  padding-top: 100rpx;
+  background-color: #f7f7f7;
+}
+.preorder-tabs {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+.preorder-content {
+  margin: 20rpx 30rpx;
+}
+.preorder-content_item {
+  margin: 20rpx 0;
+}

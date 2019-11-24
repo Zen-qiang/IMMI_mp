@@ -9,10 +9,21 @@
 		"postcss": true,
 		"minified": true,
 		"newFeature": true,
-		"nodeModules": false
+		"coverView": true,
+		"nodeModules": true,
+		"autoAudits": false,
+		"checkInvalidKey": true,
+		"checkSiteMap": false,
+		"uploadWithSourceMap": true,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		},
+		"bundle": false
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.8.1",
+	"libVersion": "2.9.2",
 	"appid": "wxfc56b5567ce7bb96",
 	"projectname": "IMMI",
 	"isGameTourist": false,
@@ -33,6 +44,10 @@
 		},
 		"game": {
 			"currentL": -1,
+			"list": []
+		},
+		"gamePlugin": {
+			"current": -1,
 			"list": []
 		},
 		"miniprogram": {
@@ -105,6 +120,20 @@
 					"name": "退货订单",
 					"pathName": "pages/orderDetailList/index",
 					"query": "orderType=03&orderID=1547"
+				},
+				{
+					"id": -1,
+					"name": "pages/reviewOrder/index",
+					"pathName": "pages/reviewOrder/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/preorder/index",
+					"pathName": "pages/preorder/index",
+					"query": "",
+					"scene": null
 				}
 			]
 		}

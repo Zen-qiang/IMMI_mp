@@ -1,0 +1,24 @@
+{
+  "name": "immi_mp",
+  "version": "1.0.0",
+  "description": "immi订货小程序",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Zen-qiang/IMMI_mp.git"
+  },
+  "author": "yyl",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Zen-qiang/IMMI_mp/issues"
+  },
+  "homepage": "https://github.com/Zen-qiang/IMMI_mp#readme",
+  "dependencies": {
+    "miniprogram-computed": "^2.1.1",
+    "vant-weapp": "^1.0.0-beta.4",
+    "weui-miniprogram": "^0.2.0"
+  }
+}

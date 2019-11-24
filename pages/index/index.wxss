@@ -1,3 +1,7 @@
+Page {
+  box-sizing: border-box;
+  padding-bottom: calc(48px + env(safe-area-inset-bottom));
+}
 .container {
   background-color: #f2f2f2;
   min-height: 100%;
@@ -5,6 +9,28 @@
 
 .container1 {
   background-color: #fff !important;
+}
+
+.top_view {
+  background: rgba(0,0,0,.6);
+  color: #fff;
+  text-align: center;
+  padding: 40rpx 0;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+.top_view .arrow {
+  flex: 1;
+}
+.top_view .arrow.gt {
+  text-align: right;
+}
+.top_view .arrow.lt {
+  text-align: left;
+}
+.top_view .text {
+  padding: 0 10rpx;
 }
 
 .middle_view {

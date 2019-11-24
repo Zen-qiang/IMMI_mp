@@ -1,0 +1,11 @@
+module.exports.color = function (state) {
+  var color = '#333'
+  switch (state) {
+    case 'APPROVED':
+      color = '#41b713'
+      // #41b4fd
+      // #eb716b
+      // #f7c121
+  }
+  return color
+}

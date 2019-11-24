@@ -1,0 +1,28 @@
+<view class="preorder-tabs">
+  <my-tabs tab-list="{{tabs}}" bind:change="tabChange"></my-tabs>
+</view>
+<view class="preorder-content">
+  <block wx:for="{{tabs}}" wx:key="{{item.value}}">
+    <view hidden="{{active !== index}}">
+      <preorder-content
+        custom-class="preorder-content_item"
+        origin-data="{{list}}"
+        filter-type="{{item.value}}"
+        bind:itemTap="itemClick"
+        ></preorder-content>
+    </view>
+  </block>
+  <my-load-more load-done="{{loadDone}}" text="{{loadText}}"></my-load-more>
+</view>
+<van-dialog
+  use-slot
+  close-on-click-overlay
+  show="{{showDetail}}"
+  bind:close="itemClose"
+>
+  <preorder-info
+    img-src="{{detailImage}}"
+    color-list="{{detailArr}}"
+    text="{{queryResultTips}}"
+  ></preorder-info>
+</van-dialog>

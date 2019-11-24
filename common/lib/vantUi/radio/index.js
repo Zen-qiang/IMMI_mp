@@ -33,7 +33,6 @@ component_1.VantComponent({
             instance.$emit('change', value);
         },
         onChange: function (event) {
-            console.log(event);
             this.emitChange(this.data.name);
         },
         onClickLabel: function () {

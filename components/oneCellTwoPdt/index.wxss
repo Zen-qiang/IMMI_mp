@@ -1,6 +1,9 @@
 /* components/oneCellTwoPdt/index.wxss */
 .my-row-class {
-  margin-right: -8px;
+  box-sizing: border-box;
+  width: 100%;
+  overflow-x: hidden;
+  /* margin-right: -8px; */
 }
 .two-pdt-item {
   padding-bottom: 100%;

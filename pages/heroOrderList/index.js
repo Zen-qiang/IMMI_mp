@@ -42,6 +42,14 @@ Page({
     this.prepareData(); // 加载页面数据
     this.getFilterList();
   },
+  onShow () {
+    if (app.isLogin() || typeof this.getTabBar === 'function' && this.getTabBar()) {
+      this.getTabBar().setData({
+        tabList: app.getValue('tabList'),
+        selected: 1
+      })
+    }
+  },
 
   onHide: function() {
     // wx.removeStorage({

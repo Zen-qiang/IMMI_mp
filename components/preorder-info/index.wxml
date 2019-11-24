@@ -1,0 +1,31 @@
+<view class="preorder-info">
+  <view class="bg">
+    <image src="{{imgSrc}}" mode="aspectFill"></image>
+  </view>
+  <view class="cn">
+    <block wx:if="{{list.length}}">
+      <van-tabs active="{{ selectedId }}" bind:change="tabChange" custom-class="my-tabs" nav-class="my-nav" tab-class="my-tab" tab-active-class="my-tab-active" animated>
+        <block wx:for="{{list}}" wx:key="index">
+          <van-tab title="{{item.colorName}}">
+            <view class="colorContent">
+              <view class="colorItem van-hairline--bottom" wx:for="{{item.size}}" wx:for-index="idx" wx:key="{{item.aliasId}}">
+                <text>{{item.sizeName}}</text>
+                <text>订量：{{item.qty}}</text>
+              </view>
+            </view>
+          </van-tab>
+        </block>
+      </van-tabs>
+    </block>
+    <block wx:else>
+      <view class="cn-loading">
+        <block wx:if="{{tips}}">
+          <text>{{tips}}</text>
+        </block>
+        <block wx:else>
+          <van-loading size="24px" vertical>加载中...</van-loading>
+        </block>
+      </view>
+    </block>
+  </view>
+</view>

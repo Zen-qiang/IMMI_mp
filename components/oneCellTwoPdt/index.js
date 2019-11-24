@@ -30,7 +30,7 @@ Component({
    */
   methods: {
     jumpUrl(e) {
-      console.log(e);
+      // console.log(e);
       let item = e.currentTarget.dataset.item;
       if (item && item.productId) {
         wx.navigateTo({

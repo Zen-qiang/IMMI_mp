@@ -83,6 +83,7 @@ Component({
     radioItem: '其他',
     reasonText: '',
     isShowMask: false,
+    stock: false // 是否还有库存 false：提交到货通知 true：加入购物车
   },
   ready() {
     this.getSpec();
@@ -126,7 +127,8 @@ Component({
             tabList: tabList,
             matrix: matrix,
             matrixPrice: matrixPrice,
-            matrixTotal: matrixTotal
+            matrixTotal: matrixTotal,
+            stock: data.data.stock
           });
         }
       }, res => {
@@ -189,7 +191,7 @@ Component({
 
       };
       if (sum) {
-        this.addCart(matrixData);
+        this.data.stock ? this.addCart(matrixData) : this.addPre(matrixData)
       } else {
         app.showMsg("请输入补货量！");
       }
@@ -250,6 +252,30 @@ Component({
       }
     },
 
+    /**
+     * TODO 提交到货通知
+     * @param {*} matrixData 
+     */
+    addPre (matrixData) {
+      var data = {
+        url: config.arrivalNotice,
+        params: {
+          data: JSON.stringify(matrixData)
+        }
+      }
+      wx.showLoading({
+        title: '数据保存中',
+      });
+      app.nPost(data).then(data => {
+        app.showMsg("保存成功");
+        this.triggerEvent('successPre');
+        wx.hideLoading();
+      }, res => {
+        console.error(res);
+        wx.hideLoading();
+        app.showMsg("保存失败")
+      });
+    },
     cartHttp(matrixData) {
       var data = {
         url: config.addCart,
@@ -265,12 +291,14 @@ Component({
       });
       app.nPost(data).then(data => {
         if (data.data) {
-          app.showMsg("成功");
-          wx.hideLoading();
+          app.showMsg("保存成功");
           this.triggerEvent('success', data.data);
         }
+        wx.hideLoading();
       }, res => {
         console.error(res);
+        wx.hideLoading();
+        app.showMsg("保存失败")
       });
     },
     // onClose1() {

@@ -1,5 +1,8 @@
 {
   "navigationBarTitleText": "个人中心",
+  "backgroundColor": "#ecebeb",
+  "backgroundColorTop": "#ecebeb",
+  "backgroundColorBottom": "#ecebeb",
   "usingComponents": {
     "zan-cell-group": "/common/lib/zanUI/cell-group/index",
     "zan-cell": "/common/lib/zanUI/cell/index",

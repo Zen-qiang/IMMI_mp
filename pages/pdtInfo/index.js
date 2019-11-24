@@ -70,5 +70,9 @@ Page({
   successOrder: function() {
     this.selectComponent("#popup").hideModal();
     app.showMsg("成功添加购物车",2)
+  },
+  successOrderPre () {
+    this.selectComponent("#popup").hideModal();
+    app.showMsg("通知成功", 2)
   }
 })

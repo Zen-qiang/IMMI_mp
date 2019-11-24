@@ -1,8 +1,11 @@
 /* pages/account/index.wxss */
 
 page {
+  box-sizing: border-box;
   min-height: 100vh;
-  background: #ecebeb;
+  padding-bottom: calc(48px + constant(safe-area-inset-bottom));
+  padding-bottom: calc(48px + env(safe-area-inset-bottom));
+  background-color: #f7f7f7;
 }
 /* 头部背景 */
 .bg-content {
@@ -123,13 +126,13 @@ page {
   color: #fff;
 }
 /* 我的地址 */
-.address-content {
+.bottom-content {
   margin: 30rpx 0;
 }
-.address-content .my-address-cell {
+.bottom-content .bottom-cell {
   height: 100rpx;
   align-items: center;
 }
-.address-content .my-address-cell__title {
+.bottom-content .bottom-cell__title {
   font-size: 16px;
 }

@@ -141,7 +141,7 @@ Component({
 
     //滑动事件处理
     touchmove: function(e) {
-
+      
       if (!this.data.canDel) {
         return;
       }

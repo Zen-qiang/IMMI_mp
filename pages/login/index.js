@@ -67,10 +67,9 @@ Page({
   },
   /* input输入事件 */
   handleChange (e) {
-    // console.log(e)
     const key = `${e.target.dataset.type}.value`
     this.setData({
-      [key]: e.detail.value 
+      [key]: e.detail
     })
   },
   /* 确更改密码 */
@@ -122,12 +121,70 @@ Page({
           app.saveValue('uid', res.data.uid);
           app.saveValue('sessionKey', res.data.sessionToken);
           app.saveValue('productMode', res.data.productMode);
-          app.saveValue('orderListHeader', res.data.orderListHeader)
+          app.saveValue('orderListHeader', res.data.orderListHeader) // 订单头部tab
+          app.saveValue('role', res.data.role) // 判断用户身份
           // if (this.data.isFirst) {
             // wx.switchTab({
             //   url: '/pages/index/index',
             // })
           // }
+          if (res.data.role === 'BU') {
+            const tabList = [
+              {
+                "pagePath": "/pages/index/index",
+                "iconPath": "/common/resource/home.png",
+                "selectedIconPath": "/common/resource/home-selected.png",
+                "text": "首页"
+              },
+              {
+                "pagePath": "/pages/heroOrderList/index",
+                "iconPath": "/common/resource/hero.png",
+                "selectedIconPath": "/common/resource/hero-selected.png",
+                "text": "全国排行榜"
+              },
+              {
+                "pagePath": "/pages/cart/index",
+                "iconPath": "/common/resource/cart.png",
+                "selectedIconPath": "/common/resource/cart-selected.png",
+                "text": "购物车"
+              },
+              {
+                "pagePath": "/pages/account/index",
+                "iconPath": "/common/resource/account.png",
+                "selectedIconPath": "/common/resource/account-selected.png",
+                "text": "我的"
+              }
+            ]
+            app.saveValue('tabList', tabList)
+          } else if (res.data.role === 'AU') {
+            const tabList = [
+              {
+                "pagePath": "/pages/index/index",
+                "iconPath": "/common/resource/home.png",
+                "selectedIconPath": "/common/resource/home-selected.png",
+                "text": "首页"
+              },
+              {
+                "pagePath": "/pages/heroOrderList/index",
+                "iconPath": "/common/resource/hero.png",
+                "selectedIconPath": "/common/resource/hero-selected.png",
+                "text": "全国排行榜"
+              },
+              {
+                "pagePath": "/pages/reviewOrder/index",
+                "iconPath": "/common/resource/review.png",
+                "selectedIconPath": "/common/resource/review-selected.png",
+                "text": "审核订单"
+              },
+              {
+                "pagePath": "/pages/account/index",
+                "iconPath": "/common/resource/account.png",
+                "selectedIconPath": "/common/resource/account-selected.png",
+                "text": "我的"
+              }
+            ]
+            app.saveValue('tabList', tabList)
+          }
         }
         wx.navigateBack();
       }, res => {

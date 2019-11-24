@@ -1,6 +1,6 @@
 {
   "usingComponents": {
-    "zan-loadmore": "/common/lib/zanUI/loadmore/index",
-    "one-cell-two-pdt": "/components/oneCellTwoPdt/index"
+    "one-cell-two-pdt": "/components/oneCellTwoPdt/index",
+    "my-load-more": "/components/my-load-more/index"
   }
 }

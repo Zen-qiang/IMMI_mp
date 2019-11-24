@@ -23,5 +23,5 @@
 <view class="pdtInfo-btn" bindtap='showPopUp'><van-button round>尺寸下单</van-button></view>
 
 <pop-bottom id="popup" bind:cancel="dismissPop">
-  <order-matrix productId="{{productId||''}}" from="pdtInfo" orderType="backOrder" bind:reset="reset" bind:success="successOrder"></order-matrix>
+  <order-matrix productId="{{productId||''}}" from="pdtInfo" orderType="backOrder" bind:reset="reset" bind:success="successOrder" bind:successPre="successOrderPre"></order-matrix>
 </pop-bottom>

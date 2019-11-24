@@ -1,0 +1,15 @@
+{
+  "navigationBarTitleText": "审核订单",
+  "backgroundColor": "#f7f7f7",
+  "backgroundColorTop": "#f7f7f7",
+  "backgroundColorBottom": "#f7f7f7",
+  "usingComponents": {
+    "product-cell": "/components/productCell/productCell",
+    "my-tabs": "/components/my-tabs/index",
+    "van-transition": "vant-weapp/transition",
+    "van-button": "vant-weapp/button",
+    "van-radio": "vant-weapp/radio",
+    "van-radio-group": "vant-weapp/radio-group",
+    "my-load-more": "/components/my-load-more/index"
+  }
+}

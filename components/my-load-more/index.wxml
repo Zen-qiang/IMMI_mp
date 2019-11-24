@@ -1,0 +1,13 @@
+<view class="my-loadmore">
+  <view class="my-loadmore__line"></view>
+  <block wx:if="{{loadDone}}">
+    <text wx:if="{{ text }}" class="my-loadmore__text" style="color: {{color}}">{{ text }}</text>
+    <view wx:else class="my-loadmore__dot" style="background-color: {{color}}"></view>
+  </block>
+  <block wx:else>
+    <view class="my-loading">
+      <van-loading color="{{color}}" type="{{type}}" size="{{size}}" text-size="{{textSize}}" vertical="{{vertical}}">{{text}}</van-loading>
+    </view>
+  </block>
+  <view class="my-loadmore__line"></view>
+</view>

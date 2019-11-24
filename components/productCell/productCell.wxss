@@ -1,0 +1,23 @@
+.productCell {
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff;
+  padding: 8px 10px;
+  font-size: 14px;
+}
+.hover {
+  background: #fdfdfd;
+  color: #333;
+}
+
+.productCell > .content {
+}
+.productCell > .content > view {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  padding: 4px 0;
+}
+.productCell > .state {
+  text-align: right;
+}

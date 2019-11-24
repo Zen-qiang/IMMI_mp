@@ -64,6 +64,12 @@ Page({
   },
 
   onShow: function() {
+    if (app.isLogin() || typeof this.getTabBar === 'function' && this.getTabBar()) {
+      this.getTabBar().setData({
+        tabList: app.getValue('tabList'),
+        selected: 0
+      })
+    }
     // this.setData({
     //   active: 0
     // });

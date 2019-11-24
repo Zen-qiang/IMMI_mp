@@ -7,17 +7,16 @@ Page({
    * 页面的初始数据
    */
   data: {
-    type: "",
+    type: '',
     search: '',
     attrIdList: [],
     page: 1,
-    size: 10,
-    pages: 0,
+    size: 20,
     total: 0,
     list: [],
     loadMore: { // 加载信息
-      title: "",
-      isLoad: false
+      title: '正在加载',
+      loadDone: false
     },
   },
 
@@ -25,225 +24,108 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    if (options.type) {
-      this.setData({
-        type: options.type
-      });
-    } else {
-      if (options.search) {
-        this.setData({
-          search: options.search,
-          type: '3'
-        });
-      }
-      if (options.attrIdList) {
-        let attrIdList = options.attrIdList.split(',');
-        this.setData({
-          attrIdList: attrIdList,
-          type: '3'
-        });
-      }
+    this.setData({
+      type: options.type || '',
+      search: options.search || '',
+      attrIdList: options.attrIdList && options.attrIdList.split(',') || []
+    })
+    let title = ''
+    switch (this.data.type) {
+      case '1':
+        title = '当季新品'
+        break
+      case '2':
+        title = '过季商品'
+        break
+      case '3':
+        title = '预定商品'
+          break
     }
-    // 标题
-    if (this.data.type == '1') {
-      wx.setNavigationBarTitle({
-        title: '当季商品',
-      })
-    } 
-    if (this.data.type == '2') {
-      wx.setNavigationBarTitle({
-        title: '过季商品',
-      })
-    }
-    this.prepareData();
+    title && wx.setNavigationBarTitle({title})
+    this.getList()
   },
 
-  prepareData(loadmore) {
-    if (this.data.type == '1') {
-      this.getType1Data(loadmore);
-    } else if (this.data.type == '2') {
-      this.getType2Data(loadmore);
-    } else {
-      this.getPdtList(loadmore);
-    }
-  },
-
-  // 新品推荐 当季商品
-  getType1Data(loadmore) {
-    var data = {
-      // url: config.indexNewPdtQuery,
-      url: config.timeGoods,
-      params: {
-        // recommend: true,
-        type: 'in_season',
+  getList () {
+    let url = '',
+      type = '',
+      params = {
         page: this.data.page,
         size: this.data.size
       }
-    }
-    app.nGet(data).then(data => {
-      if (data.data && data.data.list) {
-        if (!loadmore) {
-          if (data.data.list && data.data.list.length === 0) {
-            this.setData({
-              ["loadMore.title"]: '暂无数据'
-            });
-          }
-          this.setData({
-            page: data.data.page,
-            size: data.data.size,
-            pages: data.data.pages,
-            total: data.data.total,
-            list: data.data.list,
-          });
-        } else {
-          let list = [...this.data.list, ...data.data.list];
-          this.setData({
-            ["loadMore.isLoad"]: false,
-            page: data.data.page,
-            size: data.data.size,
-            pages: data.data.pages,
-            total: data.data.total,
-            list: list,
-          });
+    switch (this.data.type) {
+      case '1':
+        url = config.timeGoods
+        params = {
+          type: 'in_season',
+          ...params
         }
-      }
-    }, res => {
-      this.setData({
-        ["loadMore.isLoad"]: false
-      });
-    });
-  },
+        break
+      case '2':
+        url = config.timeGoods
+        params = {
+          type: 'out_dated',
+          ...params
+        }
+        break
+      case '3':
+        url = config.indexNewPdtQuery
+        params = {
+          search: this.data.search,
+          attrIdList: JSON.stringify(this.data.attrIdList),
+          isReserve: true,
+          ...params
+        }
+        break
+      default:
+        url = config.indexNewPdtQuery
+        params = {
+          search: this.data.search,
+          attrIdList: JSON.stringify(this.data.attrIdList),
+          ...params
+        }
+    }
 
-  // Top 20 过季商品
-  getType2Data(loadmore) {
-    let attrIdList = JSON.stringify(this.data.attrIdList);
-    var data = {
-      // url: config.searchB2bProductTopList,
-      url: config.timeGoods,
-      params: {
-        type: 'out_dated',
-        page: this.data.page,
-        size: this.data.size,
-        // orderBy: 'QTY',
-        // sort: "DESC",
-      }
-    }
-    app.nGet(data).then(data => {
-      // if (data.data && data.data.list) {
-      //   if (data.data.list && data.data.list.length === 0) {
-      //     this.setData({
-      //       ["loadMore.title"]: '暂无数据'
-      //     });
-      //   }
-      //   this.setData({
-      //     page: data.data.page,
-      //     size: data.data.size,
-      //     pages: data.data.pages,
-      //     total: data.data.total,
-      //     list: data.data.list,
-      //   });
-      // } else {
-      // }
-      if (data.data && data.data.list) {
-        if (!loadmore) {
-          if (data.data.list && data.data.list.length === 0) {
-            this.setData({
-              ["loadMore.title"]: '暂无数据'
-            });
-          }
+    app.nGet({url, params}).then(({data}) => {
+      if (data && data.list) {
+        const { total, list, page, pages } = data
+        if (this.data.page === 1) {
           this.setData({
-            page: data.data.page,
-            size: data.data.size,
-            pages: data.data.pages,
-            total: data.data.total,
-            list: data.data.list,
-          });
+            total,
+            list,
+            'loadMore.title': Number(page) >= Number(pages) || !list.length ? '暂无数据' : '正在加载',
+            'loadMore.loadDone': Number(page) >= Number(pages) || !list.length
+          })
         } else {
-          let list = [...this.data.list, ...data.data.list];
+          let loadlist = [...this.data.list, ...list]
           this.setData({
-            ["loadMore.isLoad"]: false,
-            page: data.data.page,
-            size: data.data.size,
-            pages: data.data.pages,
-            total: data.data.total,
-            list: list,
-          });
+            total,
+            list: loadlist,
+            'loadMore.title': Number(page) >= Number(pages) || !list.length ? '暂无数据' : '正在加载',
+            'loadMore.loadDone': Number(page) >= Number(pages) || !list.length
+          })
         }
+      } else {
+        this.setData({
+          'loadMore.title': '暂无数据',
+          'loadMore.loadDone': true
+        })
       }
-    }, res => {
+    }).catch(err => {
       this.setData({
-        ["loadMore.isLoad"]: false
-      });
-    });
-  },
-
-  getPdtList(loadmore) {
-    let attrIdList = JSON.stringify(this.data.attrIdList);
-    var data = {
-      url: config.indexNewPdtQuery,
-      params: {
-        search: this.data.search,
-        attrIdList: attrIdList,
-        page: this.data.page,
-        size: this.data.size
-      }
-    }
-    app.nGet(data).then(data => {
-      if (data.data && data.data.list) {
-        if (!loadmore) {
-          if (data.data.list && data.data.list.length === 0) {
-            this.setData({
-              ["loadMore.title"]: '暂无数据'
-            });
-          }
-          this.setData({
-            page: data.data.page,
-            size: data.data.size,
-            pages: data.data.pages,
-            total: data.data.total,
-            list: data.data.list,
-          });
-        } else {
-          let list = [...this.data.list, ...data.data.list];
-          this.setData({
-            ["loadMore.isLoad"]: false,
-            page: data.data.page,
-            size: data.data.size,
-            pages: data.data.pages,
-            total: data.data.total,
-            list: list,
-          });
-        }
-      }
-    }, res => {
-      this.setData({
-        ["loadMore.isLoad"]: false
-      });
-    });
-  },
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function() {
-    wx.showNavigationBarLoading();
-    wx.hideNavigationBarLoading();
+        'loadMore.title': '获取失败',
+        'loadMore.loadDone': true
+      })
+    })
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function() {
-    if (Number(this.data.page) < Number(this.data.pages)) {
-      this.setData({
-        ["loadMore.isLoad"]: true,
-        page: Number(this.data.page) + 1,
-      });
-      this.prepareData('loadmore');
-    } else {
-      this.setData({
-        ["loadMore.title"]: '没有更多数据啦'
-      });
-      console.log(this.data.pages)
-    }
+    if (this.data.loadMore.loadDone) return
+    this.setData({
+      page: this.data.page + 1
+    })
+    this.getList()
   }
 })

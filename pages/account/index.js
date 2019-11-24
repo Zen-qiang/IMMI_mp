@@ -19,12 +19,14 @@ Page({
     tabList: [],
     activeIndex: 0, // tab当前选中下标
     orderInfo: [], // 所有订单类型
-    season: null  // 季度
+    season: null,  // 季度
+    role: null
   },
 
   onLoad: function() {
     this.getLayout();
     const tabList = app.getValue('orderListHeader')
+    if (!tabList) return
     /* 根据表头格式化数据 */
     for (let index = 0; index < tabList.length; index++) {
       const element = tabList[index]
@@ -37,6 +39,12 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    if (typeof this.getTabBar === 'function' && this.getTabBar()) {
+      this.getTabBar().setData({
+        tabList: app.getValue('tabList'),
+        selected: 3
+      })
+    }
     let userName = app.getValue('username');
     if (userName && userName.length > 0) {
       this.setData({
@@ -46,6 +54,9 @@ Page({
     }
     // 获取金额 和 数量
     this.getPriceNum()
+    this.setData({
+      role: app.getValue('role')
+    })
   },
   checkLogin() {
     wx.navigateTo({
@@ -98,6 +109,18 @@ Page({
         url: `/pages/${pageName}/index?season=${this.data.season}&orderType=${orderType}`,
       })
     }
+  },
+  /* 路由跳转 */
+  jumpPreorder (e) {
+    if (!app.isLogin()) {
+      wx.navigateTo({
+        url: '/pages/login/index',
+      })
+      return
+    }
+    wx.navigateTo({
+        url: '/pages/preorder/index',
+    })
   },
   // 订单的 定量 和 金额
   getPriceNum(index = 0) {

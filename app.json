@@ -15,7 +15,9 @@
     "pages/contactsManager/index",
     "pages/orderDetailList/index",
     "pages/heroOrderList/index",
-    "pages/logistics/index"
+    "pages/logistics/index",
+    "pages/reviewOrder/index",
+    "pages/preorder/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -25,6 +27,7 @@
     "onReachBottomDistance": 50
   },
   "tabBar": {
+    "custom": true,
     "color": "#ffffff",
     "selectedColor": "#ffffff",
     "borderStyle": "black",
@@ -47,6 +50,12 @@
         "iconPath": "common/resource/cart.png",
         "selectedIconPath": "common/resource/cart-selected.png",
         "text": "购物车"
+      },
+      {
+        "pagePath": "pages/reviewOrder/index",
+        "iconPath": "common/resource/review.png",
+        "selectedIconPath": "common/resource/review-selected.png",
+        "text": "审核订单"
       },
       {
         "pagePath": "pages/account/index",

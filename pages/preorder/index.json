@@ -1,0 +1,13 @@
+{
+  "navigationBarTitleText": "预订消息列表",
+  "backgroundColor": "#f7f7f7",
+  "backgroundColorTop": "#f7f7f7",
+  "backgroundColorBottom": "#f7f7f7",
+  "usingComponents": {
+    "my-tabs": "/components/my-tabs/index",
+    "my-load-more": "/components/my-load-more/index",
+    "preorder-content": "/components/preorder-content/index",
+    "van-dialog": "vant-weapp/dialog",
+    "preorder-info": "/components/preorder-info/index"
+  }
+}
