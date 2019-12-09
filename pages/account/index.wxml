@@ -73,6 +73,9 @@
 <view class="bottom-content">
   <van-cell title="我的地址" is-link custom-class="bottom-cell" title-class="bottom-cell__title" data-page-name="contactsManager" bind:click="jump"></van-cell>
 </view>
-<view class="bottom-content" wx:if="{{role === 'AU'}}">
+<view class="bottom-content" wx:if="{{role === 'AU' || role === 'SUM'}}">
   <van-cell title="预定商品" is-link custom-class="bottom-cell" title-class="bottom-cell__title" bind:click="jumpPreorder"></van-cell>
+</view>
+<view class="bottom-content" wx:if="{{role === 'AU'}}">
+  <van-cell title="审核订单" is-link custom-class="bottom-cell" title-class="bottom-cell__title" bind:click="jumpRevieworder"></van-cell>
 </view>

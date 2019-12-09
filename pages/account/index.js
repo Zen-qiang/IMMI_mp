@@ -39,12 +39,12 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    if (typeof this.getTabBar === 'function' && this.getTabBar()) {
+    /* if (typeof this.getTabBar === 'function' && this.getTabBar()) {
       this.getTabBar().setData({
         tabList: app.getValue('tabList'),
         selected: 3
       })
-    }
+    } */
     let userName = app.getValue('username');
     if (userName && userName.length > 0) {
       this.setData({
@@ -120,6 +120,17 @@ Page({
     }
     wx.navigateTo({
         url: '/pages/preorder/index',
+    })
+  },
+  jumpRevieworder (e) {
+    if (!app.isLogin()) {
+      wx.navigateTo({
+        url: '/pages/login/index',
+      })
+      return
+    }
+    wx.navigateTo({
+      url: '/pages/reviewOrder/index',
     })
   },
   // 订单的 定量 和 金额

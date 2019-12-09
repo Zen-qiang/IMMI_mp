@@ -128,7 +128,7 @@ Page({
             //   url: '/pages/index/index',
             // })
           // }
-          if (res.data.role === 'BU') {
+          /* if (res.data.role === 'BU') {
             const tabList = [
               {
                 "pagePath": "/pages/index/index",
@@ -156,7 +156,7 @@ Page({
               }
             ]
             app.saveValue('tabList', tabList)
-          } else if (res.data.role === 'AU') {
+          } else if (res.data.role === 'AU' || res.data.role === 'SUM') {
             const tabList = [
               {
                 "pagePath": "/pages/index/index",
@@ -184,7 +184,7 @@ Page({
               }
             ]
             app.saveValue('tabList', tabList)
-          }
+          } */
         }
         wx.navigateBack();
       }, res => {

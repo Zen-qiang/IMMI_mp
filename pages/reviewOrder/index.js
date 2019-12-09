@@ -625,12 +625,12 @@ Page({
   onLoad () {
   },
   onShow () {
-    if (app.isLogin() || typeof this.getTabBar === 'function' && this.getTabBar()) {
+    /* if (app.isLogin() || typeof this.getTabBar === 'function' && this.getTabBar()) {
       this.getTabBar().setData({
         tabList: app.getValue('tabList'),
         selected: 2
       })
-    }
+    } */
     this.getList()
   },
   /**
@@ -648,6 +648,7 @@ Page({
    * @param dataType WAIT_APPROVE/IN_APPROVE/APPROVED，空值或不传值显示全部
    */
   getList () {
+    console.log('getList')
     let objKey = 'orderList_'
     switch (this.data.active) {
       case 1:

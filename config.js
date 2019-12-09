@@ -8,7 +8,7 @@
 // const host = "http://192.168.8.8:55661/immi";
 // const host = 'https://invitation.dingliantech.com/immi';
 // const host = "http://192.168.3.7:8080";
-const host = "http://bobo.easy.echosite.cn/immi"
+const host = "https://bobo.easy.echosite.cn/immi"
 
 // 首页接口汇总
 let api = {
