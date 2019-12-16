@@ -4,39 +4,39 @@
   <my-tabs tab-list="{{tabList}}" bind:change="tabChange"></my-tabs>
 </view>
 <view class="index-content">
-  <view wx:if="{{active === 0}}">
+  <view hidden="{{active != 0}}" style="padding-top: 8px;">
     <carousel items="{{carouselList}}" style="width: 100%;"></carousel>
     <view class="top_view" bindtap="homeShowModel" data-type="3">
-      <text class="arrow gt" decode>&gt;&gt;&gt;</text>
-      <text class="text">预定商品</text>
-      <text class="arrow lt" decode>&lt;&lt;&lt;</text>
+      <view class="arrow gt"><image src="../../common/resource/finger.svg" mode="aspectFill"></image></view>
+      <view class="text"><text>预定商品</text></view>
+      <view class="arrow lt"><image src="../../common/resource/finger.svg" mode="aspectFill"></image></view>
     </view>
     <view class='middle_view'>
       <view class='mleft' bindtap='homeShowModel' data-type='1'>
-        <image mode='aspectFill' src='{{home_new}}'></image>
+        <image mode='widthFix' src='{{home_new}}'></image>
       </view>
       <view class='mright' bindtap='homeShowModel' data-type='2'>
-        <image mode='aspectFill' src='{{home_top}}'></image>
+        <image mode='widthFix' src='{{home_top}}'></image>
       </view>
     </view>
-    <!-- <zan-loadmore type="text" text="{{accountInfo}}"></zan-loadmore> -->
-      <view style='color:#000;font-size:25rpx;text-align:center;'>
+    <!-- <view style='color:#000;font-size:25rpx;text-align:center;'>
       <template is="wxParse" data="{{wxParseData:webContent.nodes}}" />
-    </view>
+    </view> -->
 
-    <one-cell-two-pdt items="{{recommendInfo.list}}"></one-cell-two-pdt>
-    <!-- <zan-loadmore type="loading" wx:if="{{newLoadMore.isLoad}}"></zan-loadmore> -->
-    <!-- <zan-loadmore type="text" text="{{newLoadMore.title}}"></zan-loadmore> -->
+    <view class="recommendInfo">
+      <view class="recommendInfo_title"><text>主推商品</text></view>
+      <one-cell-two-pdt items="{{recommendInfo.list}}"></one-cell-two-pdt>
+      <my-load-more text="{{newLoadMore.title}}" load-done="{{newLoadMore.loadDone}}"></my-load-more>
+    </view>
   </view>
-  <view wx:if="{{active === 1}}">
+  <view hidden="{{active != 1}}">
     <view class='space'>
     <zan-search placeholder="搜索..." keyword="{{ inputValue }}" placeholder="搜索您想要的商品" searchStyle="height: 70rpx; margin-top:10rpx; border-radius: 50rpx;background: {{ searchbg || '#F2F2F2' }};" inputStyle="height: 30rpx; background: {{ searchbg || '#F2F2F2' }}; color:#000;"
       bindchange="searchChange" bindsearch="searchDone" />
     </view>
     <one-cell-four-icon items="{{categoryList}}"></one-cell-four-icon>
     <one-cell-three-pdt items="{{allInfo.list}}"></one-cell-three-pdt>
-    <zan-loadmore type="loading" wx:if="{{allLoadMore.isLoad}}"></zan-loadmore>
-    <zan-loadmore type="text" text="{{allLoadMore.title}}" wx:elif="{{allLoadMore.title}}"></zan-loadmore>
+    <my-load-more text="{{allLoadMore.title}}" load-done="{{allLoadMore.loadDone}}"></my-load-more>
   </view>
-  <view wx:if="{{active === 2}}"><filter-item datas="{{attrsList}}"></filter-item></view>
+  <view hidden="{{active != 2}}"><filter-item datas="{{attrsList}}"></filter-item></view>
 </view>

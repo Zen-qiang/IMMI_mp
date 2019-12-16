@@ -1,32 +1,28 @@
 /* components/oneCellThreePdt/index.wxss */
 .my-row-class {
-  margin-right: -4px;
+  /* margin-right: -4px; */
 }
 .three-pdt-item {
-  padding-bottom: 60%;
+  /* padding-bottom: 60%;
   position: relative;
-  /* margin-top: 5px; */
-  margin-bottom: 10px;
+  margin-bottom: 10px; */
+  padding: 0 4px;
 }
 
-.three-pdt-item > .box {
+/* .three-pdt-item > .box {
   position: absolute;
   width: 100%;
   height: 100%;
-  /* background-color: blue; */
   box-sizing: border-box;
-  /* padding: 0 5px; */
-  padding-right: 4px;
-}
+} */
 
 .three-pdt-item > .box > .content {
-  position: relative;
+  /* position: relative;
   width: 100%;
   height: 70%;
-  /* background-color: yellow; */
   box-sizing: border-box;
-  /* padding: 5px; */
-  background-color: #fff;
+  background-color: #fff; */
+  height: 400rpx;
 }
 
 .three-pdt-item > .box > .content > image {
@@ -35,10 +31,10 @@
 }
 
 .three-pdt-item > .box > .info {
-  position: relative;
+  /* position: relative;
   width: 100%;
-  height: 30%;
-  /* background-color: red; */
+  height: 30%; */
+  margin-bottom: 8px;
 }
 
 .three-pdt-item > .box > .info > .prodCode {

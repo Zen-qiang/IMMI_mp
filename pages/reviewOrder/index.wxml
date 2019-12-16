@@ -1,5 +1,5 @@
 <view class="tabContainer">
-  <my-tabs tab-list="{{tabs}}" bind:change="tabChange"></my-tabs>
+  <my-tabs tab-list="{{tabs}}" bind:change="tabChange" default-index="{{active}}"></my-tabs>
 </view>
 <view hidden="{{active !== 0}}">
   <view class="summary van-hairline--top-bottom">
@@ -7,24 +7,25 @@
     <text>总价格；{{orderList_all.summary.totalPricelist}}</text>
   </view>
   <view wx:for="{{orderList_all.resultList}}" wx:key="index" class="listItem">
-    <product-cell prodata="{{item}}" class="pdtcell" bind:onTap="cellTap"></product-cell>
+    <product-cell prodata="{{item}}" class="pdtcell"></product-cell>
   </view>
   <my-load-more load-done="{{tabs[active].loadDone}}" text="{{tabs[active].loadText}}"></my-load-more>
 </view>
 <view hidden="{{active !== 1}}">
   <view class="summary van-hairline--top-bottom">
-    <text>总订量：{{orderList_wait.summary.totalQty}}</text>
-    <text>总价格；{{orderList_wait.summary.totalPricelist}}</text>
+    <text>总订量：{{orderList_wait.summary.totalQty}}件</text>
+    <text>总价格：{{orderList_wait.summary.totalPricelist}}元</text>
   </view>
   <van-radio-group value="{{tabs[active].checkedId}}" bindchange="radioChange">
     <view wx:for="{{orderList_wait.resultList}}" wx:key="index" class="listItem">
-      <van-radio custom-class="radio" checked-color="#20bf64" name="{{item.id + ',' + index}}"></van-radio>
-      <product-cell prodata="{{item}}" class="pdtcell" bind:onTap="cellTap"></product-cell>
+      <van-radio custom-class="radio" checked-color="#20bf64" name="{{item.orderId + ',' + index}}"></van-radio>
+      <product-cell prodata="{{item}}" class="pdtcell"></product-cell>
     </view>
   </van-radio-group>
   <my-load-more load-done="{{tabs[active].loadDone}}" text="{{tabs[active].loadText}}"></my-load-more>
   <van-transition show="{{tabs[1].showCtrl}}" name="slide-up" custom-class="ctrlContainer">
-    <van-button round bindtap="rejectOrder" custom-class="ctrlBtn">驳回</van-button><van-button type="primary" bindtap="passOrder" round custom-class="ctrlBtn">同意</van-button>
+    <van-button round bindtap="rejectOrder" custom-class="ctrlBtn rejectBtn">驳回</van-button>
+    <van-button type="primary" bindtap="passOrder" round custom-class="ctrlBtn passBtn">同意</van-button>
   </van-transition>
 </view>
 <view hidden="{{active !== 2}}">
@@ -34,12 +35,12 @@
   </view>
   <van-radio-group value="{{tabs[active].checkedId}}" bindchange="radioChange">
     <view wx:for="{{orderList_ed.resultList}}" wx:key="index" class="listItem">
-      <van-radio custom-class="radio" checked-color="#20bf64" name="{{item.id + ',' + index}}"></van-radio>
-      <product-cell prodata="{{item}}" class="pdtcell" bind:onTap="cellTap"></product-cell>
+      <van-radio custom-class="radio" checked-color="#20bf64" name="{{item.orderId + ',' + index}}"></van-radio>
+      <product-cell prodata="{{item}}" class="pdtcell"></product-cell>
     </view>
   </van-radio-group>
   <my-load-more load-done="{{tabs[active].loadDone}}" text="{{tabs[active].loadText}}"></my-load-more>
   <van-transition show="{{tabs[2].showCtrl}}" name="slide-up" custom-class="ctrlContainer">
-    <van-button type="danger" bindtap="unPassOrder" round custom-class="ctrlBtn">反提交</van-button>
+    <van-button type="danger" bindtap="unPassOrder" round custom-class="ctrlBtn unsubmitBtn">反提交</van-button>
   </van-transition>
 </view>

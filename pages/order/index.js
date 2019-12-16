@@ -23,6 +23,17 @@ Page({
     this.setData({ seasonTabs: tabList })
     const { orderType, season } = options
     this.setData({ seasonTabs: tabList, orderType, season, defaultSeasonIndex: season })
+    switch (orderType) {
+      case 'backOrder':
+        wx.setNavigationBarTitle({ title: '补货订单' })
+        break
+      case 'returnOrder':
+        wx.setNavigationBarTitle({ title: '退货订单' })
+        break
+      case 'normal':
+        wx.setNavigationBarTitle({ title: '原始订单' })
+        break
+    }
     this.prepareData();
   },
 
@@ -48,7 +59,7 @@ Page({
   orderClickAction: function(e) {
     wx.navigateTo({
       // url: '/pages/orderDetailList/index?orderType=' + '03' + '&orderID=' + e.currentTarget.dataset.data.orderId,
-      url: `/pages/orderDetailList/index?orderType=03&orderID=${e.currentTarget.dataset.data.orderId}`,
+      url: `/pages/orderDetailList/index?orderType=${this.data.orderType}&orderID=${e.currentTarget.dataset.data.orderId}`,
     });
   },
 

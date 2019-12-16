@@ -10,9 +10,11 @@ Page({
   data: {
     orderConfig: {},
     ordersData: [],
-    orderType: '', // '02':补货单; '03':退货单;
     orderID: '', // 补退货单 订单号
-    showType: {} // 下单组件所需要参数
+    showType: {
+      from: 'rOrderInfo',
+      orderType: ''
+    } // 下单组件所需要参数
   },
 
   /**
@@ -22,31 +24,28 @@ Page({
     var orderType = options.orderType || '';
     var orderID = options.orderID || '';
 
+    switch (orderType.toLocaleLowerCase()) {
+      case 'backorder':
+        wx.setNavigationBarTitle({ title: '补货订单' })
+        break
+      case 'returnorder':
+        wx.setNavigationBarTitle({ title: '退货订单' })
+        break
+      case 'normal':
+        wx.setNavigationBarTitle({ title: '原始订单' })
+        break
+    }
+    this.setData({
+      orderID,
+      'showType.orderType': orderType
+    })
+
     var title = "";
     var showType = {
       from: 'rOrderInfo',
       orderType: ''
     };
-    // console.log(orderType);
-    if (orderType == '02') {
-      title = "补货订单";
-      showType.orderType = "backOrder";
-    } else if (orderType == '03') {
-      title = "退货订单";
-      showType.orderType = "returnOrder";
-    } else if (orderType == '04') {
-      title = "原始订单";
-      showType.orderType = "Normal";
-    }
-    wx.setNavigationBarTitle({
-      title: title,
-    })
 
-    this.setData({
-      orderType: orderType,
-      orderID: orderID,
-      showType: showType
-    });
     this.preparePageData(); // 加载页面数据
   },
 
@@ -56,7 +55,7 @@ Page({
       url: config.rOrderGet,
       params: {
         orderId: this.data.orderID,
-        orderType: this.data.orderType == '04' ? 'Normal' : 'BackOrder'
+        orderType: this.data.showType.orderType
       }
     };
     app.nGet(paramData).then(ret => {

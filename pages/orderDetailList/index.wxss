@@ -1,6 +1,5 @@
 /* pages/orderDetailList/index.wxss */
 Page {
-  padding-top: 100rpx;
   background: #f9f9f9;
 }
 .editAddress {
@@ -13,6 +12,9 @@ Page {
 }
 .order-conent {
   background: #fff;
+}
+.marginTop {
+  margin-top: 100rpx;
 }
 .showMsg {
   font-size: 24rpx;

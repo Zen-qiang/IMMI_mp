@@ -84,7 +84,7 @@ Page({
       params: {}
     }
     app.nGet(data).then(data => {
-      console.log(data);
+      // console.log(data);
       this.setData({
         userbg: data.data.userbg
       });

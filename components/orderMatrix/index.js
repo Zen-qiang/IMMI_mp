@@ -130,6 +130,7 @@ Component({
             matrixTotal: matrixTotal,
             stock: data.data.stock
           });
+          console.log(this.data)
         }
       }, res => {
         console.error(res);
@@ -155,13 +156,14 @@ Component({
       }
     }) {
       let selectedId = this.data.selectedId;
+      const qtyORmaxqty = this.data.from === 'order' ? 'maxQty' : 'qty'
       this.setData({
-        [`matrix.${selectedId}[${idx}].qty`]: stepper
+        [`matrix.${selectedId}[${idx}].${qtyORmaxqty}`]: stepper
       });
       let sizes = this.data.matrix[selectedId];
       let sum = 0;
       sizes.map(item => {
-        sum += Number(item.qty);
+        sum += Number(item[qtyORmaxqty]);
       });
       this.setData({
         [`matrixTotal.${selectedId}`]: sum
@@ -363,6 +365,10 @@ Component({
           showMask: '00'
         });
       }
-    }
+    },
+    /**
+     * TODO 直接提交订单
+     */
+    directSubmitOrder () {}
   }
 })

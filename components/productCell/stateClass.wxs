@@ -1,11 +1,15 @@
 module.exports.color = function (state) {
   var color = '#333'
   switch (state) {
-    case 'APPROVED':
+    case 'NEW':
       color = '#41b713'
-      // #41b4fd
-      // #eb716b
-      // #f7c121
+      break
+    case 'APPROVE_L1':
+      color = '#eb716b'
+      break
+    case 'ERP_SUBMITTED':
+      color = '#f7c121'
+      break
   }
   return color
 }

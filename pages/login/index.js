@@ -186,7 +186,14 @@ Page({
             app.saveValue('tabList', tabList)
           } */
         }
-        wx.navigateBack();
+        const pages = getCurrentPages()
+        if (pages.length > 1) {
+          wx.navigateBack()
+        } else {
+          wx.switchTab({
+            url: '/pages/index/index'
+          })
+        }
       }, res => {
         // console.error(res);
         app.showMsg("登录失败")
@@ -207,7 +214,7 @@ Page({
         app.showMsg("退出成功");
         app.clearValue();
         // wx.navigateBack();
-        wx.redirectTo({
+        wx.reLaunch({
           url: '/pages/login/index',
         })
       }, res => {

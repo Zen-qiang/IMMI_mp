@@ -1,7 +1,6 @@
 /* components/carousel.wxss */
 .carousel-swiper {
   height: 500rpx;
-  margin-bottom: 8px;
 }
 .carousel-image {
   width: 100%;

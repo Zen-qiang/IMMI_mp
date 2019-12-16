@@ -33,7 +33,6 @@ Page({
     detailImage: '',
     detailArr: [], // 当前详情color数组
     preorderInfo: {}, // 储存请求过的详情
-    queryResultTips: '', // 获取详情请求后的提示信息
   },
 
   onLoad: function () {
@@ -71,13 +70,18 @@ Page({
   },
   itemClick (e) {
     // console.log(e.detail)
-    const { stylename, image } = e.detail
+    const { stylename, image, id } = e.detail
     this.setData({
       showDetail: true,
       detailImage: image
     })
-    if(this.data.preorderInfo[stylename]) return // 如果请求多就不再发送请求
-    this.readNotice(stylename)
+    if(this.data.preorderInfo[stylename]) {
+      this.setData({
+        detailArr: this.data.preorderInfo[stylename]
+      })
+      return // 如果请求多就不再发送请求
+    }
+    this.readNotice(id, stylename)
   },
   itemClose () {
     this.setData({
@@ -124,14 +128,14 @@ Page({
   /**
    * 读取到货通知
    */
-  readNotice (stylename) {
+  readNotice (id, stylename) {
     if (this.data.queryResultTips) { // 清空上次请求结果提示消息
       this.setData({queryResultTips: ''})
     }
     let params = {
       url: config.getArrivalNotice,
       params: {
-        userId: app.getValue('uid'),
+        userId: id,
         stylename: stylename
       }
     }

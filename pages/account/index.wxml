@@ -23,7 +23,7 @@
           </view>
           <view>
             <text>金额</text>
-            <text class="format-value">{{item.info.AllOrder.qty}}元</text>
+            <text class="format-value">{{item.info.AllOrder.amt}}元</text>
           </view>
         </view>
       </van-cell>
@@ -35,7 +35,7 @@
           </view>
           <view>
             <text>金额</text>
-            <text class="format-value">{{item.info.backOrder.qty}}元</text>
+            <text class="format-value">{{item.info.backOrder.amt}}元</text>
           </view>
         </view>
       </van-cell>
@@ -47,7 +47,7 @@
           </view>
           <view>
             <text>金额</text>
-            <text class="format-value">{{item.info.returnOrder.qty}}元</text>
+            <text class="format-value">{{item.info.returnOrder.amt}}元</text>
           </view>
         </view>
       </van-cell>
@@ -59,7 +59,7 @@
           </view>
           <view>
             <text>金额</text>
-            <text class="format-value">{{item.info.normalOrder.qty}}元</text>
+            <text class="format-value">{{item.info.normalOrder.amt}}元</text>
           </view>
         </view>
       </van-cell>

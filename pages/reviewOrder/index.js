@@ -567,7 +567,7 @@ const fields = [
 ] 
 Page({
   data: {
-    active: 0, // 当前选中的tab下标
+    active: 1, // 当前选中的tab下标
     tabs: [
       {
         scrollTop: 0,
@@ -648,7 +648,6 @@ Page({
    * @param dataType WAIT_APPROVE/IN_APPROVE/APPROVED，空值或不传值显示全部
    */
   getList () {
-    console.log('getList')
     let objKey = 'orderList_'
     switch (this.data.active) {
       case 1:
@@ -670,7 +669,7 @@ Page({
       }
     }
     app.nGet(paramData).then(({data}) => {
-      let {resultList} = data
+      let { resultList, pageSize } = data
       let loadDoneKey = `tabs[${this.data.active}].loadDone`
       let textKey = `tabs[${this.data.active}].loadText`
       if (pageNo === 1) {
@@ -685,8 +684,8 @@ Page({
         })
       }
       this.setData({
-        [loadDoneKey]: resultList && resultList.length === 0,
-        [textKey]: resultList && resultList.length === 0 ? '暂无更多数据' : '加载中...'
+        [loadDoneKey]: resultList.length < pageSize,
+        [textKey]: resultList.length < pageSize ? '暂无更多数据' : '加载中...'
       })
     }).catch(err => {
       let loadDoneKey = `tabs[${this.data.active}].loadDone`
@@ -737,12 +736,13 @@ Page({
     const params = {
       url: config.rejectOrder,
       params: {
-        orderIds: JSON.stringify([parseInt(this.data.tabs[this.data.active].checkedId)]),
+        // orderIds: JSON.stringify([parseInt(this.data.tabs[this.data.active].checkedId)]),
+        orderId: parseInt(this.data.tabs[this.data.active].checkedId),
         rejectMsg: ''
       }
     }
     app.nPost(params).then(res => {
-      console.log(res)
+      // console.log(res)
       let list = this.data.orderList_wait.resultList
       let index = this.data.tabs[this.data.active].checkedId.split(',')[1]
       list.splice(index, 1)
@@ -758,11 +758,12 @@ Page({
     const params = {
       url: config.approveOrder,
       params: {
-        orderIds: JSON.stringify([parseInt(this.data.tabs[this.data.active].checkedId)])
+        // orderIds: JSON.stringify([parseInt(this.data.tabs[this.data.active].checkedId)])
+        orderId: parseInt(this.data.tabs[this.data.active].checkedId)
       }
     }
     app.nPost(params).then(res => {
-      console.log(res)
+      // console.log(res)
       let list = this.data.orderList_wait.resultList
       let index = this.data.tabs[this.data.active].checkedId.split(',')[1]
       list.splice(index, 1)
@@ -778,11 +779,12 @@ Page({
     const params = {
       url: config.unsubmit,
       params: {
-        orderIds: JSON.stringify([parseInt(this.data.tabs[this.data.active].checkedId)])
+        // orderIds: JSON.stringify([parseInt(this.data.tabs[this.data.active].checkedId)])
+        orderId: parseInt(this.data.tabs[this.data.active].checkedId)
       }
     }
     app.nPost(params).then(res => {
-      console.log(res)
+      // console.log(res)
       let list = this.data.orderList_ed.resultList
       let index = this.data.tabs[this.data.active].checkedId.split(',')[1]
       list.splice(index, 1)
@@ -791,11 +793,11 @@ Page({
       })
     })
   },
-  cellTap (e) {
-    // console.log(e)
-    // wx.navigateTo({
-    //   // url: '/pages/orderDetailList/index?orderType=' + '03' + '&orderID=' + e.currentTarget.dataset.data.orderId,
-    //   url: `/pages/orderDetailList/index?orderType=03&orderID=${e.currentTarget.dataset.data.orderId}`,
-    // });
-  }
+  // cellTap (e) {
+  //   console.log(e)
+  //   // wx.navigateTo({
+  //   //   // url: '/pages/orderDetailList/index?orderType=' + '03' + '&orderID=' + e.currentTarget.dataset.data.orderId,
+  //   //   url: `/pages/orderDetailList/index?orderType=03&orderID=${e.detail}`,
+  //   // });
+  // }
 })

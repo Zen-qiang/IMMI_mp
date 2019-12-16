@@ -2,6 +2,8 @@
 const app = getApp();
 import config from '../../config.js';
 
+import Dialog from '../../miniprogram_npm/vant-weapp/dialog/dialog'
+
 Page({
 
   /**
@@ -15,7 +17,8 @@ Page({
     circular: true,
     interval: 5000,
     duration: 1000,
-    pdtInfo: {}
+    pdtInfo: {},
+    show: false
   },
 
   /**
@@ -30,10 +33,19 @@ Page({
     }
   },
 
+  onClose (e) {
+    this.setData({
+      show: false
+    })
+  },
+
   showPopUp: function() {
     let username = app.getValue('username');
     if (username) {
-      this.selectComponent("#popup").showModal();
+      // this.selectComponent("#popup").showModal();
+      this.setData({
+        show: true
+      })
     } else {
       wx.navigateTo({
         url: '/pages/login/index',
@@ -65,14 +77,26 @@ Page({
   },
 
   reset: function() {
-    this.selectComponent("#popup").hideModal();
+    // this.selectComponent("#popup").hideModal();
+    this.setData({
+      show: false
+    })
   },
   successOrder: function() {
-    this.selectComponent("#popup").hideModal();
+    // this.selectComponent("#popup").hideModal();
+    this.setData({
+      show: false
+    })
     app.showMsg("成功添加购物车",2)
   },
   successOrderPre () {
-    this.selectComponent("#popup").hideModal();
-    app.showMsg("通知成功", 2)
+    // this.selectComponent("#popup").hideModal();
+    this.setData({
+      show: false
+    })
+    // app.showMsg("通知成功", 2)
+    Dialog.alert({
+      message: '通知成功'
+    })
   }
 })

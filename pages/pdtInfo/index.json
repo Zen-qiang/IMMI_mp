@@ -3,6 +3,8 @@
   "usingComponents": {
     "order-matrix": "/components/orderMatrix/index",
     "pop-bottom": "/components/popBottom/popBottom",
-    "van-button": "/common/lib/vantUi/button/index"
+    "van-button": "/common/lib/vantUi/button/index",
+    "van-dialog": "vant-weapp/dialog",
+    "van-popup": "vant-weapp/popup"
   }
 }

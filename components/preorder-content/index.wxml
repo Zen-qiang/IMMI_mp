@@ -2,8 +2,9 @@
   wx:for="{{filterList}}"
   wx:key="{{item.id}}"
   bind:tap="onTap"
-  data-stylename="{{item.stylename}}"
+  data-stylename="{{item.styleName}}"
   data-image="{{item.image}}"
+  data-id="{{item.id}}"
   class="custom-class pre-item {{item.isRead? 'isRead' : ''}}"
   hover-class="hover">
   <view class="img-cn">
@@ -11,7 +12,7 @@
   </view>
   <view class="info-cn">
     <view class="info info-cn_top">
-      <text>{{item.stylename}}</text>
+      <text>{{item.styleName}}</text>
       <text>{{item.createdTime}}</text>
     </view>
     <view class="info info-cn_bottom">

@@ -1,6 +1,7 @@
 Page {
   box-sizing: border-box;
-  padding-bottom: calc(48px + env(safe-area-inset-bottom));
+  padding-bottom: constant(safe-area-inset-bottom);
+  padding-bottom: env(safe-area-inset-bottom);
 }
 .container {
   background-color: #f2f2f2;
@@ -12,13 +13,14 @@ Page {
 }
 
 .top_view {
-  background: rgba(0,0,0,.6);
+  background: #000;
   color: #fff;
   text-align: center;
-  padding: 40rpx 0;
+  padding: 30rpx 0;
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
+  margin: 8px 0;
 }
 .top_view .arrow {
   flex: 1;
@@ -31,11 +33,20 @@ Page {
 }
 .top_view .text {
   padding: 0 10rpx;
+  font-size: 24px;
+}
+.top_view image {
+  width: 30px;
+  height: 30px;
+  vertical-align: middle;
+}
+.top_view .arrow.lt image {
+  transform:scaleX(-1);
 }
 
 .middle_view {
   /* width: 100%; */
-  height: 520rpx;
+  /* height: 520rpx; */
   /* padding: 0 20rpx; */
   box-sizing: border-box;
   display: flex;
@@ -57,6 +68,17 @@ Page {
   padding-left: 4px;
 }
 
+.recommendInfo_title {
+  text-align: center;
+  margin: 8px 0;
+}
+.recommendInfo_title text {
+  display: inline-block;
+  font-size: 24px;
+  font-weight: 400;
+  border-bottom: 2px solid #000;
+  line-height: 60rpx;
+}
 
 .zan-cell {
   padding: 6px 15px !important;

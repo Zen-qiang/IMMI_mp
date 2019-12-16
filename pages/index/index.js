@@ -11,7 +11,7 @@ Page({
     carouselList: [], // 幻灯片列表
     recommendInfo: { // 今日新品 推荐商品列表信息
       page: 1,
-      size: 6,
+      size: 30,
       pages: 0,
       total: 0,
       list: []
@@ -19,20 +19,20 @@ Page({
     accountInfo: "",
     newLoadMore: { // 今日新品 加载信息
       title: "",
-      isLoad: false
+      loadDone: false
     },
     inputValue: '',
     categoryList: [], // 分类列表
     allInfo: { // 全部 商品列表信息
       page: 1,
-      size: 9,
+      size: 30,
       pages: 0,
       total: 0,
       list: []
     },
     allLoadMore: { //全部 加载信息
       title: "",
-      isLoad: false
+      loadDone: false
     },
     attrsList: [], // 筛选 属性list
     home_new: "",
@@ -55,6 +55,11 @@ Page({
     // this.getPdtList({
     //   recommend: true
     // });
+    this.getCarouselList();
+    this.getCategory();
+    this.getPdtList({ recommend: true })
+    this.getAccountInfo();
+    this.getLayout();
   },
 
   onHide: function() {
@@ -73,11 +78,11 @@ Page({
     // this.setData({
     //   active: 0
     // });
-    this.getCarouselList();
+    /* this.getCarouselList();
     this.getCategory();
-    this.getPdtList({})
+    this.getPdtList({ recommend: true })
     this.getAccountInfo();
-    this.getLayout();
+    this.getLayout(); */
   },
   tabChange (e) {
     const query = wx.createSelectorQuery(),
@@ -178,7 +183,6 @@ Page({
    * loadmore 是否上拉加载请求
    */
   getPdtList(params, loadmore) {
-    // let selectedId = this.data.selectedId;
     let active = this.data.active
     var data = {
       url: config.indexNewPdtQuery,
@@ -186,65 +190,74 @@ Page({
         ...params,
         page: active === 0 ? this.data.recommendInfo.page : this.data.allInfo.page,
         size: active === 0 ? this.data.recommendInfo.size : this.data.allInfo.size
-        // page: selectedId === 'new' ? this.data.recommendInfo.page : this.data.allInfo.page,
-        // size: selectedId === 'new' ? this.data.recommendInfo.size : this.data.allInfo.size
       }
     }
-    app.nGet(data).then(data => {
-      // console.log(data)
-      if (data.data && data.data.list) {
-        if (!loadmore) {
-          // if (selectedId === 'new') {
-          if (active === 0) {            
+    app.nGet(data).then(({ data }) => {
+      if (data && data.list) {
+        switch (active) {
+          case 0:
             this.setData({
-              recommendInfo: data.data,
-            });
-          // } else if (selectedId === 'all') {
-          } else if (active === 1) {            
+              'newLoadMore.loadDone': this.data.recommendInfo.size > data.list.length
+            })
+            if (this.data.recommendInfo.page === 1) {
+              this.setData({
+                recommendInfo: data
+              })
+            } else {
+              const list = [...this.data.recommendInfo.list, ...data.list]
+              this.setData({
+                'recommendInfo.list': list
+              })
+            }
+            break
+          case 1:
             this.setData({
-              allInfo: data.data,
-            });
-          }
-        } else {
-          // if (selectedId === 'new') {
-          if (active === 0) {
-            let list = [...this.data.recommendInfo.list, ...data.data.list];
+              'allLoadMore.loadDone': this.data.recommendInfo.size > data.list.length
+            })
+            if (this.data.allInfo.page === 1) {
+              this.setData({
+                allInfo: data
+              })
+            } else {
+              const list = [...this.data.allInfo.list, ...data.list]
+              this.setData({
+                'allInfo.list': list
+              })
+            }
+            break
+        }
+      } else {
+        switch (active) {
+          case 0:
             this.setData({
-              ["newLoadMore.isLoad"]: false,
-              ["recommendInfo.page"]: data.data.page,
-              ["recommendInfo.size"]: data.data.size,
-              ["recommendInfo.total"]: data.data.total,
-              ["recommendInfo.pages"]: data.data.pages,
-              ["recommendInfo.list"]: list,
-            });
-          // } else if (selectedId === 'all') {
-          } else if (active === 1) {            
-            let list = [...this.data.allInfo.list, ...data.data.list];
+              'newLoadMore.loadDone': true,
+              'newLoadMore.title': '没有更多数据啦'
+            })
+            break
+          case 1:
             this.setData({
-              ["allLoadMore.isLoad"]: false,
-              ["allInfo.page"]: data.data.page,
-              ["allInfo.size"]: data.data.size,
-              ["allInfo.total"]: data.data.total,
-              ["allInfo.pages"]: data.data.pages,
-              ["allInfo.list"]: list,
-            });
-          }
+              'allLoadMore.loadDone': true,
+              'allLoadMore.title': '没有更多数据啦'
+            })
+            break
         }
       }
-    }, res => {
-      // if (selectedId === 'new') {
-      if (active === 0) {
-        this.setData({
-          ["newLoadMore.isLoad"]: false
-        });
-      // } else if (selectedId === 'all') {
-      } else if (active === 1) {        
-        this.setData({
-          ["allLoadMore.isLoad"]: false
-        });
+    }).catch(err => {
+      switch (active) {
+        case 0:
+          this.setData({
+            'newLoadMore.loadDone': true,
+            'newLoadMore.title': '加载失败'
+          })
+          break
+        case 1:
+          this.setData({
+            'allLoadMore.loadDone': true,
+            'allLoadMore.title': '加载失败'
+          })
+          break
       }
-      // console.error(res);
-    });
+    })
   },
   /**
    * 获取商品分类列表
@@ -314,38 +327,22 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function() {
-    // let selectedId = this.data.selectedId;
     let active = this.data.active
-    // if (selectedId === 'new') {
-    if (active === 0) {      
-      if (Number(this.data.recommendInfo.page) < Number(this.data.recommendInfo.pages)) {
+    switch (active) {
+      case 0:
+        if (this.data.newLoadMore.loadDone) return
         this.setData({
-          ["newLoadMore.isLoad"]: true,
-          ["recommendInfo.page"]: Number(this.data.recommendInfo.page) + 1,
-        });
-        this.getPdtList({
-          recommend: true
-        }, 'loadmore');
-      } else {
+          'recommendInfo.page': Number(this.data.recommendInfo.page) + 1
+        })
+        this.getPdtList({ recommend: true })
+        break
+      case 1:
+        if (this.data.allLoadMore.loadDone) return
         this.setData({
-          ["newLoadMore.title"]: '没有更多数据啦'
-        });
-      }
-    // } else if (selectedId === 'all') {
-    } else if (active === 1) {      
-      if (Number(this.data.allInfo.page) < Number(this.data.allInfo.pages)) {
-        this.setData({
-          ["allLoadMore.isLoad"]: true,
-          ["allInfo.page"]: Number(this.data.allInfo.page) + 1,
-        });
-        this.getPdtList({}, 'loadmore');
-      } else {
-        this.setData({
-          ["allLoadMore.title"]: '没有更多数据啦'
-        });
-      }
-    } else {
-      return;
+          'allInfo.page': Number(this.data.allInfo.page) + 1
+        })
+        this.getPdtList({})
+        break
     }
   }
 })

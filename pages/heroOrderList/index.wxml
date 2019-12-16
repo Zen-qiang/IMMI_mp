@@ -24,9 +24,11 @@
     </view>
   </select_mask>
 
-  <block wx:for="{{ordersData.list}}" wx:for-index="idx" wx:for-item="order" wx:key="{{idx}}">
-    <prod-list-cell shopData="{{order}}" showType="{{showType}}" show="{{true}}"></prod-list-cell>
-  </block>
+  <view>
+    <block wx:for="{{ordersData.list}}" wx:for-index="idx" wx:for-item="order" wx:key="{{idx}}">
+      <prod-list-cell shopData="{{order}}" showType="{{showType}}" show="{{true}}"></prod-list-cell>
+    </block>
+  </view>
   <zan-loadmore type="loading" wx:if="{{!loadDone}}"></zan-loadmore>
   <zan-loadmore type="text" text="{{title}}" wx:elif="{{title}}"></zan-loadmore>
   <!-- <zan-loadmore type="text" wx:elif="{{newLoadMore.title}}" text="{{newLoadMore.title}}"></zan-loadmore> -->

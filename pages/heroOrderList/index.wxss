@@ -1,8 +1,8 @@
 /* pages/orderList/index.wxss */
 Page {
   box-sizing: border-box;
-  padding-bottom: calc(48px + constant(safe-area-inset-bottom));
-  padding-bottom: calc(48px + env(safe-area-inset-bottom));
+  padding-bottom: constant(safe-area-inset-bottom);
+  padding-bottom: env(safe-area-inset-bottom);
 }
 .contents {
   width: 100%;

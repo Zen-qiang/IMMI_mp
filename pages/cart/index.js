@@ -56,6 +56,10 @@ Page({
         scrollTop: 0,
         resultList: []
       }
+    },
+    showType: {
+      from: 'cart',
+      orderType: 'backOrder'
     }
   },
 
@@ -127,7 +131,11 @@ Page({
     }).exec()
     let triggerObj = this.data.orderObj[e.detail.value]
     // 保存orderType 触发更新季度tab下标
-    this.setData({ orderType: e.detail.value, defaultSeasonIndex: triggerObj.season})
+    this.setData({
+      orderType: e.detail.value,
+      defaultSeasonIndex: triggerObj.season,
+      'showType.orderType': e.detail.value
+    })
     wx.pageScrollTo({ // 跳转到之前保留的滚动位置
       scrollTop: triggerObj.scrollTop,
       duration: 0

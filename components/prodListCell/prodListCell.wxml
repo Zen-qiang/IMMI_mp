@@ -44,9 +44,7 @@
       from="{{showType.from}}"
       orderType="{{showType.orderType}}"
       isHero="{{showType.isHero||false}}"
-      bind:reset="reset"
       bind:success="successOrder"
-      bind:showMask="showMask"
     ></order-matrix>
   </view>
 
