@@ -69,6 +69,7 @@ Page({
           totalAmount: ret.data.totalAmount,
           totalQty: ret.data.totalQty,
           address: ret.data.address,
+          orderStatus: ret.data.orderStatus
         };
         this.setData({
           orderConfig: orderConfig,

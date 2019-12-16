@@ -57,6 +57,14 @@ Component({
       type: Boolean
     },
 
+    /**
+     * 订单状态
+     * TODO 判断是否可以在订单列表中直接提交订单
+     */
+    orderStatus: {
+      type: String,
+      value: ''
+    }
   },
 
   /**

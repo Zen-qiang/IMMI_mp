@@ -196,7 +196,7 @@ Page({
         }
       }, res => {
         // console.error(res);
-        app.showMsg("登录失败")
+        app.showMsg(res.message || "登录失败")
       });
     } else {
       app.showMsg("请输入用户名或密码！");

@@ -1,0 +1,159 @@
+<!--components/orderMatrix/index.wxml-->
+<wxs module="filter" src="../../filter/filter.wxs"></wxs>
+<van-skeleton loading="{{loading}}">
+  <van-tabs
+    active="{{ selectedId }}"
+    bind:change="tabChange"
+    custom-class="my-tabs"
+    nav-class="my-nav"
+    tab-class="my-tab"
+    tab-active-class="my-tab-active"
+    line-height="0"
+    line-width="0"
+    swipe-threshold="{{4}}" animated lazy-render
+  >
+    <van-tab wx:for="{{tabList}}" wx:key="index" title="{{item.title}}" name="{{index}}">
+      <block wx:for="{{matrix[index]}}" wx:for-index="idx" wx:key="{{item.aliasId}}">
+        <van-cell title="{{item.sizeName}}">
+          <view>
+            <block wx:if="{{from === 'cart'}}">
+              <text style="float: left;margin-right: 10px; font-size: 12px; width: 70px;text-align: left;" wx:if="{{orderType === 'backOrder'}}">库存：{{item.store}}</text>
+              <van-stepper
+                value="{{item.qty}}"
+                min="{{0}}"
+                max="{{item.maxQty}}"
+                size="small" data-idx="{{idx}}"
+                integer
+                bind:change="handleZanStepperChange">
+              </van-stepper> 
+            </block>
+            <block wx:if="{{from === 'pdtInfo'}}">
+              <text style="float: left;margin-right: 10px; font-size: 12px; width: 70px;text-align: left;" wx:if="{{orderType === 'backOrder'}}">库存：{{item.store}}</text>
+              <block wx:if="{{stock}}">
+                <van-stepper
+                  value="{{item.qty}}"
+                  min="{{0}}"
+                  max="{{item.maxQty}}"
+                  size="small" data-idx="{{idx}}"
+                  integer
+                  bind:change="handleZanStepperChange">
+                </van-stepper> 
+              </block>
+              <block wx:else>
+                <van-stepper
+                  value="{{item.qty}}"
+                  min="{{0}}"
+                  size="small" data-idx="{{idx}}"
+                  integer
+                  bind:change="handleZanStepperChange">
+                </van-stepper> 
+              </block>
+            </block>
+            <block wx:if="{{from === 'rOrderInfo'}}">
+              <text style="float: left;margin-right: 10px; font-size: 12px; width: 70px;text-align: left;" wx:if="{{orderType === 'backOrder'}}">库存：{{item.store}}</text>
+              <van-stepper
+                value="{{item.qty}}"
+                min="{{0}}"
+                max="{{item.store}}"
+                size="small" data-idx="{{idx}}"
+                integer
+                disabled="{{!canSubmit}}"
+                bind:change="handleZanStepperChange">
+              </van-stepper> 
+            </block>
+            <block wx:if="{{from === 'order'}}">
+              <text style="float: left;margin-right: 10px; font-size: 12px; width: 70px;text-align: left;">已订：{{filter.numberSlice(item.maxQty)}}</text>
+              <van-stepper
+                value="{{item.qty}}"
+                min="{{0}}"
+                max="{{item.maxQty}}"
+                size="small" data-idx="{{idx}}"
+                integer
+                bind:change="handleZanStepperChange">
+              </van-stepper> 
+            </block>
+          </view>
+          <!-- <block wx:if="{{from === 'rOrderInfo'}}">
+            <zan-stepper slot="footer" stepper="{{item.qty}}"
+              min="{{0}}"
+              max="{{item.store}}"
+              size="small" data-idx="{{idx}}"
+              bind:change="handleZanStepperChange">
+            </zan-stepper>
+          </block>
+          <block wx:if="{{from === 'order'}}">
+            <text style="float: right;margin-right: 10px; font-size: 12px; width: 70px;text-align: left;">已订：{{filter.numberSlice(item.maxQty)}}</text>
+            <zan-stepper slot="footer" stepper="{{item.maxQty}}"
+              min="{{0}}"
+              max="{{orderType === 'backOrder' ? item.store : item.maxQty}}"
+              size="small" data-idx="{{idx}}"
+              bind:change="handleZanStepperChange">
+            </zan-stepper>
+          </block>
+          <block wx:if="{{from === 'pdtInfo'}}">
+            <text style="float: right;margin-right: 10px; font-size: 12px; width: 70px;text-align: left;" wx:if="{{orderType === 'backOrder'}}">库存：{{item.store}}</text>
+            <block wx:if="{{stock}}">
+              <zan-stepper slot="footer" stepper="{{item.qty}}"
+                min="{{0}}"
+                max="{{item.store}}"
+                size="small" data-idx="{{idx}}"
+                bind:change="handleZanStepperChange">
+              </zan-stepper>
+            </block>
+            <block wx:else>
+              <zan-stepper slot="footer" stepper="{{item.qty}}"
+                min="{{0}}"
+                size="small" data-idx="{{idx}}"
+                bind:change="handleZanStepperChange">
+              </zan-stepper>
+            </block>
+          </block>
+          <block wx:if="{{from === 'cart'}}">
+            <text style="float: right;margin-right: 10px; font-size: 12px; width: 70px;text-align: left;" wx:if="{{orderType === 'backOrder'}}">库存：{{item.store}}</text>
+            <zan-stepper slot="footer" stepper="{{item.qty}}"
+              min="{{0}}"
+              max="{{orderType === 'backOrder' ? item.store : item.maxQty}}"
+              size="small" data-idx="{{idx}}"
+              bind:change="handleZanStepperChange">
+            </zan-stepper> 
+          </block> -->
+        </van-cell>
+      </block>
+    </van-tab>
+  </van-tabs>
+  <view class="order-matrix-price-container" wx:if="{{from  === 'pdtInfo'}}">
+    <view>
+      <text class="order-matrix-label">小计量: </text>
+      <text class="order-matrix-value">{{matrixTotal[selectedId]}}</text>
+    </view>
+    <view>
+      <text class="order-matrix-label">小计价: </text>
+      <text class="order-matrix-value order-matrix-value__price">¥ {{matrixPrice[selectedId]*matrixTotal[selectedId]}}</text>
+    </view>
+  </view>
+  <view wx:if="{{from  === 'pdtInfo'}}">
+    <van-button class="order-matrix-btn" bindtap="reset" size="large" square>取消</van-button>
+    <van-button class="order-matrix-btn" bindtap="submitOrder" size="large" square color="#000">{{stock ? '加入购物车' : '到货通知'}}</van-button>
+  </view>
+  <view class="btn-container" wx:if="{{from  === 'cart' || from  === 'order'}}">
+    <van-button bindtap="updateOrder" size="small" type="{{orderType === 'backOrder' ? 'primary' : 'danger'}}">{{orderType === 'backOrder' ?'保存' : '退货'}}</van-button>
+  </view>
+  <view class="btn-container" wx:if="{{from === 'rOrderInfo' && canSubmit}}">
+    <van-button bindtap="directSubmitOrder" size="small">提交订单</van-button>
+  </view>
+
+<zan-popup show="{{reason.show}}" overlay="true">
+  <view class="order-reason">
+    <view class='textContent'>
+      <radio-group class="radio-group" bindchange="radioChange">
+        <view class="radio" wx:for="{{reason.items}}" wx:key="item">
+          <radio value="{{item.name}}" checked="{{item.checked}}" />{{item.value}}
+        </view>
+      </radio-group>
+      <textarea wx:if="{{reason.show}}" placeholder='如需退货，请输入退货原因！' bindinput="setReasonInfo"></textarea>
+    </view>
+    <button bindtap="onClose" data-type="confirm" disabled='{{radioItem === "其他" && !reasonText}}'>确定</button>
+    <button bindtap="onClose" data-type="close">关闭</button>
+  </view>
+</zan-popup>
+</van-skeleton>

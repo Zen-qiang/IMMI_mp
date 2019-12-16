@@ -139,6 +139,13 @@
 					"id": -1,
 					"name": "pages/account/index",
 					"pathName": "pages/account/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/heroOrderList/index",
+					"pathName": "pages/heroOrderList/index",
 					"scene": null
 				}
 			]

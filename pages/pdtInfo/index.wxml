@@ -26,6 +26,13 @@
   <order-matrix productId="{{productId||''}}" from="pdtInfo" orderType="backOrder" bind:reset="reset" bind:success="successOrder" bind:successPre="successOrderPre"></order-matrix>
 </pop-bottom>
 <van-popup show="{{ show }}" round bind:close="onClose" position="bottom">
-  <order-matrix productId="{{productId||''}}" from="pdtInfo" orderType="backOrder" bind:reset="reset" bind:success="successOrder" bind:successPre="successOrderPre"></order-matrix>
+  <the-matrix
+    productId="{{productId}}"
+    from="pdtInfo"
+    orderType="backOrder"
+    bind:reset="reset"
+    bind:success="successOrder"
+  ></the-matrix>
+  <!-- <order-matrix productId="{{productId||''}}" from="pdtInfo" orderType="backOrder" bind:reset="reset" bind:success="successOrder" bind:successPre="successOrderPre"></order-matrix> -->
 </van-popup>
 <van-dialog id="van-dialog" />

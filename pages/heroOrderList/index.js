@@ -13,8 +13,7 @@ Page({
     showP: true,
     showType: {
       from: 'cart',
-      orderType: 'backOrder',
-      isHero: true
+      orderType: 'backOrder'
     },
     loadDone: false,
     title: '',

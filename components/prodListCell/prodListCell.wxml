@@ -1,4 +1,4 @@
-<view class="container">
+<view class="container" hover-class="active">
 
   <view class="touch-item {{isTouchMove ? 'touch-move-active' : ''}}" bindtouchstart="touchstart" bindtouchmove="touchmove">
     <view class="content">
@@ -38,14 +38,14 @@
   </view>
 
   <view wx:if="{{showDetail}}">
-    <order-matrix
+    <the-matrix
       orderId="{{shopData.orderId || orderId}}"
       productId="{{shopData.productId}}"
       from="{{showType.from}}"
       orderType="{{showType.orderType}}"
-      isHero="{{showType.isHero||false}}"
+      canSubmit="{{orderStatus === '未提交'}}"
       bind:success="successOrder"
-    ></order-matrix>
+    ></the-matrix>
   </view>
 
 </view>
