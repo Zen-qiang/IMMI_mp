@@ -11,6 +11,17 @@
     </van-cell>
   </view>
 </block>
+<!-- <block wx:else>
+  <view class='row'>
+    <view>
+      <van-icon name="manager" /><text style="margin-right: 20rpx;">{{orderConfig.address.consignee}}</text>
+      <van-icon name="phone" /><text>{{orderConfig.address.phone}}</text>
+    </view>
+    <view>
+      <van-icon name="location" /><text>{{orderConfig.address.fullAddress}}</text>
+    </view>
+  </view>
+</block> -->
 <view class="order-conent {{showType.orderType === 'returnOrder' ? 'marginTop' : ''}}">
   <block wx:for="{{ordersData}}" wx:for-index="idx" wx:for-item="order" wx:key="{{idx}}">
     <prod-list-cell orderId="{{orderID}}" shopData="{{order}}" showType="{{showType}}" orderStatus="{{orderConfig.orderStatus}}"></prod-list-cell>

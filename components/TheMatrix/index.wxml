@@ -17,7 +17,7 @@
         <van-cell title="{{item.sizeName}}">
           <view>
             <block wx:if="{{from === 'cart'}}">
-              <text style="float: left;margin-right: 10px; font-size: 12px; width: 70px;text-align: left;" wx:if="{{orderType === 'backOrder'}}">库存：{{item.store}}</text>
+              <text style="float: left;margin-right: 10px; font-size: 12px; text-align: left;" wx:if="{{orderType === 'backOrder'}}">库存：{{item.store}}</text>
               <van-stepper
                 value="{{item.qty}}"
                 min="{{0}}"
@@ -28,7 +28,7 @@
               </van-stepper> 
             </block>
             <block wx:if="{{from === 'pdtInfo'}}">
-              <text style="float: left;margin-right: 10px; font-size: 12px; width: 70px;text-align: left;" wx:if="{{orderType === 'backOrder'}}">库存：{{item.store}}</text>
+              <text style="float: left;margin-right: 10px; font-size: 12px; text-align: left;" wx:if="{{orderType === 'backOrder'}}">库存：{{item.store}}</text>
               <block wx:if="{{stock}}">
                 <van-stepper
                   value="{{item.qty}}"
@@ -50,7 +50,7 @@
               </block>
             </block>
             <block wx:if="{{from === 'rOrderInfo'}}">
-              <text style="float: left;margin-right: 10px; font-size: 12px; width: 70px;text-align: left;" wx:if="{{orderType === 'backOrder'}}">库存：{{item.store}}</text>
+              <text style="float: left;margin-right: 10px; font-size: 12px; text-align: left;" wx:if="{{orderType === 'backOrder'}}">库存：{{item.store}}</text>
               <van-stepper
                 value="{{item.qty}}"
                 min="{{0}}"
@@ -62,7 +62,7 @@
               </van-stepper> 
             </block>
             <block wx:if="{{from === 'order'}}">
-              <text style="float: left;margin-right: 10px; font-size: 12px; width: 70px;text-align: left;">已订：{{filter.numberSlice(item.maxQty)}}</text>
+              <text style="float: left;margin-right: 10px; font-size: 12px; text-align: left;">已订：{{filter.numberSlice(item.maxQty)}}</text>
               <van-stepper
                 value="{{item.qty}}"
                 min="{{0}}"
@@ -136,13 +136,41 @@
     <van-button class="order-matrix-btn" bindtap="submitOrder" size="large" square color="#000">{{stock ? '加入购物车' : '到货通知'}}</van-button>
   </view>
   <view class="btn-container" wx:if="{{from  === 'cart' || from  === 'order'}}">
-    <van-button bindtap="updateOrder" size="small" type="{{orderType === 'backOrder' ? 'primary' : 'danger'}}">{{orderType === 'backOrder' ?'保存' : '退货'}}</van-button>
+    <van-button wx:if="{{orderType === 'backOrder'}}" bindtap="updateOrder" size="small" type="primary">保存</van-button>
+    <van-button wx:else bindtap="openReson" size="small" type="danger">退货</van-button>
   </view>
   <view class="btn-container" wx:if="{{from === 'rOrderInfo' && canSubmit}}">
     <van-button bindtap="directSubmitOrder" size="small">提交订单</van-button>
   </view>
-
-<zan-popup show="{{reason.show}}" overlay="true">
+</van-skeleton>
+<van-dialog
+  use-slot
+  title="退货理由"
+  close-on-click-overlay
+  show="{{reasonShow}}"
+  bind:confirm="onClose"
+  >
+  <view class="order-reason">
+    <van-radio-group value="{{ radio }}" bind:change="radioChange">
+      <block wx:for="{{radioList}}" wx:key="index">
+        <van-radio name="{{item.name}}" custom-class="radio-custom-class" label-class="radio-label-class" checked-color="#000">{{item.value}}</van-radio>
+      </block>
+    </van-radio-group>
+    <textarea wx:if="{{radio === '3'}}" auto-focus placeholder='如需退货，请输入退货原因！' value="{{reasonText}}" bindconfirm="setReasonInfo" cursor-spacing="60"></textarea>
+    <!-- <view class="order-reason-content">
+      <van-radio-group value="{{ radio }}" bind:change="radioChange">
+        <block wx:for="{{radioList}}" wx:key="index">
+          <van-radio name="{{item.name}}">{{item.value}}</van-radio>
+        </block>
+      </van-radio-group>
+      <textarea wx:if="{{radio === 3}}" placeholder='如需退货，请输入退货原因！' bindinput="setReasonInfo"></textarea>
+    </view> -->
+    <!-- <view class="order-reason-btn">
+      <van-button bindtap="onClose" data-type="confirm" disabled='{{radioItem === "其他" && !reasonText}}'>确定</van-button>
+    </view> -->
+  </view>
+</van-dialog>
+<!-- <zan-popup show="{{reason.show}}" overlay="true">
   <view class="order-reason">
     <view class='textContent'>
       <radio-group class="radio-group" bindchange="radioChange">
@@ -155,5 +183,4 @@
     <button bindtap="onClose" data-type="confirm" disabled='{{radioItem === "其他" && !reasonText}}'>确定</button>
     <button bindtap="onClose" data-type="close">关闭</button>
   </view>
-</zan-popup>
-</van-skeleton>
+</zan-popup> -->

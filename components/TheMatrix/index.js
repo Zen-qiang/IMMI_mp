@@ -50,7 +50,7 @@ Component({
    * 组件的初始数据
    */
   data: {
-    loading: true,
+    loading: true, // 控制骨架屏显示
     tabList: [],
     selectedId: 0,
     scroll: true,
@@ -58,33 +58,23 @@ Component({
     matrixPrice: {}, // 每个色不同价格
     matrixTotal: {}, // 每个颜色的数量
     total: 0, // 总下单量
-    /**
-     * 退货原因
-     */
-    reason: {
-      show: false,
-      overlay: false,
-      items: [{
-          name: '次品(收获7天内发现有残次，未经穿着、洗涤、吊牌完整)',
-          value: '残次品(收获7天内发现有残次，未经穿着、洗涤、吊牌完整)',
-          checked: 'false'
-        },
-        {
-          name: '顾客退回(已穿着或洗涤后发现质量问题)',
-          value: '顾客退回(已穿着或洗涤后发现质量问题)',
-          checked: 'false'
-        },
-        {
-          name: '其他',
-          value: '其他',
-          checked: 'true'
-        }
-      ]
-    },
-    reasonInfo: '',
-    radioItem: '其他',
+    radio: '1',
+    radioList: [
+      {
+        name: '1',
+        value: '残次品(收获7天内发现有残次，未经穿着、洗涤、吊牌完整)'
+      },
+      {
+        name: '2',
+        value: '顾客退回(已穿着或洗涤后发现质量问题)'
+      },
+      {
+        name: '3',
+        value: '其他'
+      }
+    ],
+    reasonShow: false,
     reasonText: '',
-    isShowMask: false,
     stock: false // 是否还有库存 false：提交到货通知 true：加入购物车
   },
   ready() {
@@ -95,7 +85,7 @@ Component({
    */
   methods: {
     getSpec() {
-      console.log(this.data.from);
+      console.log(this.data.from)
       var data = {
         url: config.specQuery,
         params: {
@@ -135,10 +125,10 @@ Component({
             matrixTotal: matrixTotal,
             stock: data.data.stock
           });
-          console.log(this.data)
+          // console.log(this.data)
         }
       }, res => {
-        console.error(res);
+        // console.error(res);
         this.setData({
           loading: false
         })
@@ -200,7 +190,7 @@ Component({
 
       };
       if (sum) {
-        this.data.stock ? this.addCart(matrixData) : this.addPre(matrixData)
+        this.data.stock ? this.cartHttp(matrixData) : this.addPre(matrixData)
       } else {
         app.showMsg("请输入补货量！");
       }
@@ -209,7 +199,6 @@ Component({
      * 对之前的下量进行补充, 退货或者补货
      */
     updateOrder() {
-
       let that = this;
       let matrixData = [];
       let sum = 0;
@@ -229,35 +218,10 @@ Component({
 
       };
       if (sum) {
-        this.addCart(matrixData);
+        this.cartHttp(matrixData);
       } else {
         let message = this.data.orderType === 'returnOrder' ? '请输入退货量！' : '请输入补货量！'
         app.showMsg(`${message}`);
-      }
-    },
-
-    addCart(matrixData) {
-      if (this.data.orderType == 'returnOrder') { // 退货
-        var _that = this;
-        if (!_that.data.reasonInfo) {
-          this.setData({
-            [`reason.show`]: true
-          });
-          this.emitPage(true);
-          return;
-        }
-        _that.cartHttp(matrixData);
-        // wx.showModal({
-        //   title: '提示',
-        //   content: '确定要退货吗',
-        //   success: function(res) {
-        //     if (res.confirm) {
-        //       _that.cartHttp(matrixData);
-        //     }
-        //   }
-        // });
-      } else { // 补货
-        this.cartHttp(matrixData);
       }
     },
 
@@ -310,68 +274,30 @@ Component({
         app.showMsg("保存失败")
       });
     },
-    // onClose1() {
-    //   this.setData({
-    //     reasonInfo: ''
-    //   });
-    //   this.setData({
-    //     [`reason.show`]: false
-    //   });
-    // },
+    openReson () {
+      this.setData({
+        reasonShow: true
+      })
+    },
     onClose(e) {
-      console.log(e);
-      let type = e.currentTarget.dataset.type;
-      console.log('type: ' + type);
-      console.log(type === 'confirm');
-      if (type === 'confirm') {
-        console.log(this.data.radioItem);
-        if ((!this.data.radioItem || this.data.radioItem === '其他') && !this.data.reasonText) {
-          app.showMsg("请输入其他原因！");
-          return;
-        } else {
-          this.setData({
-            reasonInfo: `${this.data.radioItem};${this.data.reasonText}`
-          });
-        }
-        this.updateOrder();
-      } else if (type === 'close') {
-        this.setData({
-          reasonInfo: ''
-        });
-        this.setData({
-          [`reason.show`]: false
-        });
-        this.emitPage(false);
+      // console.log(this.data.reasonText)
+      if (this.data.radio === '3' && !this.data.reasonText) {
+        app.showMsg("请输入退货原因！")
+        return
       }
-      // this.setData({
-      //   [`reason.show`]: false
-      // });
-      // console.log('reasonInfo: ' + this.data.reasonInfo);
+      this.updateOrder()
     },
     radioChange: function(e) {
-      let value = e.detail.value;
+      // console.log(e)
       this.setData({
-        radioItem: value
-      });
+        radio: e.detail
+      })
     },
     setReasonInfo: function(e) {
-      console.log(e);
-      let value = e.detail.value;
+      // console.log(e);
       this.setData({
-        reasonText: value
-      });
-    },
-
-    emitPage: function(tag) {
-      if (tag) {
-        this.triggerEvent('showMask', {
-          showMask: '01'
-        });
-      } else {
-        this.triggerEvent('showMask', {
-          showMask: '00'
-        });
-      }
+        reasonText: e.detail.value
+      })
     },
     /**
      * TODO 直接提交订单
