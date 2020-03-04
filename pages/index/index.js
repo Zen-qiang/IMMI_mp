@@ -55,11 +55,11 @@ Page({
     // this.getPdtList({
     //   recommend: true
     // });
-    this.getCarouselList();
+    /* this.getCarouselList();
     this.getCategory();
     this.getPdtList({ recommend: true })
     this.getAccountInfo();
-    this.getLayout();
+    this.getLayout(); */
   },
 
   onHide: function() {
@@ -78,11 +78,11 @@ Page({
     // this.setData({
     //   active: 0
     // });
-    /* this.getCarouselList();
+    this.getCarouselList();
     this.getCategory();
     this.getPdtList({ recommend: true })
     this.getAccountInfo();
-    this.getLayout(); */
+    this.getLayout();
   },
   tabChange (e) {
     const query = wx.createSelectorQuery(),

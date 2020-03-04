@@ -60,7 +60,8 @@ Page({
     showType: {
       from: 'cart',
       orderType: 'backOrder'
-    }
+    },
+    expressNumber: ''
   },
 
   /**
@@ -304,10 +305,24 @@ Page({
       url: `/pages/contactsChoose/index?type=${currentSelectOrderType.type}`,
     });
   },
+  /**
+   * TODO 快递单号
+   * @param {*} e 
+   */
+  onChangeExpress(e) {
+    this.setData({
+      expressNumber: e.detail
+    })
+  },
   /** 提交下单按钮 */
   submitOrderAction: function() {
     if (this.data.address.length <= 0) {
       app.showMsg("请选择收货地址");
+      return
+    }
+    if (!this.data.expressNumber && this.data.orderType !== 'backOrder') {
+      app.showMsg("请填写快递单号");
+      return
     }
     // orderCreate
     wx.showLoading({
@@ -321,7 +336,7 @@ Page({
         orderType: this.data.orderType,
         styleNameList: JSON.stringify(_tempList),
         addressId: this.data.addressID,
-        expressNumber: '12345679'
+        expressNumber: this.data.expressNumber
       }
     }
     app.nPost(paramData).then(ret => {

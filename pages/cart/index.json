@@ -5,6 +5,7 @@
     "prod-list-cell": "/components/prodListCell/prodListCell",
     "pop-bottom": "/components/popBottom/popBottom",
     "zan-loadmore": "/common/lib/zanUI/loadmore/index",
-    "my-tabs": "/components/my-tabs/index"
+    "my-tabs": "/components/my-tabs/index",
+    "van-field": "/common/lib/vantUi/field/index"
   }
 }

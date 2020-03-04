@@ -211,7 +211,7 @@ Page({
         attrIdList: this.data.attrIdList||'',
         orderByModel: this.data.orderByModel,
         timeQuantum: this.data.timeQuantum,
-        size: 8,
+        size: 30,
         page: page,
       }
     };

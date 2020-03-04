@@ -59,31 +59,47 @@ Component({
     matrixTotal: {}, // 每个颜色的数量
     total: 0, // 总下单量
     radio: '1',
-    radioList: [
-      {
-        name: '1',
-        value: '残次品(收获7天内发现有残次，未经穿着、洗涤、吊牌完整)'
-      },
-      {
-        name: '2',
-        value: '顾客退回(已穿着或洗涤后发现质量问题)'
-      },
-      {
-        name: '3',
-        value: '其他'
-      }
-    ],
+    // radioList: [
+    //   {
+    //     name: '1',
+    //     value: '残次品(收货7天内发现有残次，未经穿着、洗涤、吊牌完整)'
+    //   },
+    //   {
+    //     name: '2',
+    //     value: '顾客退回(已穿着或洗涤后发现质量问题)'
+    //   },
+    //   {
+    //     name: '3',
+    //     value: '其他'
+    //   }
+    // ],
+    radioList: [],
     reasonShow: false,
     reasonText: '',
     stock: false // 是否还有库存 false：提交到货通知 true：加入购物车
   },
   ready() {
     this.getSpec();
+    this.getReason()
   },
   /**
    * 组件的方法列表
    */
   methods: {
+    getReason() {
+      var data = {
+        url: config.getReason
+      }
+      app.nGet(data).then(res => {
+        console.log(res)
+        const list = res.data && [...res.data, {message: '其它'}]
+        this.setData({
+          radioList: list
+        })
+      }).catch(err => {
+        console.log(err)
+      })
+    },
     getSpec() {
       console.log(this.data.from)
       var data = {
@@ -182,7 +198,8 @@ Component({
             let data = {
               aliasId: item.aliasId,
               qty: item.qty,
-              productId: that.data.productId
+              // productId: that.data.productId
+              productId: item.pdtId
             }
             matrixData.push(data);
           }
@@ -210,7 +227,8 @@ Component({
             let data = {
               aliasId: item.aliasId,
               qty: this.data.orderType === 'returnOrder' ? (item.qty ? -item.qty : 0) : item.qty,
-              productId: that.data.productId
+              // productId: that.data.productId
+              productId: item.pdtId
             }
             matrixData.push(data);
           } 
@@ -256,7 +274,7 @@ Component({
           data: JSON.stringify(matrixData),
           orderType: this.data.orderType,
           from: this.data.from,
-          message: this.data.reasonInfo
+          message: this.data.reasonText
         }
       }
       wx.showLoading({
@@ -280,21 +298,24 @@ Component({
       })
     },
     onClose(e) {
-      // console.log(this.data.reasonText)
-      if (this.data.radio === '3' && !this.data.reasonText) {
+      console.log(this.data.radio, this.data.reasonText)
+      if (this.data.radio === '其它' && !this.data.reasonText) {
         app.showMsg("请输入退货原因！")
         return
+      } else {
+        this.setData({
+          reasonText: this.data.radioList.find((item) => this.data.radio === item.message).message
+        })
       }
       this.updateOrder()
     },
     radioChange: function(e) {
-      // console.log(e)
       this.setData({
         radio: e.detail
       })
     },
     setReasonInfo: function(e) {
-      // console.log(e);
+      console.log(e)
       this.setData({
         reasonText: e.detail.value
       })

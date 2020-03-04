@@ -76,6 +76,9 @@
         <zan-icon type='arrow'></zan-icon>
       </view>
     </view>
+    <view class="row4" wx:if="{{orderType !== 'backOrder'}}">
+      <van-field value="{{ expressNumber }}" placeholder="请填写快递单号" bind:change="onChangeExpress"></van-field>
+    </view>
     <view class='row bot'>
       <button bindtap='submitOrderAction'>提交</button>
     </view>

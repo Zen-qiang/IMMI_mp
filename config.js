@@ -44,8 +44,9 @@ let api = {
   unsubmit: `${host}/b2b/order/unsubmit`, // 反提交
   getArrivalNoticeList: `${host}/b2b/product/getArrivalNoticeList`, // 到货通知列表
   getArrivalNotice: `${host}/b2b/product/getArrivalNotice`, // 读取到货通知
-  arrivalNotice: `${host}//b2b/product/arrivalNotice`, // 提交预订商品
-  submitOrder: `${host}//b2b/order/submitOrder` // 订单详情页面直接提交订单
+  arrivalNotice: `${host}/b2b/product/arrivalNotice`, // 提交预订商品
+  submitOrder: `${host}/b2b/order/submitOrder`, // 订单详情页面直接提交订单
+  getReason: `${host}/b2b/cart/getReturnReason`
 };
 
 var config = {

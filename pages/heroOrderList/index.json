@@ -2,9 +2,8 @@
   "navigationBarTitleText": "排行榜",
   "usingComponents": {
     "prod-list-cell": "/components/prodListCell/prodListCell",
-    "zan-loadmore": "/common/lib/zanUI/loadmore/index",
-    "zan-search": "/common/lib/zanUI/search/index",
     "select_mask": "/components/select_mask/select_mask",
-    "select_filter": "/components/select_filter/index"
+    "select_filter": "/components/select_filter/index",
+    "my-load-more": "/components/my-load-more/index"
   }
 }

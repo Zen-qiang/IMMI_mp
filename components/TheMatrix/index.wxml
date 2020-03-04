@@ -54,7 +54,7 @@
               <van-stepper
                 value="{{item.qty}}"
                 min="{{0}}"
-                max="{{item.store}}"
+                max="{{item.qty}}"
                 size="small" data-idx="{{idx}}"
                 integer
                 disabled="{{!canSubmit}}"
@@ -153,10 +153,22 @@
   <view class="order-reason">
     <van-radio-group value="{{ radio }}" bind:change="radioChange">
       <block wx:for="{{radioList}}" wx:key="index">
-        <van-radio name="{{item.name}}" custom-class="radio-custom-class" label-class="radio-label-class" checked-color="#000">{{item.value}}</van-radio>
+        <van-radio
+          name="{{item.message}}"
+          custom-class="radio-custom-class"
+          label-class="radio-label-class"
+          checked-color="#000"
+        >{{item.message}}</van-radio>
       </block>
     </van-radio-group>
-    <textarea wx:if="{{radio === '3'}}" auto-focus placeholder='如需退货，请输入退货原因！' value="{{reasonText}}" bindconfirm="setReasonInfo" cursor-spacing="60"></textarea>
+    <textarea
+      wx:if="{{radio === '其它'}}"
+      auto-focus
+      placeholder='如需退货，请输入退货原因！'
+      value="{{reasonText}}"
+      bindconfirm="setReasonInfo"
+      cursor-spacing="60"
+    ></textarea>
     <!-- <view class="order-reason-content">
       <van-radio-group value="{{ radio }}" bind:change="radioChange">
         <block wx:for="{{radioList}}" wx:key="index">
