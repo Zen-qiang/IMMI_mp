@@ -1,7 +1,7 @@
 <!--pages/login/index.wxml-->
 <view class="login-page">
   <!-- 登陆 -->
-  <view>
+  <!-- <view wx:if="{{!isLogin}}">
     <view class="cover">
       <view class="logo">
         <image src="../../common/resource/logo.jpg" mode="aspectFit"></image>
@@ -14,22 +14,21 @@
       <van-field placeholder="{{ userName.placeholder }}" value="{{ userName.value }}" bind:input="handleChange" data-type="userName" confirm-type="next"></van-field>
       <van-field placeholder="{{ password.placeholder }}" value="{{ password.value }}" bind:input="handleChange" data-type="password" bind:confirm="login" password></van-field>
     </view>
-  </view>
+  </view> -->
   <!-- 修改密码 -->
-  <!-- <view wx:else class="rset-psw">
+  <view class="rset-psw">
     <view><van-field placeholder="{{ oldPassword.placeholder }}" value="{{ oldPassword.value }}" password bind:input="handleChange" data-type="oldPassword"></van-field></view>
     <view><van-field placeholder="{{ newPassword.placeholder }}" value="{{ newPassword.value }}" password bind:input="handleChange" data-type="newPassword"></van-field></view>
     <view><van-field placeholder="{{ confirmNewPassword.placeholder }}" value="{{ confirmNewPassword.value }}" password bind:change="handleChange" data-type="confirmNewPassword" error="{{newPassword.value !== confirmNewPassword.value}}"></van-field></view>
     <view class="btn"><van-button size="large" bind:tap="changePassword" disabled="{{!oldPassword.value || !newPassword.value || !confirmNewPassword.value || newPassword.value !== confirmNewPassword.value}}">确认修改</van-button></view>
-  </view> -->
+  </view>
   <!-- 登陆按钮 -->
   <view class="btn">
-    <van-button size="large" bind:tap="login">登录</van-button>
+    <van-button size="large" bind:tap="logout">退出登录</van-button>
   </view>
 
 </view>
-<view class="weui-footer">
-  <view class="weui-footer__text">该系统仅供内部帐号使用</view>
-  <view class="weui-footer__text">Copyright © 2020 DinglianTech</view>
-  <view class="weui-footer__text">{{ version }}</view>
-</view>
+<!-- <view class="weui-footer">
+  <view class="weui-footer__text">此小程序仅供内部系统使用请使用内部提供帐号登录</view>
+    <view class="weui-footer__text">Copyright © 2020 DinglianTech</view>
+</view> -->

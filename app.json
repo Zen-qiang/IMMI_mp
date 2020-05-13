@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/index/index",
     "pages/login/index",
+    "pages/index/index",
     "pages/pdtInfo/index",
     "pages/account/index",
     "pages/webview/index",
@@ -17,7 +17,8 @@
     "pages/heroOrderList/index",
     "pages/logistics/index",
     "pages/reviewOrder/index",
-    "pages/preorder/index"
+    "pages/preorder/index",
+    "pages/logout/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

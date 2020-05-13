@@ -2,8 +2,8 @@
   <select_mask id="popup" showText="{{sortText}}" bind:selectActive="selectActive" bind:searchDone="searchDone">
     <view class='sortView' wx:if="{{showSelectView1}}">
       <view class='text' bindtap='sortAction' data-param="0">默认排序</view>
-      <view class='text' bindtap='sortAction' data-param="1">定量从高到低</view>
-      <view class='text' bindtap='sortAction' data-param="2">定量从低到高</view>
+      <view class='text' bindtap='sortAction' data-param="1">订量从高到低</view>
+      <view class='text' bindtap='sortAction' data-param="2">订量从低到高</view>
       <view class='text' bindtap='sortAction' data-param="3">金额从高到低</view>
       <view class='text' bindtap='sortAction' data-param="4">金额从低到高</view>
     </view>
@@ -20,7 +20,7 @@
   <view class="space"></view>
   <view class='showMsg'>
     <view class='row'>
-      <text>总定量: {{ordersData.summary.totalQty}}</text>
+      <text>总订量: {{ordersData.summary.totalQty}}</text>
     </view>
     <view class='row'>
       <text>总金额: ￥ {{ordersData.summary.totalAmt}}</text>

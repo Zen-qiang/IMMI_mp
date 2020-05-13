@@ -60,7 +60,7 @@ Page({
   },
   checkLogin() {
     wx.navigateTo({
-      url: '/pages/login/index',
+      url: this.data.userName ? '/pages/logout/index' : '/pages/login/index',
     })
   },
   prepareData() {
@@ -133,7 +133,7 @@ Page({
       url: '/pages/reviewOrder/index',
     })
   },
-  // 订单的 定量 和 金额
+  // 订单的 订量 和 金额
   getPriceNum(index = 0) {
     var data = {
       url: config.getOrderPriNum,

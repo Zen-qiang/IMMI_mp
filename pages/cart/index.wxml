@@ -63,12 +63,12 @@
 <pop-bottom id="popup" bind:cancel="dismissPop">
   <view class='submit'>
     <view class='row1'>
-      <text>总定价:{{sumMoney}}</text>
-      <!-- <text>总定量:{{sumCount}}</text> -->
+      <text>总订价:{{sumMoney}}</text>
+      <!-- <text>总订量:{{sumCount}}</text> -->
     </view>
     <view class='row2'>
-      <!-- <text>总定价:{{sumMoney}}</text> -->
-      <text>总定量:{{sumCount}}</text>
+      <!-- <text>总订价:{{sumMoney}}</text> -->
+      <text>总订量:{{sumCount}}</text>
     </view>
     <view class='row3' bindtap='chooseAddressAction'>
       <text>{{address.length>0? address:"请选择收货地址"}}</text>

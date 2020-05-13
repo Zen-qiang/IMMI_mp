@@ -38,7 +38,7 @@ Page({
         title = '过季商品'
         break
       case '3':
-        title = '预定商品'
+        title = '预订商品'
           break
     }
     title && wx.setNavigationBarTitle({title})

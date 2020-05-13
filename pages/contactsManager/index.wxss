@@ -1,7 +1,7 @@
 page {
   min-height: 100%;
   background-color: #f6f6f6;
-  overflow: hidden;
+  /* overflow: hidden; */
   box-sizing: border-box;
 }
 

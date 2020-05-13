@@ -2,7 +2,7 @@ Page({
   data: {
     number: null, // 物流单号
     orderNumber: '',  // 订单编号
-    totalQty: '', // 总定量
+    totalQty: '', // 总订量
     totalAmount: '', // 总金额
     address: {} // 收货信息
   },

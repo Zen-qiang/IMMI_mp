@@ -36,7 +36,7 @@
       <text>订单编号: {{orderConfig.orderNumber}}</text>
     </view>
     <view class='row'>
-      <text>总定量: {{orderConfig.totalQty}}</text>
+      <text>总订量: {{orderConfig.totalQty}}</text>
     </view>
     <view class='row'>
       <text>总金额: {{orderConfig.totalAmount}}</text>

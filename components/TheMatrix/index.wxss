@@ -14,6 +14,9 @@
   background:#000;
   color:#fff!important;
 }
+.cell-right-class {
+  white-space: nowrap;
+}
 
 .btn-container {
   display: flex;

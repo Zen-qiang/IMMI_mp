@@ -10,7 +10,7 @@
 
     <!-- 弹出框 -->
     <view class='cell buydes-dialog-container' animation="{{animationData}}">
-      <!-- 新增 定量 和时间 根据 传递的 showP 来选着显示与否 -->
+      <!-- 新增 订量 和时间 根据 传递的 showP 来选着显示与否 -->
       <view wx:if="{{showP}}" class="{{showP ? 'row1' : ''}}" bindtap='butt3Click'>{{showNum}}</view>
       <view wx:if="{{showP}}" class="{{showP ? 'row1' : ''}}" bindtap='butt4Click'>{{showTime}}</view>
       <view class="{{showP ? 'row1 wx' : 'row'}}" bindtap='butt1Click'>

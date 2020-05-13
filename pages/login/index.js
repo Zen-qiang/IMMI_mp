@@ -8,6 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    version: '',
     isLogin: false,
     // isFirst: false,
     userName: {
@@ -18,53 +19,57 @@ Page({
       placeholder: '请输入密码',
       value: '',
     },
-    oldPassword: {
-      placeholder: '请输入原密码',
-      value: ''
-    },
-    newPassword: {
-      placeholder: '请输入新密码',
-      value: ''
-    },
-    confirmNewPassword: {
-      placeholder: '再次输入新密码',
-      value: ''
-    }
+    // oldPassword: {
+    //   placeholder: '请输入原密码',
+    //   value: ''
+    // },
+    // newPassword: {
+    //   placeholder: '请输入新密码',
+    //   value: ''
+    // },
+    // confirmNewPassword: {
+    //   placeholder: '再次输入新密码',
+    //   value: ''
+    // }
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    const accountInfo = wx.getAccountInfoSync()
+    this.setData({
+      version: accountInfo.miniProgram.version
+    })
     // console.log(options)
     // if (options.page && options.page === 'first') {
     //   this.setData({
     //     isFirst: options.page
     //   });
     // }
-    if (app.isLogin()) {
-      this.setData({
-        isLogin: true
-      });
-      wx.setNavigationBarTitle({
-        title: '退出登录页',
-      })
-    } else {
-      wx.setNavigationBarTitle({
-        title: '登录页',
-      })
-    }
+    // if (app.isLogin()) {
+    //   this.setData({
+    //     isLogin: true
+    //   });
+    //   wx.setNavigationBarTitle({
+    //     title: '退出登录页',
+    //   })
+    // } else {
+    //   wx.setNavigationBarTitle({
+    //     title: '登录页',
+    //   })
+    // }
   },
   onUnload () {
     app.globalData.at_login_page = false
   },
-  handleBtn() {
-    if (this.data.isLogin) {
-      this.logout();
-    } else {
-      this.login();
-    }
-  },
+  // handleBtn() {
+  //   if (this.data.isLogin) {
+  //     this.logout();
+  //   } else {
+  //     this.login();
+  //   }
+  // },
   /* input输入事件 */
   handleChange (e) {
     const key = `${e.target.dataset.type}.value`
@@ -73,33 +78,33 @@ Page({
     })
   },
   /* 确更改密码 */
-  changePassword () {
-    if (this.data.newPassword.value !== this.data.confirmNewPassword.value) return
-    const data = {
-      url: config.changePassword,
-      params: {
-        oldPassword: this.data.oldPassword.value,
-        newPassword: this.data.newPassword.value,
-        confirmNewPassword: this.data.confirmNewPassword.value
-      }
-    }
-    console.log(data)
-    app.nPost(data).then(res => {
-      console.log(res)
-      wx.showModal({
-        title: '提示',
-        content: '修改成功请重新登陆',
-        showCancel: false,
-        success: (res) => {
-          console.log(res)
-          if (res.confirm) {
-            console.log('用户点击确定')
-            this.logout()
-          }
-        }
-      })
-    })
-  },
+  // changePassword () {
+  //   if (this.data.newPassword.value !== this.data.confirmNewPassword.value) return
+  //   const data = {
+  //     url: config.changePassword,
+  //     params: {
+  //       oldPassword: this.data.oldPassword.value,
+  //       newPassword: this.data.newPassword.value,
+  //       confirmNewPassword: this.data.confirmNewPassword.value
+  //     }
+  //   }
+  //   console.log(data)
+  //   app.nPost(data).then(res => {
+  //     console.log(res)
+  //     wx.showModal({
+  //       title: '提示',
+  //       content: '修改成功请重新登陆',
+  //       showCancel: false,
+  //       success: (res) => {
+  //         console.log(res)
+  //         if (res.confirm) {
+  //           console.log('用户点击确定')
+  //           this.logout()
+  //         }
+  //       }
+  //     })
+  //   })
+  // },
   /**
    * 登录
    */
@@ -205,20 +210,20 @@ Page({
   /**
    * 退出
    */
-  logout() {
-      var data = {
-        url: config.logout,
-        params: {}
-      }
-      app.nGet(data).then(res => {
-        app.showMsg("退出成功");
-        app.clearValue();
-        // wx.navigateBack();
-        wx.reLaunch({
-          url: '/pages/login/index',
-        })
-      }, res => {
-        // console.error(res);
-      });
-    }
+  // logout() {
+  //     var data = {
+  //       url: config.logout,
+  //       params: {}
+  //     }
+  //     app.nGet(data).then(res => {
+  //       app.showMsg("退出成功");
+  //       app.clearValue();
+  //       // wx.navigateBack();
+  //       wx.reLaunch({
+  //         url: '/pages/login/index',
+  //       })
+  //     }, res => {
+  //       // console.error(res);
+  //     });
+  //   }
 })

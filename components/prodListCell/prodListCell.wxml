@@ -20,7 +20,7 @@
         </view>
         <!--  -->
         <view class='right msg3'>
-          <text>定量:</text>
+          <text>订量:</text>
           <text wx:if="{{show}}">{{shopData.qty}}</text>
           <text wx:if="{{!show}}">{{shopData.sumQty}}</text>
           <text style='margin-left:20rpx;'>总价:</text>

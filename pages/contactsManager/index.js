@@ -29,7 +29,7 @@ Page({
   /** 编辑 */
   editAction: function(e) {
     wx.navigateTo({
-      url: '/pages/contactsUpdate/index?addressId=' + e.detail.addressId,
+      url: `/pages/contactsUpdate/index?addressId=${e.detail.addressId}&type=${this.data.type}`,
     });
   },
 
@@ -54,7 +54,7 @@ Page({
   /** 新增联系人 */
   addAddressAction: function() {
     wx.navigateTo({
-      url: '/pages/contactsUpdate/index',
+      url: `/pages/contactsUpdate/index?type=${this.data.type}`,
     });
   },
 

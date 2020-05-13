@@ -80,7 +80,7 @@ Page({
     // });
     this.getCarouselList();
     this.getCategory();
-    this.getPdtList({ recommend: true })
+    this.data.active === 0 ? this.getPdtList({ recommend: true }) : this.getPdtList({})
     this.getAccountInfo();
     this.getLayout();
   },

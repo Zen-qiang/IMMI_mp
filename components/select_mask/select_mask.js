@@ -26,7 +26,7 @@ Component({
     showModalStatus: false,
     showModal1: false,
     showModal2: false,
-    // 定量
+    // 订量
     showModal3: false,
     // 时间
     showModal4: false,

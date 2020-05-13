@@ -168,6 +168,7 @@ Page({
   },
   /* 获取数据 */
   getList () {
+    wx.showLoading()
     let triggerObj = this.data.orderObj[this.data.orderType]  // 当前订单类型对象
     const data = {
       url: config.cartListQuery,
@@ -179,6 +180,7 @@ Page({
       }
     }
     app.nGet(data).then(res => {
+      wx.hideLoading()
       if (res.data) {
         triggerObj.pageNum === 1 ? triggerObj.resultList = res.data.list : triggerObj.resultList.push(...res.data.list)
         const keyList = `orderObj.${this.data.orderType}.resultList`,
@@ -188,7 +190,9 @@ Page({
           [keyList]: triggerObj.resultList
         });
       }
-    }, res => {});
+    }, res => {
+      wx.hideLoading()
+    });
   },
   /* 删除单个商品 */
   deletePdt: function (e) {

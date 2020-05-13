@@ -8,6 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    type: null, // 0 收货地址 1 退货地址
     consignee: "", // 联系人
     phone: "", // 手机号码
     province: "", // 省
@@ -22,6 +23,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    // console.log(options)
+    var type = options.type
+    this.data.type = type
     var addressId = options.addressId;
     if (addressId && addressId.length > 0) { // 修改地址
       this.preparePageData(addressId);
@@ -134,6 +138,7 @@ Page({
     var data = {
       url: config.addressCreate,
       params: {
+        type: this.data.type,
         id: this.data.id || "",
         consignee: this.data.consignee,
         phone: this.data.phone,

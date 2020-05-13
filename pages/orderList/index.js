@@ -22,7 +22,7 @@ Page({
     attrsList: [], // 筛选数据
     attrIdList: [], // 选择的筛选数据
     sortText: '默认排序', // 排序结果 ，保存用于接口请求
-    orderBy: "", // QTY（定量） | AMT（金额） ，保存用于接口请求
+    orderBy: "", // QTY（订量） | AMT（金额） ，保存用于接口请求
     sort: "", // DESC（倒叙） | ASC（正序） ，保存用于接口请求
     season: null
   },
@@ -70,11 +70,11 @@ Page({
     if (e.currentTarget.dataset.param == 0) {
       _sortText = "默认排序";
     } else if (e.currentTarget.dataset.param == 1) {
-      _sortText = "定量从高到低";
+      _sortText = "订量从高到低";
       _orderBy = "QTY";
       _sort = "DESC"
     } else if (e.currentTarget.dataset.param == 2) {
-      _sortText = "定量从低到高";
+      _sortText = "订量从低到高";
       _orderBy = "QTY";
       _sort = "ASC"
     } else if (e.currentTarget.dataset.param == 3) {

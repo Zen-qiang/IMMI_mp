@@ -10,7 +10,7 @@
   </view>
   <view class="item">
     <view class="item-title">
-      <text>总定量：</text>
+      <text>总订量：</text>
     </view>
     <view class="item-content">
       <text>{{totalQty}}</text>

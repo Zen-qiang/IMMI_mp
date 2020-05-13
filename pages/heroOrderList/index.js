@@ -17,18 +17,18 @@ Page({
     },
     loadDone: false,
     title: '',
-    showNum: '全国定量',
+    showNum: '全国订量',
     showTime: '不限',
     showSelectView1: false,
     showSelectView2: false,
-    // 定量
+    // 订量
     showSelectView3: false,
     // 时间
     showSelectView4: false,
     attrsList: [], // 筛选数据
     attrIdList: [], // 选择的筛选数据
     sortText: '默认排序', // 排序结果 ，保存用于接口请求
-    orderBy: "", // QTY（定量） | AMT（金额） ，保存用于接口请求
+    orderBy: "", // QTY（订量） | AMT（金额） ，保存用于接口请求
     sort: "", // DESC（倒叙） | ASC（正序） ，保存用于接口请求
     orderByModel: '', // 排序方式   MY个人   ALL全场
     timeQuantum: '' //this_week  this_month this_season
@@ -86,11 +86,11 @@ Page({
     if (e.currentTarget.dataset.param == 0) {
       _sortText = "默认排序";
     } else if (e.currentTarget.dataset.param == 1) {
-      _sortText = "定量从高到低";
+      _sortText = "订量从高到低";
       _orderBy = "QTY";
       _sort = "DESC"
     } else if (e.currentTarget.dataset.param == 2) {
-      _sortText = "定量从低到高";
+      _sortText = "订量从低到高";
       _orderBy = "QTY";
       _sort = "ASC"
     } else if (e.currentTarget.dataset.param == 3) {
@@ -112,16 +112,16 @@ Page({
     this.prepareData();
   },
 
-  // 点击定量列表
+  // 点击订量列表
   sortAction1: function (e) {
     console.log(e.currentTarget.dataset.param);
     let _showNum = "";
     let _orderByModel = "";
     if (e.currentTarget.dataset.param == 0) {
-      _showNum = "全国定量";
+      _showNum = "全国订量";
       _orderByModel = 'ALL'
     } else if (e.currentTarget.dataset.param == 1) {
-      _showNum = "我的定量";
+      _showNum = "我的订量";
       _orderByModel = 'MY'
     }
     this.setData({

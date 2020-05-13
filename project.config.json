@@ -23,7 +23,7 @@
 		"bundle": false
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.9.4",
+	"libVersion": "2.10.4",
 	"appid": "wxfc56b5567ce7bb96",
 	"projectname": "IMMI",
 	"isGameTourist": false,
@@ -154,6 +154,12 @@
 					"name": "pages/index/index",
 					"pathName": "pages/index/index",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/contactsManager/index",
+					"pathName": "pages/contactsManager/index",
 					"scene": null
 				}
 			]

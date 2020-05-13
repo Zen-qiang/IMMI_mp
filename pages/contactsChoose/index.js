@@ -40,7 +40,7 @@ Page({
   /** 新增联系人 */
   addAddressAction: function(e) {
     wx.navigateTo({
-      url: '/pages/contactsUpdate/index',
+      url: `/pages/contactsUpdate/index?type=${this.data.type}`,
     });
   },
 

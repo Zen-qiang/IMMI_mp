@@ -12,16 +12,17 @@
     line-width="0"
     swipe-threshold="{{4}}" animated lazy-render
   >
-    <van-tab wx:for="{{tabList}}" wx:key="index" title="{{item.title}}" name="{{index}}">
+    <van-tab wx:for="{{tabList}}" wx:for-item="tab" wx:key="index" title="{{tab.title}}" name="{{index}}">
       <block wx:for="{{matrix[index]}}" wx:for-index="idx" wx:key="{{item.aliasId}}">
-        <van-cell title="{{item.sizeName}}">
+        <van-cell title="{{item.sizeName}}" value-class="cell-right-class">
           <view>
             <block wx:if="{{from === 'cart'}}">
-              <text style="float: left;margin-right: 10px; font-size: 12px; text-align: left;" wx:if="{{orderType === 'backOrder'}}">库存：{{item.store}}</text>
+              <text style="float: left;margin-right: 10px; font-size: 12px; text-align: left;">{{orderType === 'backOrder' ? '库存：' + item.store : '已订：' + item.qty}}</text>
+              <!-- orderType=returnOrder时 maxQty=已经退掉的订量 -->
               <van-stepper
-                value="{{item.qty}}"
+                value="{{orderType === 'backOrder' ? item.qty : 0}}"
                 min="{{0}}"
-                max="{{item.maxQty}}"
+                max="{{ orderType === 'backOrder' ? (item.maxQty < item.qty ? item.qty : item.maxQty) : item.qty - item.maxQty }}"
                 size="small" data-idx="{{idx}}"
                 integer
                 bind:change="handleZanStepperChange">
@@ -33,7 +34,7 @@
                 <van-stepper
                   value="{{item.qty}}"
                   min="{{0}}"
-                  max="{{item.maxQty}}"
+                  max="{{ item.maxQty < item.qty ? item.qty : item.maxQty }}"
                   size="small" data-idx="{{idx}}"
                   integer
                   bind:change="handleZanStepperChange">
@@ -152,14 +153,14 @@
   >
   <view class="order-reason">
     <van-radio-group value="{{ radio }}" bind:change="radioChange">
-      <block wx:for="{{radioList}}" wx:key="index">
+      <view wx:for="{{radioList}}" wx:key="index" data-type="{{ item.type }}" bind:tap="radioChangeType">
         <van-radio
           name="{{item.message}}"
           custom-class="radio-custom-class"
           label-class="radio-label-class"
           checked-color="#000"
         >{{item.message}}</van-radio>
-      </block>
+      </view>
     </van-radio-group>
     <textarea
       wx:if="{{radio === '其它'}}"
