@@ -20,6 +20,14 @@
     "pages/preorder/index",
     "pages/logout/index"
   ],
+  "subPackages": [
+    {
+      "root": "subPackages/reserve/pages",
+      "pages": [
+        "index/index"
+      ]
+    }
+  ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",

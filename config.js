@@ -2,13 +2,13 @@
  * 接口配置文件
  */
 
-const host = "https://immi.dingliantech.com";
+// const host = "https://immi.dingliantech.com";
 // const host = "http://192.168.3.16:8080/trendfinder";
 // const host = "http://172.16.0.176:8082";
 // const host = "http://192.168.8.8:55661/immi";
 // const host = 'https://invitation.dingliantech.com/immi';
 // const host = "http://192.168.3.7:8080";
-// const host = "https://bobo.easy.echosite.cn/immi"
+const host = "https://bobo.easy.echosite.cn/immi"
 
 // 首页接口汇总
 let api = {
@@ -46,7 +46,8 @@ let api = {
   getArrivalNotice: `${host}/b2b/product/getArrivalNotice`, // 读取到货通知
   arrivalNotice: `${host}/b2b/product/arrivalNotice`, // 提交预订商品
   submitOrder: `${host}/b2b/order/submitOrder`, // 订单详情页面直接提交订单
-  getReason: `${host}/b2b/cart/getReturnReason`
+  getReason: `${host}/b2b/cart/getReturnReason`,
+  getReserve: `${host}/b2b/product/getDestineCategory` // 获取预定商品列表分类
 };
 
 var config = {

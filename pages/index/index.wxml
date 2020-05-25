@@ -6,7 +6,7 @@
 <view class="index-content">
   <view hidden="{{active != 0}}" style="padding-top: 8px;">
     <carousel items="{{carouselList}}" style="width: 100%;"></carousel>
-    <view class="top_view" bindtap="homeShowModel" data-type="3">
+    <view class="top_view" bindtap="_toReserve">
       <view class="arrow gt"><image src="../../common/resource/finger.svg" mode="aspectFill"></image></view>
       <view class="text"><text>预订商品</text></view>
       <view class="arrow lt"><image src="../../common/resource/finger.svg" mode="aspectFill"></image></view>

@@ -177,7 +177,12 @@ Page({
     });
 
   },
-
+  // 跳转到预定商品页面
+  _toReserve () {
+    wx.navigateTo({
+      url: `/subPackages/reserve/pages/index/index`
+    })
+  },
   /**
    * 获取最新商品列表
    * loadmore 是否上拉加载请求

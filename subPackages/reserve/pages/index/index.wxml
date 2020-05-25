@@ -1,0 +1,12 @@
+<view class="reserveList">
+  <block wx:for="{{ list }}" wx:key="index">
+    <view class="item" data-id="{{ item.id }}" bind:tap="_jumpList">
+      <view class="img">
+        <image mode="widthFix" src="{{ item.url }}" />
+      </view>
+      <view class="text">
+        <text>{{ item.name }}</text>
+      </view>
+    </view>
+  </block>
+</view>

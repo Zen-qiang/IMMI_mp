@@ -1,0 +1,27 @@
+.reserveList {
+  /* padding: 30rpx; */
+  display: flex;
+  flex-flow: row wrap;
+  box-sizing: border-box;
+  overflow: hidden;
+  padding: 20rpx;
+  margin: 0 -10rpx;
+}
+.reserveList .item {
+  flex: 0 0 50%;
+  overflow: hidden;
+  padding: 0 10rpx;
+  box-sizing: border-box;
+  margin-bottom: 20rpx;
+}
+.item .img {
+  width: 100%;
+}
+.item .text {
+  text-align: center;
+  font-weight: bold;
+}
+
+.item .img image {
+  width: 100%;
+}

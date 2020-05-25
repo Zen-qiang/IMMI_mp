@@ -20,7 +20,10 @@
 			"disablePlugins": [],
 			"outputPath": ""
 		},
-		"bundle": false
+		"bundle": false,
+		"useCompilerModule": true,
+		"userConfirmedUseCompilerModuleSwitch": false,
+		"enhance": true
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.10.4",
@@ -160,6 +163,13 @@
 					"id": -1,
 					"name": "pages/contactsManager/index",
 					"pathName": "pages/contactsManager/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "subPackages/reserve/pages/index/index",
+					"pathName": "subPackages/reserve/pages/index/index",
 					"scene": null
 				}
 			]

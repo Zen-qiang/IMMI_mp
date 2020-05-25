@@ -10,6 +10,7 @@ Page({
     type: '',
     search: '',
     attrIdList: [],
+    categoryId: '',
     page: 1,
     size: 20,
     total: 0,
@@ -27,7 +28,8 @@ Page({
     this.setData({
       type: options.type || '',
       search: options.search || '',
-      attrIdList: options.attrIdList && options.attrIdList.split(',') || []
+      attrIdList: options.attrIdList && options.attrIdList.split(',') || [],
+      categoryId: options?.categoryId ?? ''
     })
     let title = ''
     switch (this.data.type) {
@@ -50,7 +52,8 @@ Page({
       type = '',
       params = {
         page: this.data.page,
-        size: this.data.size
+        size: this.data.size,
+        categoryId: this.data.categoryId
       }
     switch (this.data.type) {
       case '1':
