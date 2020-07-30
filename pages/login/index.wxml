@@ -7,7 +7,7 @@
         <image src="../../common/resource/logo.jpg" mode="aspectFit"></image>
       </view>
       <view class="bg">
-        <image src="../../common/resource/Snipaste1.jpg" mode="aspectFit"></image>
+        <image src="http://immi.dingliantech.com/resource/login/bg.jpg" mode="aspectFit"></image>
       </view>
     </view>
     <view class="field-content">
