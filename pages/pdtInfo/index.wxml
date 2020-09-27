@@ -1,10 +1,11 @@
 <!--pages/pdtInfo/index.wxml-->
 <view class="pdtInfo-page">
   <!-- 图片列表 -->
-  <swiper class="carousel-swiper" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="{{circular}}" next-margin="{{ pdtInfo.images.length > 1 ? '180rpx' : 0 }}">
+  <!-- next-margin="{{ pdtInfo.images.length > 1 ? '180rpx' : 0 }} -->
+  <swiper class="carousel-swiper" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="{{circular}}">
     <block wx:for="{{pdtInfo.images}}" wx:key="{{item}}">
       <swiper-item>
-        <image src="{{item}}" class="carousel-image slide-image" />
+        <image src="{{item}}" class="carousel-image slide-image" mode="aspectFit" />
       </swiper-item>
     </block>
   </swiper>

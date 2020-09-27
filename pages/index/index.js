@@ -37,6 +37,7 @@ Page({
     attrsList: [], // 筛选 属性list
     home_new: "",
     home_top: "",
+    home_title: '',
     active: 0,
     tabList: [
       { label: '首页', value: 0, scrollTop: 0 },
@@ -166,7 +167,8 @@ Page({
       // console.log(data);
       this.setData({
         home_new: data.data.new,
-        home_top: data.data.top
+        home_top: data.data.top,
+        home_title: data.data.indexTtile
       });
     }, res => {});
   },
@@ -217,7 +219,7 @@ Page({
             break
           case 1:
             this.setData({
-              'allLoadMore.loadDone': this.data.recommendInfo.size > data.list.length
+              'allLoadMore.loadDone': this.data.allInfo.size > data.list.length
             })
             if (this.data.allInfo.page === 1) {
               this.setData({

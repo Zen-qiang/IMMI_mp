@@ -89,6 +89,10 @@ App({
         success: function(res) {},
         fail: function(res) {},
         complete: function(res) {
+          // console.log(res)
+          if (res.errMsg !== 'request:ok') {
+            _that.showMsg(res.errMsg)
+          }
           if (res.data && res.data.code === 666 || res.data.code === 0) {
             resolve(res.data);
           } else if (res.data && res.data.code === 8006 || res.data && res.data.code === 8005) {  // 8006 用户未登录  8005 无效的SESSION-TOKEN
